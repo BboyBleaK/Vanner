@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SocialLab</string>
+    <string name="TituloVanner">Vanner</string>
+    <string name="SubTituloInicio">Inicio de Sesión</string>
+    <string name="hintUsuario">Ingresa tu usuario</string>
+    <string name="hintContraseña">Ingresa tu Contraseña</string>
+    <string name="txtOlvidoPass">Olvidaste tu contraseña?</string>
+    <string name="btnInicioSesion">Iniciar Sesión</string>
+    <string name="txtSinCuenta">¿No tienes cuenta?</string>
+
+    <string name="DescripcionFacebook">Btn para direccionar a facebook</string>
+    <string name="DescripcionCorreo">Btn para direccionar a gmail</string>
+    <string name="DescripcionSocial">Btn para direccionar a instagram</string>
+
+    <string name="DescripcionImgLogo">IMG logo vanner</string>
+</resources>

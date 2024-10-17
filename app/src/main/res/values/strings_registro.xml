@@ -1,0 +1,31 @@
+<resources>
+    <string name="btnRegresar">img flecha regreso</string>
+    <string name="btnRegistrar">Registrarse</string>"
+
+    <string name="txtTitulo">Registro</string>
+    <string name="txtRut">Ingrese su Rut</string>
+    <string name="txtNombre">Ingrese su Nombre</string>
+    <string name="txtMaterno">Ingrese su Apellido materno</string>
+    <string name="txtPaterno">Ingrese su Apellido paterno</string>
+    <string name="txtNacimiento">Ingrese fecha de nacimiento</string>
+    <string name="txtDireccion">Ingrese su direccion</string>
+    <string name="txtFono">Ingrese numero de contacto</string>
+    <string name="txtCorreo">Cual es su correo</string>
+    <string name="txtCargo">Cual es su cargo</string>
+    <string name="txtTecnico">Tecnico</string>
+    <string name="txtEmpresa">Empresa</string>
+    <string name="txtPass">Ingrese una constraseña</string>
+    <string name="txtRePass">Re-ingrese su contraseña</string>
+
+    <string name="txtDescRut">Icono rut</string>
+    <string name="txtDescNombre">Icono Nombre</string>
+    <string name="txtDescPaterno">Icono Paterno</string>
+    <string name="txtDescMaterno">Icono Materno</string>
+    <string name="txtDescNacimiento">Icono Nacimiento</string>
+    <string name="txtDescDireccion">Icono Direccion</string>
+    <string name="txtDescFono">Icono Fono</string>
+    <string name="txtDescCorreo">Icono Correo</string>
+    <string name="txtDescCargo">Icono Cargo</string>
+    <string name="txtDescPass">Icono Pass</string>
+
+</resources>
