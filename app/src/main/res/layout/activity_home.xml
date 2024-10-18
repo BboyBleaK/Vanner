@@ -8,8 +8,9 @@
     android:background="#8BC34A"
     tools:context=".HomeActivity">
 
+    <!-- Texto de Bienvenida que se actualizará con el correo -->
     <TextView
-        android:id="@+id/textVBien"
+        android:id="@+id/textViewBienvenida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bienvenido/a"
@@ -19,6 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Título del Menú Principal -->
     <TextView
         android:id="@+id/textVMenu"
         android:layout_width="wrap_content"
@@ -26,10 +28,11 @@
         android:text="Menú Principal"
         android:textSize="30sp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textVBien"
+        app:layout_constraintTop_toBottomOf="@id/textViewBienvenida"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Botón para cerrar sesión o volver -->
     <Button
         android:id="@+id/buttonVolver"
         android:layout_width="wrap_content"
@@ -40,6 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Texto para preguntar qué desea realizar -->
     <TextView
         android:id="@+id/textVQuedesea"
         android:layout_width="wrap_content"
@@ -50,6 +54,5 @@
         app:layout_constraintTop_toBottomOf="@id/textVMenu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

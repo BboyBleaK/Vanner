@@ -12,6 +12,7 @@
     <string name="txtFono">Ingrese numero de contacto</string>
     <string name="txtCorreo">Cual es su correo</string>
     <string name="txtCargo">Cual es su cargo</string>
+    <string name="txtGenero">Genero</string>
     <string name="txtTecnico">Tecnico</string>
     <string name="txtEmpresa">Empresa</string>
     <string name="txtPass">Ingrese una constraseña</string>
@@ -27,5 +28,7 @@
     <string name="txtDescCorreo">Icono Correo</string>
     <string name="txtDescCargo">Icono Cargo</string>
     <string name="txtDescPass">Icono Pass</string>
+
+    <string name="imgBtnRegistrar">Registrarse</string>
 
 </resources>

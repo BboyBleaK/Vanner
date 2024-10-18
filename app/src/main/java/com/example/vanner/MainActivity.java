@@ -8,10 +8,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
     private EditText etUsuario, etPass;
     private Button btnInicioSesion, btnRegistro;
     private TextView textOlvidastePass;
@@ -20,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Inicializa Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
         // Vincular los elementos de la interfaz
         etUsuario = findViewById(R.id.ETUsuario);
@@ -32,25 +43,14 @@ public class MainActivity extends AppCompatActivity {
         btnInicioSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String usuario = etUsuario.getText().toString();
-                String contraseña = etPass.getText().toString();
+                String email = etUsuario.getText().toString().trim();
+                String contraseña = etPass.getText().toString().trim();
 
                 // Validar que los campos no estén vacíos
-                if (usuario.isEmpty() || contraseña.isEmpty()) {
+                if (email.isEmpty() || contraseña.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Lógica de autenticación
-                    if (usuario.equals("usuario") && contraseña.equals("1234")) {
-                        // Si es correcto, mostrar mensaje de éxito
-                        Toast.makeText(MainActivity.this, "Sesión iniciada exitosamente", Toast.LENGTH_SHORT).show();
-
-                        // Ir a otra actividad
-                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                        startActivity(intent);
-                    } else {
-                        // Mostrar mensaje de error
-                        Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-                    }
+                    iniciarSesion(email, contraseña);
                 }
             }
         });
@@ -69,8 +69,30 @@ public class MainActivity extends AppCompatActivity {
         textOlvidastePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Lógica para recuperar contraseña o ir a otra pantalla
+                // Aquí podrías implementar la lógica para la recuperación de contraseña
             }
         });
     }
-} 
+
+    // Método para iniciar sesión con Firebase
+    private void iniciarSesion(String email, String contraseña) {
+        mAuth.signInWithEmailAndPassword(email, contraseña)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(MainActivity.this, "Sesión iniciada", Toast.LENGTH_SHORT).show();
+
+                            // Crear el intent y pasar el correo electrónico
+                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            intent.putExtra("user_email", email); // Pasa el correo electrónico al HomeActivity
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Error de autenticación", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+}

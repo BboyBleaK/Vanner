@@ -18,16 +18,16 @@
             android:id="@+id/linearEncabezado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/buttonVolver"
+            <ImageButton
+                android:id="@+id/btnVolver"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:contentDescription="@string/btnRegresar"
+                android:scaleType="fitCenter"
                 android:src="@mipmap/flecha_regresar"
                 android:textSize="20sp" />
 
@@ -35,7 +35,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="40dp"
                 android:text="@string/txtTitulo"
                 android:textSize="48sp" />
         </LinearLayout>
@@ -43,27 +43,27 @@
         <LinearLayout
             android:id="@+id/linearRut"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearEncabezado"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/txtDescRut"
-                android:src="@mipmap/flecha_regresar" />
+                android:src="@mipmap/rut" />
 
             <EditText
                 android:id="@+id/edtRut"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:autofillHints="username"
                 android:background="@drawable/radius_button"
                 android:hint="@string/txtRut"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -71,23 +71,23 @@
         <LinearLayout
             android:id="@+id/linearNombre"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearRut"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/txtDescNombre"
-                android:src="@mipmap/social" />
+                android:src="@mipmap/nombre" />
 
             <EditText
                 android:id="@+id/edtNombre"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:autofillHints="username"
                 android:background="@drawable/radius_button"
                 android:hint="@string/txtNombre"
@@ -99,23 +99,23 @@
         <LinearLayout
             android:id="@+id/linearPaterno"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearNombre"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/txtDescPaterno"
-                android:src="@mipmap/flecha_regresar" />
+                android:src="@mipmap/nombre" />
 
             <EditText
                 android:id="@+id/edtPaterno"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:autofillHints="username"
                 android:background="@drawable/radius_button"
                 android:hint="@string/txtPaterno"
@@ -127,23 +127,23 @@
         <LinearLayout
             android:id="@+id/linearMaterno"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearPaterno"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/txtDescMaterno"
-                android:src="@mipmap/flecha_regresar" />
+                android:src="@mipmap/nombre" />
 
             <EditText
                 android:id="@+id/edtMaterno"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:autofillHints="username"
                 android:background="@drawable/radius_button"
                 android:hint="@string/txtMaterno"
@@ -155,30 +155,30 @@
         <LinearLayout
             android:id="@+id/linearNacimiento"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearMaterno"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/txtDescNacimiento"
                 android:src="@mipmap/calendario" />
 
             <EditText
                 android:id="@+id/dtpNacimiento"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:autofillHints="username"
                 android:background="@drawable/radius_button"
                 android:clickable="true"
                 android:focusable="false"
                 android:hint="@string/txtNacimiento"
                 android:inputType="date"
-
+                android:maxLines="1"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -186,27 +186,27 @@
         <LinearLayout
             android:id="@+id/linearDireccion"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearNacimiento"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/txtDescDireccion"
                 android:src="@mipmap/localizacion" />
 
             <EditText
                 android:id="@+id/edtDireccion"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:autofillHints="username"
                 android:background="@drawable/radius_button"
                 android:hint="@string/txtDireccion"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -214,27 +214,27 @@
         <LinearLayout
             android:id="@+id/linearFono"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearDireccion"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/txtDescFono"
-                android:src="@mipmap/flecha_regresar" />
+                android:src="@mipmap/fono" />
 
             <EditText
                 android:id="@+id/edtFono"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:autofillHints="username"
                 android:background="@drawable/radius_button"
                 android:hint="@string/txtFono"
-                android:inputType="textPersonName"
+                android:inputType="phone"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -242,27 +242,27 @@
         <LinearLayout
             android:id="@+id/linearCorreo"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearFono"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/txtDescCorreo"
-                android:src="@mipmap/flecha_regresar" />
+                android:src="@mipmap/email" />
 
             <EditText
                 android:id="@+id/edtCorreo"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:autofillHints="username"
                 android:background="@drawable/radius_button"
                 android:hint="@string/txtCorreo"
-                android:inputType="textPersonName"
+                android:inputType="textEmailAddress"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -270,64 +270,78 @@
         <LinearLayout
             android:id="@+id/linearCargo"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearCorreo"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="@string/txtDescCargo"
-                android:src="@mipmap/flecha_regresar" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/txtDescPass"
+                android:src="@mipmap/cargo" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txtCargo" />
+            <Spinner
+                android:id="@+id/edtCargo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button"
+                android:hint="@string/txtGenero"
+                android:spinnerMode="dropdown"
+                android:textSize="20sp" />
 
-            <RadioGroup
-                android:id="@+id/rgTipoCuenta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        </LinearLayout>
 
-                <RadioButton
-                    android:id="@+id/rbTecnico"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txtTecnico" />
+        <LinearLayout
+            android:id="@+id/linearGenero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearCargo"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
 
-                <RadioButton
-                    android:id="@+id/rbEmpresa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txtEmpresa" />
-            </RadioGroup>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/txtDescPass"
+                android:src="@mipmap/genero" />
+
+
+            <Spinner
+                android:id="@+id/edtGenero"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button"
+                android:hint="@string/txtGenero"
+                android:spinnerMode="dropdown"
+                android:textSize="20sp" />
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearPass"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/linearCargo"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearGenero"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/txtDescPass"
-                android:src="@mipmap/flecha_regresar" />
+                android:src="@mipmap/pass" />
 
             <EditText
                 android:id="@+id/edtUsuario"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:autofillHints="username"
                 android:background="@drawable/radius_button"
                 android:hint="@string/txtPass"
@@ -339,23 +353,23 @@
         <LinearLayout
             android:id="@+id/linearRePass"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearPass"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/txtDescPass"
-                android:src="@mipmap/flecha_regresar" />
+                android:src="@mipmap/pass" />
 
             <EditText
                 android:id="@+id/edtRePass"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:autofillHints="username"
                 android:background="@drawable/radius_button"
                 android:hint="@string/txtRePass"
@@ -364,12 +378,21 @@
 
         </LinearLayout>
 
-        <Button
+        <ImageButton
             android:id="@+id/btnRegistrar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_below="@id/linearRePass"
-            android:text="@string/btnRegistrar" />
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/btnRegresar"
+
+            android:scaleType="fitCenter"
+            android:src="@mipmap/registrar"
+            android:text="@string/imgBtnRegistrar"
+            android:textSize="20sp" />
 
 
     </RelativeLayout>

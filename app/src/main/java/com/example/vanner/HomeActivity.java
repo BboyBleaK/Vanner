@@ -2,8 +2,8 @@ package com.example.vanner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,15 +14,26 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Button buttonVolver = findViewById(R.id.buttonVolver);
+        // Obtener el TextView donde mostrar el mensaje de bienvenida
+        TextView textViewBienvenida = findViewById(R.id.textViewBienvenida);
 
-        buttonVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        // Obtener el correo que se pasó desde MainActivity
+        Intent intent = getIntent();
+        String userEmail = intent.getStringExtra("user_email");
+
+        // Mostrar el mensaje de bienvenida con el correo
+        if (userEmail != null) {
+            textViewBienvenida.setText("Bienvenido: " + userEmail);
+        } else {
+            textViewBienvenida.setText("Bienvenido");
+        }
+
+        // Botón para volver a MainActivity
+        Button buttonVolver = findViewById(R.id.buttonVolver);
+        buttonVolver.setOnClickListener(v -> {
+            Intent volverIntent = new Intent(HomeActivity.this, MainActivity.class);
+            startActivity(volverIntent);
+            finish();
         });
     }
 }
