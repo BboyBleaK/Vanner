@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8BC34A"
+    android:orientation="vertical"
     tools:context=".HomeActivity">
 
     <!-- Texto de Bienvenida que se actualizará con el correo -->
@@ -30,7 +31,19 @@
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/textViewBienvenida"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Texto para preguntar qué desea realizar -->
+    <TextView
+        android:id="@+id/textVQuedesea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Qué desea realizar?"
+        android:textSize="20sp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/textVMenu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Botón para cerrar sesión o volver -->
     <Button
@@ -43,16 +56,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Texto para preguntar qué desea realizar -->
-    <TextView
-        android:id="@+id/textVQuedesea"
+    <!-- Botón para ver el perfil del usuario -->
+    <Button
+        android:id="@+id/btnUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿Qué desea realizar?"
-        android:textSize="20sp"
+        android:text="Mi perfil"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/textVMenu"
+        app:layout_constraintTop_toBottomOf="@id/textVQuedesea"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

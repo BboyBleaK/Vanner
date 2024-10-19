@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private Button btnUsuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,15 @@ public class HomeActivity extends AppCompatActivity {
         buttonVolver.setOnClickListener(v -> {
             Intent volverIntent = new Intent(HomeActivity.this, MainActivity.class);
             startActivity(volverIntent);
+        });
+
+        // Botón para ir a VistaPrueba (PerfilUsuarioActivity)
+        btnUsuario = findViewById(R.id.btnUsuario);
+        btnUsuario.setOnClickListener(v -> {
+            Intent perfilIntent = new Intent(HomeActivity.this, VistaPrueba.class);
+            // Pasar el correo electrónico al siguiente activity
+            perfilIntent.putExtra("user_email", userEmail);
+            startActivity(perfilIntent);
             finish();
         });
     }
