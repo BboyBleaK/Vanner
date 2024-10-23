@@ -1,4 +1,4 @@
-package com.example.vanner;
+package com.example.vanner.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.vanner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -29,17 +30,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inicializa Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        // Vincular los elementos de la interfaz
         etUsuario = findViewById(R.id.ETUsuario);
         etPass = findViewById(R.id.ETPass);
         btnInicioSesion = findViewById(R.id.buttonInicioSesion);
         btnRegistro = findViewById(R.id.buttonRegistro);
         textOlvidastePass = findViewById(R.id.textVolvidoPass);
 
-        // Acción para botón de Inicio de Sesión
         btnInicioSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Acción para botón de Registro
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Acción para "Olvidaste tu contraseña?"
         textOlvidastePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Método para iniciar sesión con Firebase
     private void iniciarSesion(String email, String contraseña) {
         mAuth.signInWithEmailAndPassword(email, contraseña)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -84,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(MainActivity.this, "Sesión iniciada", Toast.LENGTH_SHORT).show();
 
-                            // Crear el intent y pasar el correo electrónico
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             intent.putExtra("user_email", email); // Pasa el correo electrónico al HomeActivity
                             startActivity(intent);

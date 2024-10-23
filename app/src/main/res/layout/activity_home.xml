@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#8BC34A"
     android:orientation="vertical"
-    tools:context=".HomeActivity">
+    tools:context=".activities.HomeActivity">
 
     <!-- Texto de Bienvenida que se actualizará con el correo -->
     <TextView

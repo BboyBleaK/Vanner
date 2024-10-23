@@ -1,4 +1,4 @@
-package com.example.vanner;
+package com.example.vanner.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.vanner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -85,7 +86,6 @@ public class RegistroActivity extends AppCompatActivity {
             return;
         }
 
-        // Registro de usuario en Firebase Authentication
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -93,7 +93,6 @@ public class RegistroActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(RegistroActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
 
-                            // Redirigir a la actividad principal después de registrar
                             Intent intent = new Intent(RegistroActivity.this, HomeActivity.class);
                             intent.putExtra("user_email", email);
                             startActivity(intent);

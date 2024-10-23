@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#AD7A7A"
-    tools:context=".RegistroActivity">
+    tools:context=".activities.RegistroActivity">
 
     <RelativeLayout
         android:id="@+id/main"
@@ -45,26 +45,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearEncabezado"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescRut"
                 android:src="@mipmap/rut" />
 
-            <EditText
-                android:id="@+id/edtRut"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
-                android:background="@drawable/radius_button"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtRut"
-                android:inputType="text"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtRut"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:autofillHints="username"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -73,27 +89,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearRut"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescNombre"
                 android:src="@mipmap/nombre" />
 
-            <EditText
-                android:id="@+id/edtNombre"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
-                android:background="@drawable/radius_button"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtNombre"
-                android:inputType="textPersonName"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:autofillHints="username"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -101,27 +132,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearNombre"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescPaterno"
                 android:src="@mipmap/nombre" />
 
-            <EditText
-                android:id="@+id/edtPaterno"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
-                android:background="@drawable/radius_button"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtPaterno"
-                android:inputType="textPersonName"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtPaterno"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:autofillHints="username"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -129,27 +175,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearPaterno"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescMaterno"
                 android:src="@mipmap/nombre" />
 
-            <EditText
-                android:id="@+id/edtMaterno"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
-                android:background="@drawable/radius_button"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtMaterno"
-                android:inputType="textPersonName"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtMaterno"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:autofillHints="username"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -157,14 +218,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearMaterno"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescNacimiento"
                 android:src="@mipmap/calendario" />
 
@@ -173,7 +235,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:autofillHints="username"
-                android:background="@drawable/radius_button"
                 android:clickable="true"
                 android:focusable="false"
                 android:hint="@string/txtNacimiento"
@@ -188,26 +249,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearNacimiento"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescDireccion"
                 android:src="@mipmap/localizacion" />
 
-            <EditText
-                android:id="@+id/edtDireccion"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
-                android:background="@drawable/radius_button"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtDireccion"
-                android:inputType="text"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtDireccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:autofillHints="username"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -216,26 +293,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearDireccion"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescFono"
                 android:src="@mipmap/fono" />
 
-            <EditText
-                android:id="@+id/edtFono"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
-                android:background="@drawable/radius_button"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtFono"
-                android:inputType="phone"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtFono"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:autofillHints="username"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -244,26 +337,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearFono"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescCorreo"
                 android:src="@mipmap/email" />
 
-            <EditText
-                android:id="@+id/edtCorreo"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
-                android:background="@drawable/radius_button"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtCorreo"
-                android:inputType="textEmailAddress"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:autofillHints="username"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -272,14 +381,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearCorreo"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescPass"
                 android:src="@mipmap/cargo" />
 
@@ -287,7 +397,6 @@
                 android:id="@+id/edtCargo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/radius_button"
                 android:hint="@string/txtGenero"
                 android:spinnerMode="dropdown"
                 android:textSize="20sp" />
@@ -299,14 +408,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearCargo"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescPass"
                 android:src="@mipmap/genero" />
 
@@ -315,7 +425,6 @@
                 android:id="@+id/edtGenero"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/radius_button"
                 android:hint="@string/txtGenero"
                 android:spinnerMode="dropdown"
                 android:textSize="20sp" />
@@ -327,14 +436,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearGenero"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescPass"
                 android:src="@mipmap/pass" />
 
@@ -343,7 +453,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:autofillHints="username"
-                android:background="@drawable/radius_button"
                 android:hint="@string/txtPass"
                 android:inputType="textPersonName"
                 android:textSize="20sp" />
@@ -355,14 +464,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearPass"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/txtDescPass"
                 android:src="@mipmap/pass" />
 
@@ -371,7 +481,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:autofillHints="username"
-                android:background="@drawable/radius_button"
                 android:hint="@string/txtRePass"
                 android:inputType="textPersonName"
                 android:textSize="20sp" />

@@ -1,4 +1,4 @@
-package com.example.vanner;
+package com.example.vanner.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.vanner.R;
 
 public class VistaPrueba extends AppCompatActivity {
 
@@ -26,21 +28,17 @@ public class VistaPrueba extends AppCompatActivity {
             return insets;
         });
 
-        // Obtener el TextView para mostrar el correo
         txtCorreo = findViewById(R.id.txtCorreo);
 
-        // Obtener el correo pasado desde HomeActivity
         Intent intent = getIntent();
         String userEmail = intent.getStringExtra("user_email");
 
-        // Mostrar el correo en el TextView
         if (userEmail != null) {
             txtCorreo.setText("Correo: " + userEmail);
         } else {
             txtCorreo.setText("Correo no disponible");
         }
 
-        // Botón para volver a HomeActivity
         Button buttonVolverHome = findViewById(R.id.buttonVolverHome);
         buttonVolverHome.setOnClickListener(v -> {
             Intent volverIntent = new Intent(VistaPrueba.this, HomeActivity.class);

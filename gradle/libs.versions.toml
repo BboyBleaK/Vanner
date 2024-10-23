@@ -9,8 +9,7 @@ activity = "1.9.3"
 constraintlayout = "2.1.4"
 googleServiceVersion="4.4.2"
 firebaseAuthV="23.0.0"
-firebaseStoreV="25.1.0"
-firebaseStorageV="21.0.1"
+firebaseDBV="21.0.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -22,8 +21,8 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 firebaseAuth={group="com.google.firebase" , name= "firebase-auth" , version.ref="firebaseAuthV"}
-firebaseStore={group="com.google.firebase" , name= "firebase-firestore" , version.ref="firebaseStoreV"}
-firebaseStorage={group="com.google.firebase" , name= "firebase-storage" , version.ref="firebaseStorageV"}
+firebaseDB={group="com.google.firebase" , name= "firebase-database" , version.ref="firebaseDBV"}
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
