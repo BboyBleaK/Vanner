@@ -17,6 +17,7 @@ public class VistaPrueba extends AppCompatActivity {
 
     private TextView txtCorreo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

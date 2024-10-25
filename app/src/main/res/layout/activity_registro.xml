@@ -14,6 +14,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="0dp"
+            android:scaleType="centerCrop"/>
+
         <LinearLayout
             android:id="@+id/linearEncabezado"
             android:layout_width="match_parent"
@@ -28,7 +38,7 @@
                 android:layout_marginStart="10dp"
                 android:contentDescription="@string/btnRegresar"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/flecha_regresar"
+                android:src="@drawable/img_perfil_usuario"
                 android:textSize="20sp" />
 
             <TextView
@@ -40,11 +50,72 @@
                 android:textSize="48sp" />
         </LinearLayout>
 
+        <RelativeLayout
+            android:id="@+id/linearImgUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearEncabezado"
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="200dp"
+                android:layout_height="250dp"
+                android:background="@drawable/redondeoimg"
+                android:gravity="center"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/imgUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/txtDescRut"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/usuario" />
+
+                <ImageButton
+                    android:id="@+id/btnCambioimg"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/modificarimg" />
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearImgUsuario"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:text="@string/txtInfo"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linearRut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linearEncabezado"
+            android:layout_below="@id/linearInfo"
             android:layout_margin="5dp"
             android:background="@drawable/edittext_layout_registro"
             android:gravity="center_vertical"
@@ -118,7 +189,6 @@
                     android:layout_margin="0dp"
                     android:autofillHints="username"
                     android:background="@android:color/transparent"
-                    android:inputType="text"
                     android:paddingLeft="0dp"
                     android:paddingTop="20dp"
                     android:paddingRight="0dp"
@@ -230,17 +300,32 @@
                 android:contentDescription="@string/txtDescNacimiento"
                 android:src="@mipmap/calendario" />
 
-            <EditText
-                android:id="@+id/dtpNacimiento"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
-                android:clickable="true"
-                android:focusable="false"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtNacimiento"
-                android:inputType="date"
-                android:maxLines="1"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dtpNacimiento"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:autofillHints="username"
+                    android:background="@android:color/transparent"
+                    android:focusable="false"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -303,7 +388,7 @@
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:contentDescription="@string/txtDescFono"
-                android:src="@mipmap/fono" />
+                android:src="@drawable/img_perfil_usuario" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -322,7 +407,7 @@
                     android:layout_margin="0dp"
                     android:autofillHints="username"
                     android:background="@android:color/transparent"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:paddingLeft="0dp"
                     android:paddingTop="20dp"
                     android:paddingRight="0dp"
@@ -366,7 +451,7 @@
                     android:layout_margin="0dp"
                     android:autofillHints="username"
                     android:background="@android:color/transparent"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:paddingLeft="0dp"
                     android:paddingTop="20dp"
                     android:paddingRight="0dp"
@@ -394,10 +479,10 @@
                 android:src="@mipmap/cargo" />
 
             <Spinner
-                android:id="@+id/edtCargo"
+                android:id="@+id/SpinnerCargo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="@string/txtGenero"
+                android:hint="@string/txtCargo"
                 android:spinnerMode="dropdown"
                 android:textSize="20sp" />
 
@@ -420,14 +505,24 @@
                 android:contentDescription="@string/txtDescPass"
                 android:src="@mipmap/genero" />
 
-
-            <Spinner
-                android:id="@+id/edtGenero"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtGenero"
-                android:spinnerMode="dropdown"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                <Spinner
+                    android:id="@+id/SpinnerGenero"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="@string/txtGenero"
+                    android:spinnerMode="dropdown"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -448,14 +543,31 @@
                 android:contentDescription="@string/txtDescPass"
                 android:src="@mipmap/pass" />
 
-            <EditText
-                android:id="@+id/edtUsuario"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtPass"
-                android:inputType="textPersonName"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:endIconMode="password_toggle"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:autofillHints="username"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPassword"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -476,14 +588,31 @@
                 android:contentDescription="@string/txtDescPass"
                 android:src="@mipmap/pass" />
 
-            <EditText
-                android:id="@+id/edtRePass"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/txtRePass"
-                android:inputType="textPersonName"
-                android:textSize="20sp" />
+                app:boxStrokeWidth="0dp"
+                app:endIconMode="password_toggle"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtRePass"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:autofillHints="username"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPassword"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -497,12 +626,10 @@
             android:layout_marginBottom="10dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/btnRegresar"
-
             android:scaleType="fitCenter"
             android:src="@mipmap/registrar"
             android:text="@string/imgBtnRegistrar"
             android:textSize="20sp" />
-
 
     </RelativeLayout>
 </ScrollView>

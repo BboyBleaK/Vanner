@@ -8,6 +8,15 @@
     <string name="btnInicioSesion">Iniciar Sesión</string>
     <string name="txtSinCuenta">¿No tienes cuenta?</string>
 
+    <string-array name="cargos_array">
+        <item>Usuario</item>
+        <item>Empresa</item>
+    </string-array>
+    <string-array name="generos_array">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
+
     <string name="DescripcionFacebook">Btn para direccionar a facebook</string>
     <string name="DescripcionCorreo">Btn para direccionar a gmail</string>
     <string name="DescripcionSocial">Btn para direccionar a instagram</string>
