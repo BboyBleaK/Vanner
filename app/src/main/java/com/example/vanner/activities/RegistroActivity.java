@@ -57,8 +57,8 @@ public class RegistroActivity extends AppCompatActivity {
         edtDireccion = findViewById(R.id.edtDireccion);
         edtFono = findViewById(R.id.edtFono);
         dtpNacimiento = findViewById(R.id.dtpNacimiento);
-        spnCargo = findViewById(R.id.SpinnerCargo);   // Spinner para seleccionar el cargo
-        spnGenero = findViewById(R.id.SpinnerGenero); // Spinner para seleccionar el género
+        spnCargo = findViewById(R.id.SpinnerCargo);
+        spnGenero = findViewById(R.id.SpinnerGenero);
 
         // Configurar el adaptador para el Spinner de cargo
         ArrayAdapter<CharSequence> adapterCargo = ArrayAdapter.createFromResource(this,

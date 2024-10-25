@@ -12,6 +12,7 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/fondo_registro"
         android:orientation="vertical">
 
         <ImageView
@@ -22,7 +23,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="0dp"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:id="@+id/linearEncabezado"
@@ -36,9 +37,10 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
                 android:contentDescription="@string/btnRegresar"
                 android:scaleType="fitCenter"
-                android:src="@drawable/img_perfil_usuario"
+                android:src="@mipmap/regresar"
                 android:textSize="20sp" />
 
             <TextView
@@ -146,6 +148,7 @@
                     android:autofillHints="username"
                     android:background="@android:color/transparent"
                     android:inputType="text"
+                    android:maxLength="11"
                     android:paddingLeft="0dp"
                     android:paddingTop="20dp"
                     android:paddingRight="0dp"
@@ -189,6 +192,7 @@
                     android:layout_margin="0dp"
                     android:autofillHints="username"
                     android:background="@android:color/transparent"
+                    android:maxLength="70"
                     android:paddingLeft="0dp"
                     android:paddingTop="20dp"
                     android:paddingRight="0dp"
@@ -232,6 +236,7 @@
                     android:autofillHints="username"
                     android:background="@android:color/transparent"
                     android:inputType="text"
+                    android:maxLength="70"
                     android:paddingLeft="0dp"
                     android:paddingTop="10dp"
                     android:paddingRight="0dp"
@@ -275,6 +280,7 @@
                     android:autofillHints="username"
                     android:background="@android:color/transparent"
                     android:inputType="text"
+                    android:maxLength="50"
                     android:paddingLeft="0dp"
                     android:paddingTop="20dp"
                     android:paddingRight="0dp"
@@ -364,6 +370,7 @@
                     android:autofillHints="username"
                     android:background="@android:color/transparent"
                     android:inputType="text"
+                    android:maxLength="100"
                     android:paddingLeft="0dp"
                     android:paddingTop="20dp"
                     android:paddingRight="0dp"
@@ -388,7 +395,7 @@
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:contentDescription="@string/txtDescFono"
-                android:src="@drawable/img_perfil_usuario" />
+                android:src="@mipmap/fono" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -408,6 +415,7 @@
                     android:autofillHints="username"
                     android:background="@android:color/transparent"
                     android:inputType="numberDecimal"
+                    android:maxLength="13"
                     android:paddingLeft="0dp"
                     android:paddingTop="20dp"
                     android:paddingRight="0dp"
@@ -452,6 +460,7 @@
                     android:autofillHints="username"
                     android:background="@android:color/transparent"
                     android:inputType="textEmailAddress"
+                    android:maxLength="70"
                     android:paddingLeft="0dp"
                     android:paddingTop="20dp"
                     android:paddingRight="0dp"
@@ -482,7 +491,7 @@
                 android:id="@+id/SpinnerCargo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="@string/txtCargo"
+                android:hint="@string/txtGenero"
                 android:spinnerMode="dropdown"
                 android:textSize="20sp" />
 
@@ -616,20 +625,37 @@
 
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnRegistrar"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+        <LinearLayout
+            android:id="@+id/linearBtnGuardar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/linearRePass"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/btnRegresar"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/registrar"
-            android:text="@string/imgBtnRegistrar"
-            android:textSize="20sp" />
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/edittext_layout_registro"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guardar"
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/btnRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/btnRegresar"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/registrar"
+                android:text="@string/imgBtnRegistrar"
+                android:textSize="20sp" />
+        </LinearLayout>
+
 
     </RelativeLayout>
 </ScrollView>

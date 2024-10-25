@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.Vanner" parent="Base.Theme.Vanner" />
+    <style name="Theme.Vanner.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Vanner.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Vanner.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
