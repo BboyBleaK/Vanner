@@ -30,17 +30,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inicializar Firebase Auth y Database Reference
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        // Referencias a los campos de texto y botones
         edtCorreo = findViewById(R.id.ETUsuario);
         edtPassword = findViewById(R.id.ETPass);
         btnLogin = findViewById(R.id.buttonInicioSesion);
         btnRegistro = findViewById(R.id.buttonRegistro);
 
-        // Botón de Iniciar Sesión
         btnLogin.setOnClickListener(v -> {
             String correo = edtCorreo.getText().toString().trim();
             String password = edtPassword.getText().toString().trim();
@@ -50,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            // Iniciar sesión con Firebase Authentication
             mAuth.signInWithEmailAndPassword(correo, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
@@ -65,14 +61,12 @@ public class MainActivity extends AppCompatActivity {
                     });
         });
 
-        // Botón de Registro
         btnRegistro.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, RegistroActivity.class);
             startActivity(intent);
         });
     }
 
-    // Verificar el cargo del usuario y redirigir a la actividad correspondiente
     private void verificarCargoYRedirigir(String userId, String correo) {
         mDatabase.child("usuarios").child(userId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -80,12 +74,28 @@ public class MainActivity extends AppCompatActivity {
                 String cargo = snapshot.child("cargo").getValue(String.class);
 
                 if ("empresa".equalsIgnoreCase(cargo)) {
-                    Intent intent = new Intent(MainActivity.this, EmpresaActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ControlEmpresa.class);
                     intent.putExtra("user_email", correo);
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    String rut = snapshot.child("rut").getValue(String.class);
+                    String nombre = snapshot.child("nombre").getValue(String.class);
+                    String materno = snapshot.child("materno").getValue(String.class);
+                    String paterno = snapshot.child("paterno").getValue(String.class);
+                    String nacimiento = snapshot.child("nacimiento").getValue(String.class);
+                    String direccion = snapshot.child("direccion").getValue(String.class);
+                    String fono = snapshot.child("fono").getValue(String.class);
+
+                    Intent intent = new Intent(MainActivity.this, VistaPrueba.class);
                     intent.putExtra("user_email", correo);
+                    intent.putExtra("user_rut", rut);
+                    intent.putExtra("user_nombre", nombre);
+                    intent.putExtra("user_materno", materno);
+                    intent.putExtra("user_paterno", paterno);
+                    intent.putExtra("user_nacimiento", nacimiento);
+                    intent.putExtra("user_direccion", direccion);
+                    intent.putExtra("user_fono", fono);
+                    intent.putExtra("user_cargo", cargo);
                     startActivity(intent);
                 }
                 finish();

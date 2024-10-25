@@ -2,7 +2,7 @@
     <string name="app_name">SocialLab</string>
     <string name="TituloVanner">Vanner</string>
     <string name="SubTituloInicio">Inicio de Sesión</string>
-    <string name="hintUsuario">Ingresa tu usuario</string>
+    <string name="hintEmail">Ingresa tu Email</string>
     <string name="hintContraseña">Ingresa tu Contraseña</string>
     <string name="txtOlvidoPass">Olvidaste tu contraseña?</string>
     <string name="btnInicioSesion">Iniciar Sesión</string>
@@ -22,7 +22,7 @@
     <string name="DescripcionSocial">Btn para direccionar a instagram</string>
 
     <string name="DescripcionImgLogo">IMG logo vanner</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_empresa">EmpresaActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -32,7 +32,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Listar Usuario</string>
+    <string name="menu_gallery">Modificar Usuario</string>
+    <string name="menu_slideshow">Eliminar Usuario</string>
+    <string name="title_activity_control_empresa">ControlEmpresa</string>
 </resources>

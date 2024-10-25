@@ -12,22 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:contentDescription="@string/DescripcionImgLogo"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@mipmap/vannerlogo"
+            android:layout_marginLeft="10dp"/>
 
-        <TextView
-            android:id="@+id/textVSocialLab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/TituloVanner"
-            android:textSize="48sp" />
 
         <EditText
             android:id="@+id/ETUsuario"
@@ -37,8 +30,8 @@
             android:layout_marginTop="32dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/radius_button"
-            android:hint="@string/hintUsuario"
-            android:inputType="textPersonName"
+            android:hint="@string/hintEmail"
+            android:inputType="textEmailAddress"
             android:padding="18dp"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"

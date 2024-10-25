@@ -18,11 +18,18 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         TextView textViewBienvenida = findViewById(R.id.textViewBienvenida);
 
         Intent intent = getIntent();
         String userEmail = intent.getStringExtra("user_email");
+        String rut = intent.getStringExtra("user_rut");
+        String nombre = intent.getStringExtra("user_nombre");
+        String materno = intent.getStringExtra("user_materno");
+        String paterno = intent.getStringExtra("user_paterno");
+        String nacimiento = intent.getStringExtra("user_nacimiento");
+        String direccion = intent.getStringExtra("user_direccion");
+        String fono = intent.getStringExtra("user_fono");
+        String cargo = intent.getStringExtra("user_cargo");
 
         if (userEmail != null) {
             textViewBienvenida.setText("Bienvenido: " + userEmail);
@@ -40,8 +47,15 @@ public class HomeActivity extends AppCompatActivity {
         btnUsuario.setOnClickListener(v -> {
             Intent perfilIntent = new Intent(HomeActivity.this, VistaPrueba.class);
             perfilIntent.putExtra("user_email", userEmail);
+            perfilIntent.putExtra("user_rut", rut);
+            perfilIntent.putExtra("user_nombre", nombre);
+            perfilIntent.putExtra("user_materno", materno);
+            perfilIntent.putExtra("user_paterno", paterno);
+            perfilIntent.putExtra("user_nacimiento", nacimiento);
+            perfilIntent.putExtra("user_direccion", direccion);
+            perfilIntent.putExtra("user_fono", fono);
+            perfilIntent.putExtra("user_cargo", cargo);
             startActivity(perfilIntent);
-            finish();
         });
     }
 }

@@ -627,6 +627,13 @@
 
         <LinearLayout
             android:id="@+id/linearBtnGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearRePass"
+            android:layout_margin="5dp"
+            android:gravity="center">
+
+        <LinearLayout
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearRePass"
@@ -655,7 +662,7 @@
                 android:text="@string/imgBtnRegistrar"
                 android:textSize="20sp" />
         </LinearLayout>
+    </LinearLayout>
 
 
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout></ScrollView>

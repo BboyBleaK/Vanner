@@ -9,43 +9,43 @@
     android:orientation="vertical"
     tools:context=".activities.HomeActivity">
 
-    <!-- Texto de Bienvenida que se actualizará con el correo -->
+
     <TextView
         android:id="@+id/textViewBienvenida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Bienvenido/a"
         android:textSize="40sp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Título del Menú Principal -->
+
     <TextView
         android:id="@+id/textVMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Menú Principal"
         android:textSize="30sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewBienvenida"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textViewBienvenida" />
 
-    <!-- Texto para preguntar qué desea realizar -->
+
     <TextView
         android:id="@+id/textVQuedesea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="¿Qué desea realizar?"
         android:textSize="20sp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/textVMenu"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textVMenu" />
 
-    <!-- Botón para cerrar sesión o volver -->
+
     <Button
         android:id="@+id/buttonVolver"
         android:layout_width="wrap_content"
@@ -56,15 +56,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Botón para ver el perfil del usuario -->
+
     <Button
         android:id="@+id/btnUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mi perfil"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/textVQuedesea"
+        android:text="Mi perfil"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textVQuedesea" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
