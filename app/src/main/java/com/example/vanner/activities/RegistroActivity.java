@@ -264,9 +264,7 @@ public class RegistroActivity extends AppCompatActivity {
 
         mDatabase.child("usuarios").child(userId).setValue(datosUsuario)
                 .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(RegistroActivity.this, "Datos guardados correctamente en Realtime Database", Toast.LENGTH_SHORT).show();
-                    } else {
+                    if (!task.isSuccessful()) {
                         Toast.makeText(RegistroActivity.this, "Error al guardar los datos: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });

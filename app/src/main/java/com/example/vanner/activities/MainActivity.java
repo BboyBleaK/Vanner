@@ -47,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
+
+            if (password.length() < 8) {
+                Toast.makeText(MainActivity.this, "La contraseña debe tener como mínimo 8 caracteres", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             mAuth.signInWithEmailAndPassword(correo, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
