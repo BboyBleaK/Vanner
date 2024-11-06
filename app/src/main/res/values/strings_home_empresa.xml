@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="txtNombreTrabajador">Nombre Trabajador</string>
+    <string name="txtFonoTrabajador">Fono:</string>
+    <string name="txtCorreoTrabajador">correo:</string>
+    <string name="txtCargoTrabajador">Cargo</string>
+    <string name="txtGeneroTrabajador">Genero</string>
+
+    <string name="txtDescImgTrabajador">Imagen Trabajador</string>
+
+    <string name="txtDescCancelar">No me gusta</string>
+    <string name="txtDescPasar">Pasar</string>
+    <string name="txtDescMeGusta">me gusta</string>
+
+    <string name="txtDescHome">Home</string>
+    <string name="txtDescChat">Chat</string>
+    <string name="txtDescNotificaciones">Notificaciones</string>
+    <string name="txtDescPerfil">Perfil</string>
+
+</resources>

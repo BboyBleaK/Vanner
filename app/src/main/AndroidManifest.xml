@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -13,38 +13,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vanner"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
-            android:name=".activities.ControlEmpresa"
-            android:exported="false"
-            android:label="@string/title_activity_control_empresa"
-            android:theme="@style/Theme.Vanner.NoActionBar" />
-        <activity
-            android:name=".activities.EmpresaActivity"
-            android:exported="false"
-            android:label="@string/title_activity_empresa"
-            android:theme="@style/Theme.Vanner.NoActionBar" />
-        <activity
-            android:name=".activities.ui.EmpresaActivity"
+            android:name=".activities.JobPostActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.CompanyActivity"
+            android:name=".activities.Home_Trabajador"
             android:exported="false" />
         <activity
-            android:name=".activities.VistaPrueba"
+            android:name=".activities.Home_Empresa"
             android:exported="false" />
         <activity
-            android:name=".activities.PerfilUsuarioActivity"
+            android:name=".activities.Perfil_Empresa"
             android:exported="false" />
         <activity
-            android:name=".activities.RegistroActivity"
+            android:name=".activities.Perfil_Usuario"
             android:exported="false" />
         <activity
-            android:name=".activities.HomeActivity"
+            android:name=".RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
-            android:exported="true">
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

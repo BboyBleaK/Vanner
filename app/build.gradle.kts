@@ -4,6 +4,10 @@ plugins {
 }
 
 android {
+
+    dataBinding {
+        enable = true;
+    }
     namespace = "com.example.vanner"
     compileSdk = 34
 
@@ -43,15 +47,20 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.firebaseAuth)
     implementation(libs.firebaseDB)
+    implementation(libs.firebaseStorage)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.recyclerview)
+    implementation (libs.picasso)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
     implementation("com.google.android.material:material:1.12.0")
     implementation ("com.google.firebase:firebase-auth:23.0.0")
     implementation ("com.google.firebase:firebase-database:21.0.0")
+    implementation ("com.google.firebase:firebase-storage:21.0.1")
     implementation ("com.caverock:androidsvg:1.4")
     }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txtNombreEmpresa">Nombre Empresa</string>
+    <string name="txtRutEmpresa">Rut Empresa</string>
+    <string name="txtCeoEmpresa">CEO Empresa</string>
+    <string name="txtEmailEmpresa">Email Empresa</string>
+    <string name="txtFonoEmpresa">Numero Contacto</string>
+
+    <string name="descBtnRegresar">Boton regresar a home</string>
+    <string name="descImgPerfil">Imagen perfil Empresa</string>
+
+    <string name="btnCrearEmpleo">Crear Empleo</string>
+    <string name="btnCerrarSesion">Cerrar Sesion</string>
+    <string name="btnEliminarCuenta">Eliminar Cuenta</string>
+    
+</resources>

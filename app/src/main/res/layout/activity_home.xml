@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#8BC34A"
     android:orientation="vertical"
-    tools:context=".activities.HomeActivity">
+    tools:context=".HomeActivity">
 
 
     <TextView
