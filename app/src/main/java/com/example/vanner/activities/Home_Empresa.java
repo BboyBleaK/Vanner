@@ -7,14 +7,23 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.graphics.drawable.GradientDrawable;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.vanner.R;
+import com.example.vanner.adapters.JobAdapter;
+import com.example.vanner.models.Job;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Home_Empresa extends AppCompatActivity {
 
@@ -22,7 +31,9 @@ public class Home_Empresa extends AppCompatActivity {
     private TextView txtNombreTrabajador, txtFonoTrabajador, txtCorreoTrabajador, txtCargoTrabajador, txtGeneroTrabajador;
     private View viewHome, viewChat, viewNotificacion, viewPerfil;
     private Button btnCrearEmpleo;
-
+    private RecyclerView recyclerView;
+    private JobAdapter jobAdapter;
+    private List<Job> jobList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +66,50 @@ public class Home_Empresa extends AppCompatActivity {
         viewNotificacion = findViewById(R.id.viewNotificacion);
         viewPerfil = findViewById(R.id.viewPerfil);
 
+        recyclerView = findViewById(R.id.recyclerViewJobs);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Aquí deberías obtener el rol del usuario, como ejemplo lo pongo manualmente
+        String userRole = "Empresa";  // Cambia esto con el valor real que obtienes de Firebase o de la sesión del usuario
+
+        // Inicializar la lista de trabajos
+        jobList = new ArrayList<>();
+
+        // Obtener los trabajos desde Firebase y cargar en el RecyclerView
+        DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference("jobs");
+        jobRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                jobList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Job job = snapshot.getValue(Job.class);
+                    if (job != null) {
+                        jobList.add(job);
+                    }
+                }
+
+                // Crear el adaptador con el rol del usuario
+                jobAdapter = new JobAdapter(Home_Empresa.this, jobList, userRole);
+                recyclerView.setAdapter(jobAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Manejar el error en caso de que falle la consulta
+            }
+        });
+
+        // Configurar los botones de navegación
         selectView(R.id.viewHome);
 
         btnHome.setOnClickListener(v -> selectView(R.id.viewHome));
         btnChat.setOnClickListener(v -> selectView(R.id.viewChat));
         btnNotificacion.setOnClickListener(v -> selectView(R.id.viewNotificacion));
         btnPerfil.setOnClickListener(v -> selectView(R.id.viewPerfil));
-        btnCrearEmpleo.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Home_Empresa.this, JobPostActivity.class);
-                startActivity(intent);
-            }
+
+        btnCrearEmpleo.setOnClickListener(v -> {
+            Intent intent = new Intent(Home_Empresa.this, JobPostActivity.class);
+            startActivity(intent);
         });
 
         setButtonBorder(btnHome);
@@ -99,7 +143,7 @@ public class Home_Empresa extends AppCompatActivity {
             viewPerfil.setVisibility(View.VISIBLE);
             btnPerfil.setSelected(true);
         }
-        
+
         setButtonBorder(btnHome);
         setButtonBorder(btnChat);
         setButtonBorder(btnNotificacion);

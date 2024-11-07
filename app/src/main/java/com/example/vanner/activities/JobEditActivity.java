@@ -31,6 +31,7 @@ public class JobEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_edit);
 
+        // Inicialización de vistas
         titleInput = findViewById(R.id.titleInput);
         descriptionInput = findViewById(R.id.descriptionInput);
         salaryInput = findViewById(R.id.salaryInput);
@@ -38,7 +39,7 @@ public class JobEditActivity extends AppCompatActivity {
         expirationDateInput = findViewById(R.id.expirationDateInput);
         modeGroup = findViewById(R.id.modeGroup);
         updateJobButton = findViewById(R.id.updateJobButton);
-        cancelButton = findViewById(R.id.cancelJobButton); // Renombrado a "cancelButton"
+        cancelButton = findViewById(R.id.cancelJobButton);
         progressBar = findViewById(R.id.progressBar);
 
         jobsDatabase = FirebaseDatabase.getInstance().getReference("jobs");
@@ -46,6 +47,15 @@ public class JobEditActivity extends AppCompatActivity {
         // Obtener los datos pasados desde la actividad anterior
         jobId = getIntent().getStringExtra("jobId");
         companyEmail = getIntent().getStringExtra("companyEmail");
+
+        // Verificación de si los datos fueron correctamente recibidos
+        if (jobId == null || companyEmail == null) {
+            Toast.makeText(this, "Datos del empleo no válidos", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        // Rellenar los campos con los datos del empleo
         titleInput.setText(getIntent().getStringExtra("title"));
         descriptionInput.setText(getIntent().getStringExtra("description"));
         salaryInput.setText(getIntent().getStringExtra("salary"));
@@ -53,7 +63,7 @@ public class JobEditActivity extends AppCompatActivity {
         expirationDateInput.setText(getIntent().getStringExtra("expirationDate"));
         mode = getIntent().getStringExtra("mode");
 
-        // Establecer la opción seleccionada en el RadioGroup según el modo
+        // Establecer el modo en el RadioGroup
         if (mode != null) {
             if (mode.equals("Full-time")) {
                 modeGroup.check(R.id.radioFullTime);
@@ -64,8 +74,9 @@ public class JobEditActivity extends AppCompatActivity {
             }
         }
 
+        // Configurar los botones
         updateJobButton.setOnClickListener(view -> updateJob());
-        cancelButton.setOnClickListener(view -> finish()); // Cierra la actividad al cancelar
+        cancelButton.setOnClickListener(view -> finish());
     }
 
     private void updateJob() {
@@ -76,12 +87,14 @@ public class JobEditActivity extends AppCompatActivity {
         String expirationDate = expirationDateInput.getText().toString().trim();
         int selectedModeId = modeGroup.getCheckedRadioButtonId();
 
+        // Validar los campos
         if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description) || TextUtils.isEmpty(salary) ||
                 TextUtils.isEmpty(vacancies) || TextUtils.isEmpty(expirationDate) || selectedModeId == -1) {
             Toast.makeText(JobEditActivity.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Obtener el modo seleccionado
         mode = ((RadioButton) findViewById(selectedModeId)).getText().toString();
 
         progressBar.setVisibility(View.VISIBLE);
@@ -89,7 +102,7 @@ public class JobEditActivity extends AppCompatActivity {
         // Crear el objeto Job actualizado
         Job updatedJob = new Job(jobId, companyEmail, title, description, expirationDate, Integer.parseInt(vacancies), mode, salary);
 
-        // Actualizar el empleo en la base de datos
+        // Intentar actualizar el empleo en la base de datos
         jobsDatabase.child(jobId).setValue(updatedJob).addOnCompleteListener(task -> {
             progressBar.setVisibility(View.GONE);
             if (task.isSuccessful()) {
@@ -98,6 +111,9 @@ public class JobEditActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(JobEditActivity.this, "Error al actualizar el empleo: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
+        }).addOnFailureListener(e -> {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(JobEditActivity.this, "Error al actualizar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
     }
 }
