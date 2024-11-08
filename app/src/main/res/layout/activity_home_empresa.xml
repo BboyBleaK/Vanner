@@ -5,9 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context=".activities.Home_Empresa"
-    android:background="@android:color/white">
+    tools:context=".activities.Home_Empresa">
 
     <RelativeLayout
         android:id="@+id/viewHome"
@@ -198,10 +198,9 @@
         android:layout_alignParentTop="true"
         android:visibility="visible">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/LinearBotones">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -276,46 +275,45 @@
                 <LinearLayout
                     android:id="@+id/LinearListaEmpleos"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="5dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerViewJobs"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="300dp"
                         android:layout_marginTop="16dp" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearBotones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <Button
+                        android:id="@+id/btnCerrarSesion"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#8BC34A"
+                        android:text="@string/btnCerrarSesion" />
+
+                    <Button
+                        android:id="@+id/btnDesactivarCuenta"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#8BC34A"
+                        android:text="@string/btnDesactivarCuenta" />
+                </LinearLayout>
             </LinearLayout>
-        </ScrollView>
-
-        <LinearLayout
-            android:id="@+id/LinearBotones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <Button
-                android:id="@+id/btnCerrarSesion"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="#8BC34A"
-                android:text="@string/btnCerrarSesion" />
-
-            <Button
-                android:id="@+id/btnEliminarCuenta"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="#8BC34A"
-                android:text="@string/btnEliminarCuenta" />
-        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </RelativeLayout>
 
     <LinearLayout

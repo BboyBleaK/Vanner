@@ -11,6 +11,6 @@
 
     <string name="btnCrearEmpleo">Crear Empleo</string>
     <string name="btnCerrarSesion">Cerrar Sesion</string>
-    <string name="btnEliminarCuenta">Eliminar Cuenta</string>
+    <string name="btnDesactivarCuenta">Desactivar Cuenta</string>
     
 </resources>

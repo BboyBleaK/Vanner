@@ -37,4 +37,5 @@
     <string name="menu_gallery">Modificar Usuario</string>
     <string name="menu_slideshow">Eliminar Usuario</string>
     <string name="title_activity_control_empresa">ControlEmpresa</string>
+    <string name="VistaAInicio" />
 </resources>

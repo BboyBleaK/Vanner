@@ -8,36 +8,165 @@
     android:background="@drawable/fondo_inicio"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/welcomeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E0F7FA"
+        android:elevation="2dp"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="¡Bienvenido!"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <ImageButton
+            android:id="@+id/btnAMensaje2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/siguiente"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/nextMessageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3E5FC"
+        android:elevation="1dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Estás a punto de iniciar sesión"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/btnALogin"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/siguiente" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeRecuperacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/radius_button"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/darker_gray"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recupercion de cuenta" />
+
+
+            <EditText
+                android:id="@+id/edtCorreoRecuperacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:autofillHints="username"
+                android:background="@drawable/radius_button"
+                android:hint="@string/hintEmail"
+                android:inputType="textEmailAddress"
+                android:padding="18dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnRecuperar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recuperar" />
+
+            <Button
+                android:id="@+id/btnRegresar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Regresar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
     <LinearLayout
+        android:id="@+id/loginLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:layout_width="300dp"
             android:layout_height="300dp"
+            android:layout_marginStart="10dp"
             android:contentDescription="@string/DescripcionImgLogo"
-            android:src="@mipmap/vannerlogo"
-            android:layout_marginLeft="10dp"/>
-
+            android:src="@mipmap/vannerlogo" />
 
         <EditText
             android:id="@+id/ETUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="0dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:autofillHints="username"
             android:background="@drawable/radius_button"
             android:hint="@string/hintEmail"
             android:inputType="textEmailAddress"
             android:padding="18dp"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
-            android:textSize="20sp"
-            android:autofillHints="username"
-            android:layout_marginBottom="20dp" />
+            android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -52,59 +181,62 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginRight="20dp"
+                android:autofillHints="password"
                 android:background="@drawable/radius_button"
                 android:hint="@string/hintContraseña"
                 android:inputType="textPassword"
                 android:padding="18dp"
                 android:textColor="#ffffff"
                 android:textColorHint="#ffffff"
-                android:textSize="20sp"
-                android:autofillHints="password"/>
+                android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textVolvidoPass"
+        <Button
+            android:id="@+id/btnolvidoPass"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="20dp"
-            android:textSize="15sp"
+            android:background="@android:color/transparent"
             android:text="@string/txtOlvidoPass"
             android:textColor="#ffffff"
+
+            android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@id/ETPass" />
 
         <Button
             android:id="@+id/buttonInicioSesion"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="300dp"
-            android:elevation="15dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="0dp"
+            android:elevation="15dp"
             android:text="@string/btnInicioSesion"
             android:textColor="#ffffff"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textVolvidoPass" />
+            app:layout_constraintTop_toBottomOf="@id/btnolvidoPass" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="0dp"
             android:gravity="center"
-            android:layout_marginTop="20dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txtSinCuenta"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/buttonRegistro"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:text="@string/btnRegistrar"
                 android:textColor="#ffffff"
@@ -113,40 +245,89 @@
                 app:layout_constraintTop_toBottomOf="@id/buttonInicioSesion" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="O"
+            android:textColor="#ffffff" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:backgroundTint="@android:color/transparent"
-                android:background="@drawable/redondeo_btnredes"
-                android:src="@mipmap/facebook"
-                android:contentDescription="@string/DescripcionFacebook"
-                android:scaleType="fitCenter"/>
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                android:backgroundTint="@android:color/transparent"
-                android:background="@drawable/redondeo_btnredes"
-                android:src="@mipmap/gmail"
-                android:contentDescription="@string/DescripcionCorreo"
-                android:scaleType="fitCenter"/>
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:backgroundTint="@android:color/transparent"
-                android:background="@drawable/redondeo_btnredes"
-                android:src="@mipmap/social"
-                android:contentDescription="@string/DescripcionSocial"
-                android:scaleType="fitCenter"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
 
+                <ImageButton
+                    android:id="@+id/btnFacebook"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/redondeo_btnredes"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/DescripcionFacebook"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/facebook" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Facebook"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btnCorreo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/redondeo_btnredes"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/DescripcionCorreo"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/email" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gmail"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btnGithub"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/redondeo_btnredes"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/DescripcionSocial"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/github" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GitHub"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
 
 

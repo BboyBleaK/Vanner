@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.graphics.drawable.GradientDrawable;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class Home_Empresa extends AppCompatActivity {
     private ImageButton btnHome, btnChat, btnNotificacion, btnPerfil, btnCancelar, btnPasar, btnMeGusta;
     private TextView txtNombreTrabajador, txtFonoTrabajador, txtCorreoTrabajador, txtCargoTrabajador, txtGeneroTrabajador;
     private View viewHome, viewChat, viewNotificacion, viewPerfil;
-    private Button btnCrearEmpleo, btnCerrarSesion;
+    private Button btnCrearEmpleo, btnCerrarSesion, btnDesactivarCuenta;
     private RecyclerView recyclerView;
     private JobAdapter jobAdapter;
     private List<Job> jobList;
@@ -59,6 +61,7 @@ public class Home_Empresa extends AppCompatActivity {
         btnMeGusta = findViewById(R.id.btnMeGusta);
         btnCrearEmpleo = findViewById(R.id.btnCrearEmpleo);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        btnDesactivarCuenta = findViewById(R.id.btnDesactivarCuenta);
 
         txtNombreTrabajador = findViewById(R.id.txtNombreTrabajador);
         txtFonoTrabajador = findViewById(R.id.txtFonoTrabajador);
@@ -128,7 +131,6 @@ public class Home_Empresa extends AppCompatActivity {
                 finish();
             }
         });
-
 
 
         setButtonBorder(btnHome);

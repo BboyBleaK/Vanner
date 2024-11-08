@@ -17,8 +17,8 @@
             android:id="@+id/companyImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/company_image_description"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/company_image_description" />
 
         <TextView
             android:id="@+id/jobTitleText"
@@ -31,24 +31,24 @@
             android:id="@+id/statusText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estado: Aceptado"
             android:layout_marginTop="4dp"
+            android:text="Estado: Aceptado"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/applicationDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha de aplicación: 01/10/2024"
             android:layout_marginTop="4dp"
+            android:text="Fecha de aplicación: 01/10/2024"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/companyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Empresa: Nombre de la empresa"
             android:layout_marginTop="4dp"
+            android:text="Empresa: Nombre de la empresa"
             android:textSize="14sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

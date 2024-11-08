@@ -1,12 +1,24 @@
 package com.example.vanner;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionManager;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vanner.activities.Home_Empresa;
@@ -19,8 +31,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText edtCorreo, edtPassword;
-    private Button btnLogin, btnRegistro;
+    private EditText edtCorreo, edtPassword, edtCorreoRecuperacion;
+    private Button btnLogin, btnRegistro, btnOlvidoPass, btnRecuperar, btnRegresar;
+
+    private ImageButton btnFacebook, btnCorreo, btnGithub, btnAMensaje, btnALogin2;
+    private RelativeLayout welcomeLayout, nextMessageLayout, relativeRecuperacion;
+    private LinearLayout loginLayout;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -35,8 +51,27 @@ public class MainActivity extends AppCompatActivity {
 
         edtCorreo = findViewById(R.id.ETUsuario);
         edtPassword = findViewById(R.id.ETPass);
+        edtCorreoRecuperacion = findViewById(R.id.edtCorreoRecuperacion);
         btnLogin = findViewById(R.id.buttonInicioSesion);
         btnRegistro = findViewById(R.id.buttonRegistro);
+        btnOlvidoPass = findViewById(R.id.btnolvidoPass);
+        btnRecuperar = findViewById(R.id.btnRecuperar);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        welcomeLayout = findViewById(R.id.welcomeLayout);
+        nextMessageLayout = findViewById(R.id.nextMessageLayout);
+        loginLayout = findViewById(R.id.loginLayout);
+        relativeRecuperacion = findViewById(R.id.relativeRecuperacion);
+
+        ImageButton btnAMensaje2 = findViewById(R.id.btnAMensaje2);
+        ImageButton btnALogin = findViewById(R.id.btnALogin);
+
+        btnFacebook = findViewById(R.id.btnFacebook);
+        btnCorreo = findViewById(R.id.btnCorreo);
+        btnGithub = findViewById(R.id.btnGithub);
+
+        btnAMensaje2.setOnClickListener(v -> switchLayout(welcomeLayout, nextMessageLayout));
+        btnALogin.setOnClickListener(v -> switchLayout(nextMessageLayout, loginLayout));
 
         btnLogin.setOnClickListener(v -> {
             String correo = edtCorreo.getText().toString().trim();
@@ -71,6 +106,63 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, RegistroActivity.class);
             startActivity(intent);
         });
+
+        btnRegresar.setOnClickListener(v -> {
+            relativeRecuperacion.setVisibility(View.GONE);
+        });
+
+
+        btnRecuperar.setOnClickListener(view -> {
+
+            String email = edtCorreoRecuperacion.getText().toString().trim();
+            if (!email.isEmpty()) {
+                FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                        .addOnCompleteListener(task -> {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            if (task.isSuccessful()) {
+                                relativeRecuperacion.setVisibility(View.GONE);
+                                edtCorreoRecuperacion.clearFocus();
+                                esconderTeclado();
+                                edtCorreo.setText("");
+                                edtPassword.setText("");
+                                edtCorreoRecuperacion.setText("");
+
+                                builder.setTitle("Correo Enviado")
+                                        .setMessage("Revisa tu correo para restablecer la contraseña.")
+                                        .setPositiveButton("Aceptar", (dialog, which) -> dialog.dismiss());
+                            } else {
+                                builder.setTitle("Error")
+                                        .setMessage("No se pudo enviar el correo. Verifica tu dirección e inténtalo de nuevo.")
+                                        .setPositiveButton("Aceptar", (dialog, which) -> dialog.dismiss());
+                            }
+                            builder.create().show();
+                        });
+            } else {
+                edtCorreoRecuperacion.setError("Por favor, ingrese su correo.");
+            }
+        });
+
+        btnOlvidoPass.setOnClickListener(view -> {
+            relativeRecuperacion.setVisibility(View.VISIBLE);
+        });
+
+    }
+
+    private void esconderTeclado() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(edtCorreoRecuperacion.getWindowToken(), 0);
+        }
+    }
+
+    private void switchLayout(View fromLayout, View toLayout) {
+        Transition slide = new Slide();
+        ((Slide) slide).setSlideEdge(Gravity.START);
+        slide.setDuration(500);
+        TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.main), slide);
+
+        fromLayout.setVisibility(View.GONE);
+        toLayout.setVisibility(View.VISIBLE);
     }
 
     private void verificarCargoYRedirigir(String userId, String correo) {

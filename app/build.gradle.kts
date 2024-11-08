@@ -53,14 +53,20 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.recyclerview)
-    implementation (libs.picasso)
+    implementation(libs.picasso)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("com.google.android.material:material:1.12.0")
-    implementation ("com.google.firebase:firebase-auth:23.0.0")
-    implementation ("com.google.firebase:firebase-database:21.0.0")
-    implementation ("com.google.firebase:firebase-storage:21.0.1")
-    implementation ("com.caverock:androidsvg:1.4")
-    }
+    implementation("com.google.firebase:firebase-auth:23.0.0")
+    implementation("com.google.firebase:firebase-database:21.0.0")
+    implementation("com.google.firebase:firebase-storage:21.0.1")
+    implementation("com.caverock:androidsvg:1.4")
+
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+
+    implementation("com.google.firebase:firebase-auth")
+
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+}
