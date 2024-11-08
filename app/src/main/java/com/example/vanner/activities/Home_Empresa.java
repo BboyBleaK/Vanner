@@ -69,13 +69,13 @@ public class Home_Empresa extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewJobs);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Aquí deberías obtener el rol del usuario, como ejemplo lo pongo manualmente
-        String userRole = "Empresa";  // Cambia esto con el valor real que obtienes de Firebase o de la sesión del usuario
 
-        // Inicializar la lista de trabajos
+        String userRole = "Empresa";
+
+
         jobList = new ArrayList<>();
 
-        // Obtener los trabajos desde Firebase y cargar en el RecyclerView
+
         DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference("jobs");
         jobRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -88,18 +88,18 @@ public class Home_Empresa extends AppCompatActivity {
                     }
                 }
 
-                // Crear el adaptador con el rol del usuario
+
                 jobAdapter = new JobAdapter(Home_Empresa.this, jobList, userRole);
                 recyclerView.setAdapter(jobAdapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Manejar el error en caso de que falle la consulta
+
             }
         });
 
-        // Configurar los botones de navegación
+
         selectView(R.id.viewHome);
 
         btnHome.setOnClickListener(v -> selectView(R.id.viewHome));
@@ -119,7 +119,7 @@ public class Home_Empresa extends AppCompatActivity {
     }
 
     private void selectView(int viewId) {
-        // Ocultar todas las vistas
+
         viewHome.setVisibility(View.GONE);
         viewChat.setVisibility(View.GONE);
         viewNotificacion.setVisibility(View.GONE);
@@ -153,13 +153,13 @@ public class Home_Empresa extends AppCompatActivity {
     private void setButtonBorder(ImageButton button) {
         GradientDrawable border = new GradientDrawable();
         if (button.isSelected()) {
-            // Color del borde cuando el botón está seleccionado
-            border.setColor(getResources().getColor(android.R.color.transparent)); // Color de fondo transparente
-            border.setStroke(4, getResources().getColor(R.color.border_color)); // Color del borde seleccionado
+
+            border.setColor(getResources().getColor(android.R.color.transparent));
+            border.setStroke(4, getResources().getColor(R.color.border_color));
         } else {
-            // Color del borde cuando el botón no está seleccionado
-            border.setColor(getResources().getColor(android.R.color.transparent)); // Color de fondo transparente
-            border.setStroke(4, getResources().getColor(R.color.noBorder_color)); // Color del borde no seleccionado
+
+            border.setColor(getResources().getColor(android.R.color.transparent));
+            border.setStroke(4, getResources().getColor(R.color.noBorder_color));
         }
         border.setCornerRadius(8f);
         button.setBackground(border);

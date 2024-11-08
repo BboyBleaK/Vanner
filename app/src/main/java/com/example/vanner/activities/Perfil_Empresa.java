@@ -33,15 +33,14 @@ public class Perfil_Empresa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_empresa);
 
-        // Inicializar RecyclerView y configurarlo
+
         recyclerViewJobs = findViewById(R.id.recyclerViewJobs);
         recyclerViewJobs.setLayoutManager(new LinearLayoutManager(this));
 
-        // Crear instancia del adaptador y asignarlo al RecyclerView
-        jobAdapter = new JobAdapter(this, jobList, "Empresa"); // Cambiar "Empresa" si se requiere otro rol
+
+        jobAdapter = new JobAdapter(this, jobList, "Empresa");
         recyclerViewJobs.setAdapter(jobAdapter);
 
-        // Cargar los empleos de Firebase
         loadJobs();
     }
 
@@ -58,7 +57,7 @@ public class Perfil_Empresa extends AppCompatActivity {
                         jobList.add(job);
                     }
                 }
-                jobAdapter.notifyDataSetChanged(); // Notificar al adaptador de los cambios
+                jobAdapter.notifyDataSetChanged();
             }
 
             @Override

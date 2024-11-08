@@ -38,7 +38,7 @@ public class JobPostActivity extends AppCompatActivity {
         titleInput = findViewById(R.id.titleInput);
         descriptionInput = findViewById(R.id.descriptionInput);
         salaryInput = findViewById(R.id.salaryInput);
-        salaryInput.setInputType(InputType.TYPE_CLASS_NUMBER);  // Solo acepta números
+        salaryInput.setInputType(InputType.TYPE_CLASS_NUMBER);
         vacanciesInput = findViewById(R.id.vacanciesInput);
         expirationDateInput = findViewById(R.id.expirationDateInput);
         modeGroup = findViewById(R.id.modeGroup);
@@ -64,12 +64,12 @@ public class JobPostActivity extends AppCompatActivity {
                     Calendar selectedDate = Calendar.getInstance();
                     selectedDate.set(selectedYear, selectedMonth, selectedDay);
 
-                    // Validar que la fecha no sea pasada
+
                     if (selectedDate.before(Calendar.getInstance())) {
                         Toast.makeText(JobPostActivity.this, "La fecha de vencimiento no puede ser una fecha pasada", Toast.LENGTH_SHORT).show();
                         expirationDateInput.setText("");
                     } else {
-                        // Formato: dd/MM/yyyy
+
                         String formattedDate = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
                         expirationDateInput.setText(formattedDate);
                     }
@@ -93,7 +93,7 @@ public class JobPostActivity extends AppCompatActivity {
             return;
         }
 
-        // Validación adicional para el salario y vacantes (que sean números positivos)
+
         try {
             int salaryValue = Integer.parseInt(salary);
             int vacanciesValue = Integer.parseInt(vacancies);
@@ -107,7 +107,7 @@ public class JobPostActivity extends AppCompatActivity {
             return;
         }
 
-        // Obtener el texto del modo seleccionado
+
         RadioButton selectedModeButton = findViewById(selectedModeId);
         String mode = selectedModeButton.getText().toString();
 
@@ -121,7 +121,7 @@ public class JobPostActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
             if (task.isSuccessful()) {
                 Toast.makeText(JobPostActivity.this, "Empleo publicado con éxito", Toast.LENGTH_SHORT).show();
-                finish(); // Regresar a la pantalla anterior
+                finish();
             } else {
                 Toast.makeText(JobPostActivity.this, "Error al publicar el empleo: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
