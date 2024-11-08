@@ -14,9 +14,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.vanner.MainActivity;
 import com.example.vanner.R;
 import com.example.vanner.adapters.JobAdapter;
 import com.example.vanner.models.Job;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,10 +33,11 @@ public class Home_Empresa extends AppCompatActivity {
     private ImageButton btnHome, btnChat, btnNotificacion, btnPerfil, btnCancelar, btnPasar, btnMeGusta;
     private TextView txtNombreTrabajador, txtFonoTrabajador, txtCorreoTrabajador, txtCargoTrabajador, txtGeneroTrabajador;
     private View viewHome, viewChat, viewNotificacion, viewPerfil;
-    private Button btnCrearEmpleo;
+    private Button btnCrearEmpleo, btnCerrarSesion;
     private RecyclerView recyclerView;
     private JobAdapter jobAdapter;
     private List<Job> jobList;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,7 @@ public class Home_Empresa extends AppCompatActivity {
         btnPasar = findViewById(R.id.btnPasar);
         btnMeGusta = findViewById(R.id.btnMeGusta);
         btnCrearEmpleo = findViewById(R.id.btnCrearEmpleo);
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
 
         txtNombreTrabajador = findViewById(R.id.txtNombreTrabajador);
         txtFonoTrabajador = findViewById(R.id.txtFonoTrabajador);
@@ -111,6 +116,20 @@ public class Home_Empresa extends AppCompatActivity {
             Intent intent = new Intent(Home_Empresa.this, JobPostActivity.class);
             startActivity(intent);
         });
+
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+
+                Intent intent = new Intent(Home_Empresa.this, MainActivity.class);
+                startActivity(intent);
+
+                finish();
+            }
+        });
+
+
 
         setButtonBorder(btnHome);
         setButtonBorder(btnChat);
