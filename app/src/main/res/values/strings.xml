@@ -9,6 +9,11 @@
     <string name="txtSinCuenta">¿No tienes cuenta?</string>
     <string name="company_image_description">Descripción de la imagen de la empresa</string>
 
+    <string name="txtRecuperar">Recuperar</string>
+    <string name="txtRegresar">Regresar</string>
+    <string name="txtTituloRecuperar">Recuperacion de cuenta</string>
+
+
     <string-array name="cargos_array">
         <item>Usuario</item>
         <item>Empresa</item>

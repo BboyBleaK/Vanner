@@ -28,12 +28,12 @@
             android:id="@+id/btnAMensaje2"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:layout_alignParentBottom="true"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:src="@mipmap/siguiente"/>
+            android:src="@mipmap/siguiente" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -60,9 +60,9 @@
             android:id="@+id/btnALogin"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:layout_alignParentBottom="true"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:src="@mipmap/siguiente" />
@@ -86,14 +86,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@android:color/darker_gray"
+            android:background="@drawable/fondo_recuperacion"
             android:gravity="center"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recupercion de cuenta" />
+                android:text="@string/txtTituloRecuperar"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
 
 
             <EditText
@@ -117,17 +120,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/btnRecuperar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Recuperar" />
+                <Button
+                    android:id="@+id/btnRecuperar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/txtRecuperar" />
 
-            <Button
-                android:id="@+id/btnRegresar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Regresar" />
+                <Button
+                    android:id="@+id/btnRegresar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtRegresar" />
 
             </LinearLayout>
 
