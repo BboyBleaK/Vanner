@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,73 +14,97 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Título del empleo -->
         <TextView
             android:id="@+id/jobTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Título del empleo"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#333333" />
 
+        <!-- Descripción breve del empleo -->
         <TextView
             android:id="@+id/jobDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Descripción breve del empleo"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp" />
+            android:layout_marginTop="6dp"
+            android:textSize="15sp"
+            android:textColor="#666666" />
 
+        <!-- Sueldo -->
         <TextView
             android:id="@+id/jobSalary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sueldo: $1000"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp" />
+            android:layout_marginTop="6dp"
+            android:textSize="15sp"
+            android:textColor="#4CAF50" />
 
+        <!-- Vacantes -->
         <TextView
             android:id="@+id/jobVacancies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Vacantes: 5"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp" />
+            android:layout_marginTop="6dp"
+            android:textSize="15sp"
+            android:textColor="#4CAF50" />
 
+        <!-- Modalidad de empleo -->
         <TextView
             android:id="@+id/jobMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Modalidad: Full-time"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp" />
+            android:layout_marginTop="6dp"
+            android:textSize="15sp"
+            android:textColor="#333333" />
 
+        <!-- Fecha de vencimiento -->
         <TextView
             android:id="@+id/jobExpirationDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Vence: 01/01/2025"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp" />
+            android:layout_marginTop="6dp"
+            android:textSize="15sp"
+            android:textColor="#333333" />
 
+        <!-- Botones de acción -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="12dp">
 
+            <!-- Botón de Acción -->
             <Button
                 android:id="@+id/actionButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Acción" />
+                android:backgroundTint="#8BC34A"
+                android:text="Acción"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:padding="8dp" />
 
+            <!-- Botón de Eliminar -->
             <Button
                 android:id="@+id/deleteButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#F44336"
                 android:text="Eliminar"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:layout_marginStart="8dp"
                 android:visibility="gone" />
         </LinearLayout>
 

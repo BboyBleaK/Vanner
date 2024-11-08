@@ -13,7 +13,7 @@ public class FirebaseUtils {
     private static final String PROFILE_IMAGES_NODE = "profile_images";
 
     private FirebaseUtils() {
-        // Constructor privado para evitar la instanciación
+
     }
 
     public static DatabaseReference getUsersDatabaseReference() {

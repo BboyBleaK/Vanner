@@ -269,6 +269,7 @@
                         android:id="@+id/btnCrearEmpleo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="#00BCD4"
                         android:text="@string/btnCrearEmpleo" />
                 </LinearLayout>
 
@@ -303,6 +304,7 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
+                android:backgroundTint="#8BC34A"
                 android:text="@string/btnCerrarSesion" />
 
             <Button
@@ -311,6 +313,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
+                android:backgroundTint="#8BC34A"
                 android:text="@string/btnEliminarCuenta" />
         </LinearLayout>
     </RelativeLayout>
