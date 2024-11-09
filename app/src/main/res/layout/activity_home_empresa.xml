@@ -241,12 +241,6 @@
                         android:text="@string/txtRutEmpresa" />
 
                     <TextView
-                        android:id="@+id/txtCeoEmpresa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txtCeoEmpresa" />
-
-                    <TextView
                         android:id="@+id/txtCorreoEmpresa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
