@@ -15,7 +15,16 @@
         android:theme="@style/Theme.Vanner"
         tools:targetApi="31">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.VerEmpleosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EditarEmpleoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JobEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CrearEmpleoActivity"
             android:exported="false" />
         <activity
             android:name=".activities.JobPostActivity"

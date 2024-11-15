@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Título -->
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Título del empleo"
+        android:inputType="text" />
+
+    <!-- Descripción -->
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripción"
+        android:inputType="text" />
+
+    <!-- Salario -->
+    <EditText
+        android:id="@+id/etSalary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Salario"
+        android:inputType="number" />
+
+    <!-- Vacantes -->
+    <EditText
+        android:id="@+id/etVacancies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vacantes"
+        android:inputType="number" />
+
+    <!-- Fecha de vencimiento -->
+    <EditText
+        android:id="@+id/etExpirationDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fecha de vencimiento"
+        android:inputType="date" />
+
+    <!-- Tipo de empleo -->
+    <EditText
+        android:id="@+id/etEmploymentMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tipo de empleo (Ej. Tiempo completo)"
+        android:inputType="text" />
+
+    <!-- Botón para guardar cambios -->
+    <Button
+        android:id="@+id/btnSaveChanges"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Cambios" />
+
+</LinearLayout>

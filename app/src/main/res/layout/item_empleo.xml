@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFFFF"
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    android:clipToPadding="false">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Título del empleo"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descripción del empleo"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvSalary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salario: $0"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvVacantes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vacantes: 0"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvTipoEmpleo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo de empleo: Tiempo completo"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvFechaVencimiento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de vencimiento: DD/MM/AAAA"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:layout_marginBottom="12dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar"
+            android:layout_marginEnd="8dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textColor="#FFFFFF"
+            android:background="#3F51B5"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eliminar"
+            android:layout_marginEnd="8dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textColor="#FFFFFF"
+            android:background="#F44336"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnPostulate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Postularse"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textColor="#FFFFFF"
+            android:background="#4CAF50"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>
