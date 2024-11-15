@@ -44,6 +44,7 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
     public void onBindViewHolder(@NonNull EmpleoViewHolder holder, int position) {
         Empleo empleo = empleoList.get(position);
 
+        // Mostrar los datos del empleo
         holder.tvTitle.setText(empleo.getTitle());
         holder.tvDescription.setText(empleo.getDescription());
         holder.tvSalary.setText("Salario: $" + empleo.getSalary());
@@ -51,6 +52,7 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
         holder.tvTipoEmpleo.setText("Tipo de empleo: " + empleo.getEmploymentMode());
         holder.tvFechaVencimiento.setText("Fecha de vencimiento: " + empleo.getExpirationDate());
 
+        // Configurar visibilidad de botones según el rol
         configureButtonsBasedOnRole(holder, empleo.getEmpleoId());
     }
 
@@ -72,7 +74,7 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
             });
 
             holder.btnDelete.setOnClickListener(v -> deleteEmpleo(empleoId));
-        } else if ("trabajador".equals(userRole)) {
+        } else if ("usuario".equals(userRole)) {
             holder.btnPostulate.setVisibility(View.VISIBLE);
             holder.btnEdit.setVisibility(View.GONE);
             holder.btnDelete.setVisibility(View.GONE);
@@ -94,7 +96,7 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
         DatabaseReference postulacionesRef = FirebaseDatabase.getInstance().getReference("postulaciones");
         String postulanteId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         postulacionesRef.child(empleoId).child(postulanteId).setValue(true)
-                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Postulado al empleo", Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Postulado correctamente al empleo", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(context, "Error al postularse", Toast.LENGTH_SHORT).show());
     }
 
@@ -102,7 +104,7 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
         public TextView tvTitle, tvDescription, tvSalary, tvVacantes, tvTipoEmpleo, tvFechaVencimiento;
         public Button btnEdit, btnDelete, btnPostulate;
 
-        public EmpleoViewHolder(View itemView) {
+        public EmpleoViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvDescription = itemView.findViewById(R.id.tvDescription);
