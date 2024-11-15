@@ -28,7 +28,7 @@ public class VerEmpleosActivity extends AppCompatActivity {
     private EmpleoAdapter empleoAdapter;
     private List<Empleo> empleoList;
     private DatabaseReference databaseReference;
-    private String empresaId;  // El ID de la empresa que creó los empleos
+    private String empresaId;
     private ImageButton btnRegresar;
 
     @Override
@@ -47,14 +47,14 @@ public class VerEmpleosActivity extends AppCompatActivity {
             }
         });
 
-        // Obtener el ID de la empresa desde el usuario autenticado
-        empresaId = FirebaseAuth.getInstance().getCurrentUser().getUid();  // Obtenemos el ID de la empresa autenticada
+
+        empresaId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         empleoList = new ArrayList<>();
 
-        // Referencia a la base de datos de Firebase
+
         databaseReference = FirebaseDatabase.getInstance().getReference("empleos");
 
-        // Buscar empleos que correspondan a esta empresa
+
         Query query = databaseReference.orderByChild("empresaId").equalTo(empresaId);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -67,14 +67,14 @@ public class VerEmpleosActivity extends AppCompatActivity {
                     }
                 }
 
-                // Inicializar el adaptador con los datos filtrados
+
                 empleoAdapter = new EmpleoAdapter(VerEmpleosActivity.this, empleoList, "empresa");
                 recyclerView.setAdapter(empleoAdapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Manejar posibles errores en la consulta
+
                 Log.e("VerEmpleosActivity", "Error al cargar los empleos: " + databaseError.getMessage());
             }
         });

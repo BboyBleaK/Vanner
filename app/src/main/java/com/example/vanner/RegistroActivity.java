@@ -51,7 +51,7 @@ public class RegistroActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        // Inicialización de vistas para usuario
+
         edtCorreo = findViewById(R.id.edtCorreo);
         edtPass = findViewById(R.id.edtUsuario);
         edtRePass = findViewById(R.id.edtRePass);

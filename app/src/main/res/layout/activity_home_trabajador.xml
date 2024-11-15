@@ -255,49 +255,6 @@
         android:background="@drawable/gradient_chat_trabajador"
         android:visibility="visible">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/LinearBotonMarch"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="40dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtNombreTrabajador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txtNombreTrabajador"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/txtFonoTrabajador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txtFonoTrabajador"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/txtCorreoTrabajador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txtCorreoTrabajador"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/txtCargoTrabajador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txtCargoTrabajador"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/txtGeneroTrabajador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txtGeneroTrabajador"
-                android:textSize="20sp" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/LinearBotonMarch"

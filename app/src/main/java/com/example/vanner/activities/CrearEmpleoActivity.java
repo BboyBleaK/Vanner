@@ -31,7 +31,7 @@ public class CrearEmpleoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_empleo);
 
-        // Inicialización de los componentes de la UI
+
         titleInput = findViewById(R.id.titleInput);
         descriptionInput = findViewById(R.id.descriptionInput);
         salaryInput = findViewById(R.id.salaryInput);
@@ -41,7 +41,7 @@ public class CrearEmpleoActivity extends AppCompatActivity {
         BtnPublicarEmpleo = findViewById(R.id.BtnPublicarEmpleo);
         btnRegresar = findViewById(R.id.btnRegresar);
 
-        // Inicialización de la base de datos y FirebaseAuth
+
         mDatabase = FirebaseDatabase.getInstance().getReference("empleos");
         mAuth = FirebaseAuth.getInstance();
 
@@ -52,7 +52,7 @@ public class CrearEmpleoActivity extends AppCompatActivity {
             }
         });
 
-        // Configuración del botón para publicar la oferta de empleo
+
         BtnPublicarEmpleo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,13 +62,13 @@ public class CrearEmpleoActivity extends AppCompatActivity {
                 String vacanciesString = vacanciesInput.getText().toString().trim();
                 String expirationDate = expirationDateInput.getText().toString().trim();
 
-                // Validación de campos vacíos
+
                 if (title.isEmpty() || description.isEmpty() || salaryString.isEmpty() || vacanciesString.isEmpty() || expirationDate.isEmpty()) {
                     Toast.makeText(CrearEmpleoActivity.this, "Por favor completa todos los campos", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // Validación de valores numéricos para vacantes
+
                 int vacancies = 0;
                 try {
                     vacancies = Integer.parseInt(vacanciesString);
@@ -77,7 +77,7 @@ public class CrearEmpleoActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Validación de valores numéricos para salario
+
                 int salaryValue = 0;
                 try {
                     salaryValue = Integer.parseInt(salaryString); // Ahora es un valor entero
@@ -86,10 +86,10 @@ public class CrearEmpleoActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Obtener el ID de la empresa (usuario logueado)
+
                 String empresaId = mAuth.getCurrentUser().getUid();
 
-                // Validación del modo de empleo
+
                 int selectedModeId = modeGroup.getCheckedRadioButtonId();
                 if (selectedModeId == -1) {
                     Toast.makeText(CrearEmpleoActivity.this, "Por favor selecciona el modo de empleo", Toast.LENGTH_SHORT).show();
@@ -98,19 +98,19 @@ public class CrearEmpleoActivity extends AppCompatActivity {
                 RadioButton selectedModeButton = findViewById(selectedModeId);
                 String employmentMode = selectedModeButton.getText().toString();
 
-                // Crear el objeto Empleo con salario como int
+
                 Empleo empleo = new Empleo(title, description, salaryValue, vacancies, expirationDate, employmentMode, empresaId);
 
-                // Obtener un ID único para el empleo
+
                 String empleoId = mDatabase.push().getKey();
                 if (empleoId != null) {
-                    empleo.setEmpleoId(empleoId);  // Asociar el empleoId al objeto Empleo
-                    // Guardar el empleo en Firebase
+                    empleo.setEmpleoId(empleoId);
+
                     mDatabase.child(empleoId).setValue(empleo);
 
-                    // Mensaje de éxito
+
                     Toast.makeText(CrearEmpleoActivity.this, "Oferta de empleo publicada", Toast.LENGTH_SHORT).show();
-                    finish();  // Terminar la actividad
+                    finish();
                 } else {
                     Toast.makeText(CrearEmpleoActivity.this, "Hubo un error al publicar la oferta", Toast.LENGTH_SHORT).show();
                 }

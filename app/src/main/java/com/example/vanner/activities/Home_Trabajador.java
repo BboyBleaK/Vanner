@@ -2,12 +2,14 @@ package com.example.vanner.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -46,12 +48,14 @@ public class Home_Trabajador extends AppCompatActivity {
     private RecyclerView jobRecyclerView;
     private EmpleoAdapter empleoAdapter;
     private List<Empleo> empleoList;
+    private ImageButton btnHome, btnChat, btnNotificacion, btnPerfil;
+    private View viewHome, viewChat, viewNotificacion, viewPerfil;
 
-    // Variables de Firebase
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    // Rol del usuario
+
     private final String userRole = "usuario";
 
     @Override
@@ -59,7 +63,7 @@ public class Home_Trabajador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_trabajador);
 
-        // Inicializar los elementos de la vista
+
         edtDireccionUsuario = findViewById(R.id.edtDireccionUsuario);
         edtFonoUsuario = findViewById(R.id.edtFonoUsuario);
         dtpNacimientoUsuario = findViewById(R.id.dtpNacimientoUsuario);
@@ -69,36 +73,51 @@ public class Home_Trabajador extends AppCompatActivity {
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         jobRecyclerView = findViewById(R.id.jobRecyclerView);
 
-        // Configurar RecyclerView
+        btnHome = findViewById(R.id.btnHome);
+        btnChat = findViewById(R.id.btnChat);
+        btnNotificacion = findViewById(R.id.btnNotificacion);
+        btnPerfil = findViewById(R.id.btnPerfil);
+
+        viewHome = findViewById(R.id.viewHome);
+        viewChat = findViewById(R.id.viewChat);
+        viewNotificacion = findViewById(R.id.viewNotificacion);
+        viewPerfil = findViewById(R.id.viewPerfil);
+
+        btnHome.setOnClickListener(v -> selectView(R.id.viewHome));
+        btnChat.setOnClickListener(v -> selectView(R.id.viewChat));
+        btnNotificacion.setOnClickListener(v -> selectView(R.id.viewNotificacion));
+        btnPerfil.setOnClickListener(v -> selectView(R.id.viewPerfil));
+
+
         empleoList = new ArrayList<>();
         empleoAdapter = new EmpleoAdapter(this, empleoList, userRole);
         jobRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         jobRecyclerView.setAdapter(empleoAdapter);
 
-        // Inicializar Firebase Auth y Database
+
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        // Verificar si los datos adicionales ya están completos
+
         verificarDatosCompletos();
 
-        // Configurar opciones del Spinner de género
+
         ArrayAdapter<CharSequence> adaptadorGenero = ArrayAdapter.createFromResource(
                 this, R.array.genero_opciones, android.R.layout.simple_spinner_item);
         adaptadorGenero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnGeneroUsuario.setAdapter(adaptadorGenero);
 
-        // Configurar el DatePicker para la fecha de nacimiento
+
         dtpNacimientoUsuario.setOnClickListener(v -> mostrarDatePicker());
 
-        // Configurar el evento click para finalizar registro
+
         btnFinalizarRegistro.setOnClickListener(view -> {
             if (validarCampos()) {
                 actualizarDatosFirebase();
             }
         });
 
-        // Configurar el evento click para el botón de Cerrar Sesión
+
         btnCerrarSesion.setOnClickListener(view -> {
             mAuth.signOut();
             Intent intent = new Intent(Home_Trabajador.this, MainActivity.class);
@@ -107,7 +126,7 @@ public class Home_Trabajador extends AppCompatActivity {
             finish();
         });
 
-        // Cargar empleos desde Firebase
+
         cargarEmpleosDesdeFirebase();
     }
 
@@ -218,5 +237,77 @@ public class Home_Trabajador extends AppCompatActivity {
                 Toast.makeText(Home_Trabajador.this, "Error al cargar empleos", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    private void esconderView() {
+        viewHome.setVisibility(View.GONE);
+        viewChat.setVisibility(View.GONE);
+        viewNotificacion.setVisibility(View.GONE);
+        viewPerfil.setVisibility(View.GONE);
+    }
+
+    private void selectView(int viewId) {
+        viewHome.setVisibility(View.GONE);
+        viewChat.setVisibility(View.GONE);
+        viewNotificacion.setVisibility(View.GONE);
+        viewPerfil.setVisibility(View.GONE);
+
+        btnHome.setSelected(false);
+        btnChat.setSelected(false);
+        btnNotificacion.setSelected(false);
+        btnPerfil.setSelected(false);
+
+        if (viewId == R.id.viewHome) {
+            viewHome.setVisibility(View.VISIBLE);
+            btnHome.setSelected(true);
+        } else if (viewId == R.id.viewChat) {
+            viewChat.setVisibility(View.VISIBLE);
+            btnChat.setSelected(true);
+        } else if (viewId == R.id.viewNotificacion) {
+            viewNotificacion.setVisibility(View.VISIBLE);
+            btnNotificacion.setSelected(true);
+        } else if (viewId == R.id.viewPerfil) {
+            viewPerfil.setVisibility(View.VISIBLE);
+            btnPerfil.setSelected(true);
+        }
+
+        setButtonBorder(btnHome);
+        setButtonBorder(btnChat);
+        setButtonBorder(btnNotificacion);
+        setButtonBorder(btnPerfil);
+    }
+
+    private void desactivarNavegacion() {
+        btnHome.setEnabled(false);
+        btnChat.setEnabled(false);
+        btnNotificacion.setEnabled(false);
+        btnPerfil.setEnabled(false);
+        btnCerrarSesion.setEnabled(false);
+
+    }
+
+    private void activarNavegacion() {
+        btnHome.setEnabled(true);
+        btnChat.setEnabled(true);
+        btnNotificacion.setEnabled(true);
+        btnPerfil.setEnabled(true);
+        btnCerrarSesion.setEnabled(true);
+
+    }
+
+    private void setButtonBorder(ImageButton button) {
+        GradientDrawable border = new GradientDrawable();
+        if (button.isSelected()) {
+
+            border.setColor(getResources().getColor(android.R.color.transparent));
+            border.setStroke(4, getResources().getColor(R.color.border_color));
+        } else {
+
+            border.setColor(getResources().getColor(android.R.color.transparent));
+            border.setStroke(4, getResources().getColor(R.color.noBorder_color));
+        }
+        border.setCornerRadius(8f);
+        button.setBackground(border);
     }
 }

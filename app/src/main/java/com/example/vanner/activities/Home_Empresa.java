@@ -45,11 +45,11 @@ public class Home_Empresa extends AppCompatActivity {
     private RelativeLayout RelativeRegistroAdicional;
     private Button btnCerrarSesion, btnCrearEmpleo, btnVerEmpleos;
 
-    // Variables de Firebase
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    // RecyclerView para mostrar los empleos
+
     private RecyclerView jobsRecyclerView;
     private EmpleoAdapter empleoAdapter;
     private List<Empleo> empleoList;
@@ -61,7 +61,7 @@ public class Home_Empresa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_empresa);
 
-        // Inicializar los elementos de la vista
+
         edtPropietario = findViewById(R.id.edtPropietarioEditText);
         edtDireccionEmpresa = findViewById(R.id.edtDireccionEmpresa);
         edtRazonSocial = findViewById(R.id.edtRazonSocial);
@@ -89,31 +89,31 @@ public class Home_Empresa extends AppCompatActivity {
         RelativeRegistroAdicional = findViewById(R.id.RelativeRegistroAdicional);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         btnCrearEmpleo = findViewById(R.id.btnCrearEmpleo);
-        btnVerEmpleos = findViewById(R.id.btnVerEmpleos);// Inicializar el botón "Crear Empleo"
+        btnVerEmpleos = findViewById(R.id.btnVerEmpleos);
 
-        // Inicializar Firebase Auth y Database
+
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        // Inicializar RecyclerView y lista de empleos
+
         jobsRecyclerView = findViewById(R.id.jobsRecyclerView);
         empleoList = new ArrayList<>();
         empleoAdapter = new EmpleoAdapter(this, empleoList, "Empresa");
 
-        // Configurar RecyclerView
+
         jobsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         jobsRecyclerView.setAdapter(empleoAdapter);
 
-        // Verificar si los datos adicionales ya están completos
+
         verificarDatosCompletos();
 
-        // Configurar opciones del Spinner de sector de actividad
+
         ArrayAdapter<CharSequence> adaptadorSector = ArrayAdapter.createFromResource(
                 this, R.array.sector_actividad, android.R.layout.simple_spinner_item);
         adaptadorSector.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnSectorActividad.setAdapter(adaptadorSector);
 
-        // Configurar el DatePicker para la fecha de constitución
+
         dtpFechaConstitucion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +121,7 @@ public class Home_Empresa extends AppCompatActivity {
             }
         });
 
-        // Configurar el evento click para finalizar registro
+
         btnFinalizarRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +131,7 @@ public class Home_Empresa extends AppCompatActivity {
             }
         });
 
-        // Configurar el evento click para el botón de Cerrar Sesión
+
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,13 +143,13 @@ public class Home_Empresa extends AppCompatActivity {
             }
         });
 
-        // Configurar el evento click para el botón de "Crear Empleo"
+
         btnCrearEmpleo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Crear un Intent para navegar a JobPostActivity
+
                 Intent intent = new Intent(Home_Empresa.this, CrearEmpleoActivity.class);
-                startActivity(intent);  // Iniciar la actividad
+                startActivity(intent);
             }
         });
 
@@ -157,13 +157,13 @@ public class Home_Empresa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home_Empresa.this, VerEmpleosActivity.class);
-                startActivity(intent);  // Inicia la actividad VerEmpleosActivity
+                startActivity(intent);
             }
         });
 
 
 
-        // Cargar los empleos creados por la empresa desde Firebase
+
         cargarEmpleos();
     }
 
@@ -174,12 +174,12 @@ public class Home_Empresa extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        // Verificar si los datos adicionales existen en Firebase
+
                         if (snapshot.exists()) {
-                            // Ocultar el formulario de registro adicional
+
                             RelativeRegistroAdicional.setVisibility(View.GONE);
                         } else {
-                            // Mostrar el formulario si los datos no existen
+
                             RelativeRegistroAdicional.setVisibility(View.VISIBLE);
                         }
                     }

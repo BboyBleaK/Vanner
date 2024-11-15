@@ -10,10 +10,10 @@ public class Empleo {
     private String empresaId;
     private String empleoId;
 
-    // Constructor vacío requerido por Firebase
+
     public Empleo() {}
 
-    // Constructor completo
+
     public Empleo(String title, String description, int salary, int vacancies, String expirationDate, String employmentMode, String empresaId) {
         this.title = title;
         this.description = description;
@@ -24,7 +24,7 @@ public class Empleo {
         this.empresaId = empresaId;
     }
 
-    // Getters y setters
+
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     public String getDescription() { return description; }
