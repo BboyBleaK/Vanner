@@ -1,344 +1,199 @@
 package com.example.vanner.activities;
 
-import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.graphics.drawable.GradientDrawable;
-
-import androidx.activity.EdgeToEdge;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vanner.MainActivity;
 import com.example.vanner.R;
-import com.example.vanner.adapters.JobAdapter;
-import com.example.vanner.models.Job;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Home_Empresa extends AppCompatActivity {
 
-    private ImageButton btnHome, btnChat, btnNotificacion, btnPerfil, btnCancelar, btnPasar, btnMeGusta;
-    private TextView txtNombreTrabajador, txtFonoTrabajador, txtCorreoTrabajador, txtCargoTrabajador, txtGeneroTrabajador;
-    private EditText edtRazonSocial, edtDireccion, edtNombrePropietario, dtpConstitucion;
-    private Spinner spnSectorCargo;
-    private ImageView ayudaRazonSocial, ayudaDireccion, ayudaSectorActividad, ayudaNombrePropietario, ayudaFechaConstitucion;
-    private LinearLayout LinearFinalizarRegistro;
-    private RelativeLayout main, RelativeRegistroAdicional;
-    private View viewHome, viewChat, viewNotificacion, viewPerfil;
-    private Button btnCrearEmpleo, btnCerrarSesion, btnDesactivarCuenta;
-    private RecyclerView recyclerView;
-    private JobAdapter jobAdapter;
-    private List<Job> jobList;
+    private TextInputEditText  edtDireccionEmpresa, edtPropietario, dtpFechaConstitucion, edtRazonSocial;
+    private Spinner spnSectorActividad;
+    private LinearLayout btnFinalizarRegistro;
+    private RelativeLayout RelativeRegistroAdicional;
+    private Button btnCerrarSesion;
+
+    // Variables de Firebase
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home_empresa);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        btnHome = findViewById(R.id.btnHome);
-        btnChat = findViewById(R.id.btnChat);
-        btnNotificacion = findViewById(R.id.btnNotificacion);
-        btnPerfil = findViewById(R.id.btnPerfil);
-        btnCancelar = findViewById(R.id.btnCancelar);
-        btnPasar = findViewById(R.id.btnPasar);
-        btnMeGusta = findViewById(R.id.btnMeGusta);
-        btnCrearEmpleo = findViewById(R.id.btnCrearEmpleo);
-        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
-        btnDesactivarCuenta = findViewById(R.id.btnDesactivarCuenta);
+        // Inicializar los elementos de la vista
+        edtPropietario = findViewById(R.id.edtPropietarioEditText);
+        edtDireccionEmpresa = findViewById(R.id.edtDireccionEmpresa);
+        edtRazonSocial = findViewById(R.id.edtRazonSocial);
 
-        spnSectorCargo = findViewById(R.id.spnSectorCargo);
 
-        txtNombreTrabajador = findViewById(R.id.txtNombreTrabajador);
-        txtFonoTrabajador = findViewById(R.id.txtFonoTrabajador);
-        txtCorreoTrabajador = findViewById(R.id.txtCorreoTrabajador);
-        txtCargoTrabajador = findViewById(R.id.txtCargoTrabajador);
-        txtGeneroTrabajador = findViewById(R.id.txtGeneroTrabajador);
-
-        viewHome = findViewById(R.id.viewHome);
-        viewChat = findViewById(R.id.viewChat);
-        viewNotificacion = findViewById(R.id.viewNotificacion);
-        viewPerfil = findViewById(R.id.viewPerfil);
-
-        ayudaRazonSocial = findViewById(R.id.ayudaRazonSocial);
-        ayudaDireccion = findViewById(R.id.ayudaDireccion);
-        ayudaSectorActividad = findViewById(R.id.ayudaSectorActividad);
-        ayudaNombrePropietario = findViewById(R.id.ayudaNombrePropietario);
-        ayudaFechaConstitucion = findViewById(R.id.ayudaFechaConstitucion);
-
-        main = findViewById(R.id.main);
+        dtpFechaConstitucion = findViewById(R.id.dtpConstitucion);
+        spnSectorActividad = findViewById(R.id.spnSectorActividad);
+        btnFinalizarRegistro = findViewById(R.id.LinearFinalizarRegistro);
         RelativeRegistroAdicional = findViewById(R.id.RelativeRegistroAdicional);
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
 
-        LinearFinalizarRegistro = findViewById(R.id.LinearFinalizarRegistro);
+        // Inicializar Firebase Auth y Database
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        recyclerView = findViewById(R.id.recyclerViewJobs);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // Verificar si los datos adicionales ya están completos
+        verificarDatosCompletos();
 
-        ayudaRazonSocial.setOnClickListener(v -> verAyuda("Ingresa el nombre o razón social de tu empresa."));
-        ayudaDireccion.setOnClickListener(v -> verAyuda("Ingresa la dirección de tu empresa."));
-        ayudaSectorActividad.setOnClickListener(v -> verAyuda("Ingresa el sector de actividad de tu empresa."));
-        ayudaNombrePropietario.setOnClickListener(v -> verAyuda("Ingresa el nombre del propietario de tu empresa."));
-        ayudaFechaConstitucion.setOnClickListener(v -> verAyuda("Ingresa la fecha de constitución de tu empresa."));
+        // Configurar opciones del Spinner de género
+        ArrayAdapter<CharSequence> adaptadorSector = ArrayAdapter.createFromResource(
+                this, R.array.sector_actividad, android.R.layout.simple_spinner_item);
+        adaptadorSector.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSectorActividad.setAdapter(adaptadorSector);
 
-        String userRole = "Empresa";
-
-        jobList = new ArrayList<>();
-
-        @SuppressLint("CutPasteId") RelativeLayout[] allRelativeLayouts = {findViewById(R.id.viewHome), findViewById(R.id.viewChat),
-                findViewById(R.id.viewNotificacion), findViewById(R.id.viewPerfil)};
-
-        for (RelativeLayout layout : allRelativeLayouts) {
-            layout.setVisibility(View.GONE);
-        }
-
-        configurarSpinner();
-
-        RelativeRegistroAdicional.setVisibility(View.VISIBLE);
-
-        esconderView();
-
-        SharedPreferences preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-        boolean isRegistered = preferences.getBoolean("isRegistered", false);
-        if (isRegistered) {
-            RelativeRegistroAdicional.setVisibility(View.GONE);
-            activarNavegacion();
-            selectView(R.id.viewHome);
-        } else {
-            RelativeRegistroAdicional.setVisibility(View.VISIBLE);
-            desactivarNavegacion();
-        }
-
-        DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference("jobs");
-        jobRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                jobList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Job job = snapshot.getValue(Job.class);
-                    if (job != null) {
-                        jobList.add(job);
-                    }
-                }
-
-
-                jobAdapter = new JobAdapter(Home_Empresa.this, jobList, userRole);
-                recyclerView.setAdapter(jobAdapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        selectView(R.id.viewHome);
-
-        btnHome.setOnClickListener(v -> selectView(R.id.viewHome));
-        btnChat.setOnClickListener(v -> selectView(R.id.viewChat));
-        btnNotificacion.setOnClickListener(v -> selectView(R.id.viewNotificacion));
-        btnPerfil.setOnClickListener(v -> selectView(R.id.viewPerfil));
-
-        btnCrearEmpleo.setOnClickListener(v -> {
-            Intent intent = new Intent(Home_Empresa.this, JobPostActivity.class);
-            startActivity(intent);
-        });
-
-        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+        // Configurar el DatePicker para la fecha de constitución
+        dtpFechaConstitucion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
+                mostrarDatePicker();
+            }
+        });
 
+        // Configurar el evento click para finalizar registro
+        btnFinalizarRegistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (validarCampos()) {
+                    actualizarDatosFirebase();
+                }
+            }
+        });
+
+        // Configurar el evento click para el botón de Cerrar Sesión
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
                 Intent intent = new Intent(Home_Empresa.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-
                 finish();
             }
         });
-
-        LinearFinalizarRegistro.setOnClickListener(v -> {
-            if (camposCompletosYValidos()) {
-                registroCompleto();
-                activarNavegacion();
-                RelativeRegistroAdicional.setVisibility(View.GONE);
-                selectView(R.id.viewHome);
-            } else {
-                Snackbar.make(main, "Por favor, complete todos los campos correctamente antes de continuar.", Snackbar.LENGTH_LONG).show();
-            }
-        });
-
-        setButtonBorder(btnHome);
-        setButtonBorder(btnChat);
-        setButtonBorder(btnNotificacion);
-        setButtonBorder(btnPerfil);
     }
 
-    private void configurarSpinner() {
-        String[] cargos = {"Sector actividad", "opcion1", "opcion2", "opcion3"};
+    private void verificarDatosCompletos() {
+        String userId = mAuth.getCurrentUser().getUid();
+        mDatabase.child("empresas").child(userId).child("informacionAdicional")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // Verificar si los datos adicionales existen en Firebase
+                        if (snapshot.exists()) {
+                            // Ocultar el formulario de registro adicional
+                            RelativeRegistroAdicional.setVisibility(View.GONE);
+                        } else {
+                            // Mostrar el formulario si los datos no existen
+                            RelativeRegistroAdicional.setVisibility(View.VISIBLE);
+                        }
+                    }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cargos);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(Home_Empresa.this, "Error al verificar datos adicionales", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
-        Spinner spnSectorCargo = findViewById(R.id.spnSectorCargo);
-        spnSectorCargo.setAdapter(adapter);
+    private void mostrarDatePicker() {
+        final Calendar calendario = Calendar.getInstance();
+        int año = calendario.get(Calendar.YEAR);
+        int mes = calendario.get(Calendar.MONTH);
+        int dia = calendario.get(Calendar.DAY_OF_MONTH);
 
-        spnSectorCargo.setSelection(0);
-
-        spnSectorCargo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        DatePickerDialog datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-
-                if (position != 0) {
-
-                    String selectedCargo = parentView.getItemAtPosition(position).toString();
-
-                    SharedPreferences preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("selectedCargo", selectedCargo);
-                    editor.apply();
-                } else {
-
-                    Snackbar.make(parentView, "Por favor, selecciona un cargo válido.", Snackbar.LENGTH_SHORT).show();
-                }
+            public void onDateSet(DatePicker view, int año, int mes, int dia) {
+                String fechaSeleccionada = dia + "/" + (mes + 1) + "/" + año;
+                dtpFechaConstitucion.setText(fechaSeleccionada);
             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-            }
-        });
+        }, año, mes, dia);
+        datePicker.show();
     }
 
-    private void reiniciarRegistro() {
-        SharedPreferences preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("isRegistered", false);
-        editor.apply();
-    }
-
-    private void esconderView() {
-        viewHome.setVisibility(View.GONE);
-        viewChat.setVisibility(View.GONE);
-        viewNotificacion.setVisibility(View.GONE);
-        viewPerfil.setVisibility(View.GONE);
-    }
-
-    private void registroCompleto() {
-        SharedPreferences preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("isRegistered", true);
-        editor.apply();
-    }
-
-    private void selectView(int viewId) {
-        esconderView();
-        viewHome.setVisibility(View.GONE);
-        viewChat.setVisibility(View.GONE);
-        viewNotificacion.setVisibility(View.GONE);
-        viewPerfil.setVisibility(View.GONE);
-
-        btnHome.setSelected(false);
-        btnChat.setSelected(false);
-        btnNotificacion.setSelected(false);
-        btnPerfil.setSelected(false);
-
-        if (viewId == R.id.viewHome) {
-            viewHome.setVisibility(View.VISIBLE);
-            btnHome.setSelected(true);
-        } else if (viewId == R.id.viewChat) {
-            viewChat.setVisibility(View.VISIBLE);
-            btnChat.setSelected(true);
-        } else if (viewId == R.id.viewNotificacion) {
-            viewNotificacion.setVisibility(View.VISIBLE);
-            btnNotificacion.setSelected(true);
-        } else if (viewId == R.id.viewPerfil) {
-            viewPerfil.setVisibility(View.VISIBLE);
-            btnPerfil.setSelected(true);
+    private boolean validarCampos() {
+        if (TextUtils.isEmpty(edtPropietario.getText().toString().trim())) {
+            edtPropietario.setError("El nombre del propietario es obligatorio");
+            edtPropietario.requestFocus();
+            return false;
         }
 
-        setButtonBorder(btnHome);
-        setButtonBorder(btnChat);
-        setButtonBorder(btnNotificacion);
-        setButtonBorder(btnPerfil);
-    }
-
-    private void desactivarNavegacion() {
-        btnHome.setEnabled(false);
-        btnChat.setEnabled(false);
-        btnNotificacion.setEnabled(false);
-        btnPerfil.setEnabled(false);
-        btnCrearEmpleo.setEnabled(false);
-        btnCerrarSesion.setEnabled(false);
-        btnDesactivarCuenta.setEnabled(false);
-    }
-
-    private void activarNavegacion() {
-        btnHome.setEnabled(true);
-        btnChat.setEnabled(true);
-        btnNotificacion.setEnabled(true);
-        btnPerfil.setEnabled(true);
-        btnCrearEmpleo.setEnabled(true);
-        btnCerrarSesion.setEnabled(true);
-        btnDesactivarCuenta.setEnabled(true);
-    }
-
-    private boolean camposCompletosYValidos() {
-        boolean camposCompletos = !edtRazonSocial.getText().toString().isEmpty() &&
-                !edtDireccion.getText().toString().isEmpty() &&
-                !txtCorreoTrabajador.getText().toString().isEmpty() &&
-                !edtNombrePropietario.getText().toString().isEmpty() &&
-                !edtDireccion.getText().toString().isEmpty();
-
-        boolean correoValido = android.util.Patterns.EMAIL_ADDRESS.matcher(txtCorreoTrabajador.getText().toString()).matches();
-
-        return camposCompletos && correoValido;
-    }
-
-    private void setButtonBorder(ImageButton button) {
-        GradientDrawable border = new GradientDrawable();
-        if (button.isSelected()) {
-
-            border.setColor(getResources().getColor(android.R.color.transparent));
-            border.setStroke(4, getResources().getColor(R.color.border_color));
-        } else {
-
-            border.setColor(getResources().getColor(android.R.color.transparent));
-            border.setStroke(4, getResources().getColor(R.color.noBorder_color));
+        if (TextUtils.isEmpty(edtRazonSocial.getText().toString().trim())) {
+            edtPropietario.setError("El nombre de la razón social es obligatorio");
+            edtPropietario.requestFocus();
+            return false;
         }
-        border.setCornerRadius(8f);
-        button.setBackground(border);
+
+        if (TextUtils.isEmpty(edtDireccionEmpresa.getText().toString().trim())) {
+            edtDireccionEmpresa.setError("La dirección es obligatoria");
+            edtDireccionEmpresa.requestFocus();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(dtpFechaConstitucion.getText().toString().trim())) {
+            dtpFechaConstitucion.setError("La fecha de constitución es obligatoria");
+            dtpFechaConstitucion.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 
-    private void verAyuda(String message) {
-        Snackbar.make(main, message, Snackbar.LENGTH_LONG).show();
+    private void actualizarDatosFirebase() {
+        String userId = mAuth.getCurrentUser().getUid();
+        String razonSocial = edtRazonSocial.getText().toString().trim();
+
+        String nombrePropietario = edtPropietario.getText().toString().trim();
+        String direccionEmpresa = edtDireccionEmpresa.getText().toString().trim();
+        String fechaConstitucion = dtpFechaConstitucion.getText().toString().trim();
+        String sectorActividad = spnSectorActividad.getSelectedItem().toString();
+
+        Map<String, Object> datosEmpresa = new HashMap<>();
+
+        datosEmpresa.put("razon_social", razonSocial);
+        datosEmpresa.put("nombre_empresa", nombrePropietario);
+        datosEmpresa.put("direccion", direccionEmpresa);
+        datosEmpresa.put("fecha_constitucion", fechaConstitucion);
+        datosEmpresa.put("genero", sectorActividad);
+
+        mDatabase.child("empresas").child(userId).child("informacionAdicional")
+                .setValue(datosEmpresa)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(Home_Empresa.this, "Datos actualizados en Firebase", Toast.LENGTH_SHORT).show();
+                        RelativeRegistroAdicional.setVisibility(View.GONE);
+                    } else {
+                        Toast.makeText(Home_Empresa.this, "Error al actualizar los datos", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

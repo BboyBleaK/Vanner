@@ -28,6 +28,11 @@
         <item>Masculino</item>
         <item>Femenino</item>
     </string-array>
+    <string-array name="sector_actividad">
+        <item>Seleccione Actividad</item>
+        <item>Preparación Fisica</item>
+        <item>Técnico en deportes</item>
+    </string-array>
 
     <string name="DescripcionFacebook">Btn para direccionar a facebook</string>
     <string name="DescripcionCorreo">Btn para direccionar a gmail</string>

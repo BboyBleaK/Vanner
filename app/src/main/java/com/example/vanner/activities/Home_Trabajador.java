@@ -1,22 +1,29 @@
 package com.example.vanner.activities;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.vanner.MainActivity;
 import com.example.vanner.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +34,7 @@ public class Home_Trabajador extends AppCompatActivity {
     private Spinner spnGeneroUsuario;
     private LinearLayout btnFinalizarRegistro;
     private RelativeLayout RelativeRegistroAdicional;
+    private Button btnCerrarSesion;
 
     // Variables de Firebase
     private FirebaseAuth mAuth;
@@ -44,10 +52,14 @@ public class Home_Trabajador extends AppCompatActivity {
         spnGeneroUsuario = findViewById(R.id.spnGeneroUsuario);
         btnFinalizarRegistro = findViewById(R.id.LinearFinalizarRegistro);
         RelativeRegistroAdicional = findViewById(R.id.RelativeRegistroAdicional);
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
 
         // Inicializar Firebase Auth y Database
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        // Verificar si los datos adicionales ya están completos
+        verificarDatosCompletos();
 
         // Configurar opciones del Spinner de género
         ArrayAdapter<CharSequence> adaptadorGenero = ArrayAdapter.createFromResource(
@@ -72,9 +84,43 @@ public class Home_Trabajador extends AppCompatActivity {
                 }
             }
         });
+
+        // Configurar el evento click para el botón de Cerrar Sesión
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent intent = new Intent(Home_Trabajador.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
-    // Método para mostrar el DatePickerDialog
+    private void verificarDatosCompletos() {
+        String userId = mAuth.getCurrentUser().getUid();
+        mDatabase.child("usuarios").child(userId).child("informacionAdicional")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // Verificar si los datos adicionales existen en Firebase
+                        if (snapshot.exists()) {
+                            // Ocultar el formulario de registro adicional
+                            RelativeRegistroAdicional.setVisibility(View.GONE);
+                        } else {
+                            // Mostrar el formulario si los datos no existen
+                            RelativeRegistroAdicional.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(Home_Trabajador.this, "Error al verificar datos adicionales", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     private void mostrarDatePicker() {
         final Calendar calendario = Calendar.getInstance();
         int año = calendario.get(Calendar.YEAR);
@@ -91,7 +137,6 @@ public class Home_Trabajador extends AppCompatActivity {
         datePicker.show();
     }
 
-    // Método para validar los campos
     private boolean validarCampos() {
         if (TextUtils.isEmpty(edtDireccionUsuario.getText().toString().trim())) {
             edtDireccionUsuario.setError("La dirección es obligatoria");
@@ -120,7 +165,6 @@ public class Home_Trabajador extends AppCompatActivity {
         return true;
     }
 
-    // Método para actualizar datos en Firebase
     private void actualizarDatosFirebase() {
         String userId = mAuth.getCurrentUser().getUid();
         String direccion = edtDireccionUsuario.getText().toString().trim();
@@ -128,14 +172,12 @@ public class Home_Trabajador extends AppCompatActivity {
         String nacimiento = dtpNacimientoUsuario.getText().toString().trim();
         String genero = spnGeneroUsuario.getSelectedItem().toString();
 
-        // Crear un mapa de los datos adicionales
         Map<String, Object> datosUsuario = new HashMap<>();
         datosUsuario.put("direccion", direccion);
         datosUsuario.put("telefono", telefono);
         datosUsuario.put("nacimiento", nacimiento);
         datosUsuario.put("genero", genero);
 
-        // Subir datos a Firebase
         mDatabase.child("usuarios").child(userId).child("informacionAdicional")
                 .setValue(datosUsuario)
                 .addOnCompleteListener(task -> {

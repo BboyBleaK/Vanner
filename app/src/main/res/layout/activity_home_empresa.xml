@@ -108,7 +108,7 @@
                     app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/DireccionEmpresa"
+                        android:id="@+id/edtDireccionEmpresa"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:autofillHints="username"
@@ -144,7 +144,7 @@
                     android:src="@mipmap/sector_actividad" />
 
                 <Spinner
-                    android:id="@+id/spnSectorCargo"
+                    android:id="@+id/spnSectorActividad"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -177,6 +177,7 @@
                     android:src="@mipmap/propietario" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edtPropietario"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -187,15 +188,13 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
+
+
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edtDireccion"
+                        android:id="@+id/edtPropietarioEditText"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:autofillHints="username"
-                        android:background="@android:color/transparent"
-                        android:inputType="text"
-                        android:maxLength="100"
-                        android:textSize="20sp" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
