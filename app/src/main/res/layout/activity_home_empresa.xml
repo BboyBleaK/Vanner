@@ -10,6 +10,277 @@
     tools:context=".activities.Home_Empresa">
 
     <RelativeLayout
+        android:id="@+id/RelativeRegistroAdicional"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="10dp"
+        android:visibility="visible"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/gradient_registro_perfil_empresa"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtInformacionAdicional"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_layout_registro"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtDescRazonSocial"
+                    android:src="@mipmap/razon_social" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/txtRazonSocial"
+                    app:boxStrokeWidth="0dp"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtRazonSocial"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_margin="0dp"
+                        android:autofillHints="name"
+                        android:background="@android:color/transparent"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/ayudaRazonSocial"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/txtDescAyudaRazonSocial"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ayuda" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_layout_registro"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtDescDireccion"
+                    android:src="@mipmap/localizacion" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/txtDireccionEmpresa"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/DireccionEmpresa"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:autofillHints="username"
+                        android:background="@android:color/transparent"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/ayudaDireccion"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/txtDescAyudaDireccion"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ayuda" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearCargo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_layout_registro"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtDescSectorActividad"
+                    android:src="@mipmap/sector_actividad" />
+
+                <Spinner
+                    android:id="@+id/spnSectorCargo"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:hint="@string/txtSectorActividad"
+                    android:spinnerMode="dropdown"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/ayudaSectorActividad"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/txtDescAyudaSectorActividad"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ayuda" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_layout_registro"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtDescNombrePropietario"
+                    android:src="@mipmap/propietario" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/txtNombrePropietario"
+                    app:boxStrokeWidth="0dp"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtDireccion"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:autofillHints="username"
+                        android:background="@android:color/transparent"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/ayudaNombrePropietario"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/txtDescAyudaNombrePropietario"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ayuda" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearNacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_layout_registro"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtDescFechaConstitucion"
+                    android:src="@mipmap/calendario" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/txtFechaConstitucion"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dtpConstitucion"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:autofillHints="username"
+                        android:background="@android:color/transparent"
+                        android:focusable="false"
+                        android:inputType="date"
+                        android:maxLines="1"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/ayudaFechaConstitucion"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/txtFechaConstitucion"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ayuda" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearFinalizarRegistro"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/redondeoimg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@mipmap/siguiente" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Finalizar Registro"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/viewHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -160,7 +431,8 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent" >
+            </ScrollView>
         </LinearLayout>
 
     </RelativeLayout>
@@ -229,28 +501,28 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtNombreEmpresa"
+                        android:id="@+id/txtPerNombreEmpresa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/txtNombreEmpresa" />
 
                     <TextView
-                        android:id="@+id/txtRutEmpresa"
+                        android:id="@+id/txtPerRutEmpresa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/txtRutEmpresa" />
 
                     <TextView
-                        android:id="@+id/txtCorreoEmpresa"
+                        android:id="@+id/txtPerCorreoEmpresa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/txtEmailEmpresa" />
+                        android:text="@string/txtPerEmailEmpresa" />
 
                     <TextView
-                        android:id="@+id/txtContactoEmpresa"
+                        android:id="@+id/txtPerContactoEmpresa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/txtFonoEmpresa" />
+                        android:text="@string/txtPerFonoEmpresa" />
                 </LinearLayout>
 
                 <LinearLayout

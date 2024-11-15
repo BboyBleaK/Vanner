@@ -2,673 +2,903 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#AD7A7A"
     tools:context=".RegistroActivity">
 
     <RelativeLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/fondo_registro"
-        android:orientation="vertical">
+        android:elevation="1dp">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="0dp"
-            android:scaleType="centerCrop" />
-
-        <LinearLayout
-            android:id="@+id/linearEncabezado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btnVolver"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/btnRegresar"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/regresar"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:text="@string/txtTitulo"
-                android:textSize="48sp" />
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/btnVolver"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/btnRegresar"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/regresar"
+            android:textSize="20sp" />
 
         <RelativeLayout
-            android:id="@+id/linearImgUsuario"
+            android:id="@+id/RelativeUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linearEncabezado"
-            android:layout_margin="5dp"
-            android:gravity="center_horizontal"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+            android:elevation="2dp"
+            android:visibility="visible">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="200dp"
-                android:layout_height="250dp"
-                android:background="@drawable/redondeoimg"
-                android:gravity="center"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imgUsuario"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:contentDescription="@string/txtDescRut"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/usuario" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/btnCambioimg"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="bottom|center_horizontal"
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="130dp"
+                        android:text="@string/txtTituloUsuario"
+                        android:textAlignment="center"
+                        android:textSize="30sp" />
+
+                    <LinearLayout
+                        android:id="@+id/LinearIrAEmpresa"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="@string/btnRegresar"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/registro_empresa"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txtTituloIrAEmpresa"
+                            android:textAlignment="center"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/linearImgUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="200dp"
+                        android:layout_height="250dp"
+                        android:background="@drawable/redondeoimg"
+                        android:gravity="center"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp">
+
+                        <ImageView
+                            android:id="@+id/imgUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:contentDescription="@string/txtDescRut"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/usuario" />
+
+                        <ImageButton
+                            android:id="@+id/btnCambioimg"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/edittext_layout_registro"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/modificarimg" />
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:text="@string/txtInfo"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearRut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="@drawable/edittext_layout_registro"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/modificarimg" />
-            </androidx.cardview.widget.CardView>
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDescRut"
+                        android:src="@mipmap/rut" />
 
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtRut"
+                        app:boxStrokeWidth="0dp"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtRut"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:inputType="text"
+                            android:maxLength="11"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDescNombre"
+                        android:src="@mipmap/nombre" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtNombre"
+                        app:boxStrokeWidth="0dp"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtNombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:maxLength="100"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDescCorreo"
+                        android:src="@mipmap/edad" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtEdad"
+                        app:boxStrokeWidth="0dp"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtEdad"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="numberDecimal"
+                            android:maxLength="3"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDescCorreo"
+                        android:src="@mipmap/gmail" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtCorreo"
+                        app:boxStrokeWidth="0dp"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCorreo"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:inputType="textEmailAddress"
+                            android:maxLength="70"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDescPass"
+                        android:src="@mipmap/pass" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtPass"
+                        app:boxStrokeWidth="0dp"
+                        app:endIconMode="password_toggle"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearRePass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDescPass"
+                        android:src="@mipmap/pass" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtRePass"
+                        app:boxStrokeWidth="0dp"
+                        app:endIconMode="password_toggle"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtRePass"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearBtnGuardar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:id="@+id/LinearRegistrarUsuario"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_layout_registro"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Guardar"
+                            android:textSize="20sp" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="@string/btnRegresar"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/registrar"
+                            android:text="@string/imgBtnRegistrar"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/linearInfo"
+        <RelativeLayout
+            android:id="@+id/RelativeEmpresa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linearImgUsuario"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+            android:elevation="2dp"
+            android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:text="@string/txtInfo"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearRut"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearInfo"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescRut"
-                android:src="@mipmap/rut" />
-
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtRut"
-                app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtRut"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="0dp"
-                    android:autofillHints="username"
-                    android:background="@android:color/transparent"
-                    android:inputType="text"
-                    android:maxLength="11"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="130dp"
+                        android:text="@string/txtTituloEmpresa"
+                        android:textAlignment="center"
+                        android:textSize="30sp" />
 
-        <LinearLayout
-            android:id="@+id/linearNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearRut"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+                    <LinearLayout
+                        android:id="@+id/linearRegresarAusuario"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescNombre"
-                android:src="@mipmap/nombre" />
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="@string/btnRegresar"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/registro_empresa"
+                            android:textSize="20sp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtNombre"
-                app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txtTituloIrAUsuario"
+                            android:textAlignment="center"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtNombre"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="0dp"
-                    android:autofillHints="username"
-                    android:background="@android:color/transparent"
-                    android:maxLength="70"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-        <LinearLayout
-            android:id="@+id/linearPaterno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearNombre"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="200dp"
+                        android:layout_height="250dp"
+                        android:background="@drawable/redondeoimg"
+                        android:gravity="center"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescPaterno"
-                android:src="@mipmap/nombre" />
+                        <ImageView
+                            android:id="@+id/imgUsuarioEmpresa"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:contentDescription="@string/txtDescImgEmpresa"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/usuario" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtPaterno"
-                app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+                        <ImageButton
+                            android:id="@+id/btnCambioimgEmpresa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/edittext_layout_registro"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/modificarimg" />
+                    </androidx.cardview.widget.CardView>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtPaterno"
+
+                </RelativeLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="0dp"
-                    android:autofillHints="username"
-                    android:background="@android:color/transparent"
-                    android:inputType="text"
-                    android:maxLength="70"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-        <LinearLayout
-            android:id="@+id/linearMaterno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearPaterno"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:text="@string/txtInfo"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescMaterno"
-                android:src="@mipmap/nombre" />
+                </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtMaterno"
-                app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtMaterno"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="0dp"
-                    android:autofillHints="username"
-                    android:background="@android:color/transparent"
-                    android:inputType="text"
-                    android:maxLength="50"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-        <LinearLayout
-            android:id="@+id/linearNacimiento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearMaterno"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDescNif"
+                        android:src="@mipmap/rut" />
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescNacimiento"
-                android:src="@mipmap/calendario" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtIdentificadorFiscal"
+                        app:boxStrokeWidth="0dp"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtNacimiento"
-                app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtIdentificadorFiscal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:inputType="text"
+                            android:maxLength="11"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dtpNacimiento"
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="0dp"
-                    android:autofillHints="username"
-                    android:background="@android:color/transparent"
-                    android:focusable="false"
-                    android:inputType="date"
-                    android:maxLines="1"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDesRutEmpresa"
+                        android:src="@mipmap/nombre" />
 
-        <LinearLayout
-            android:id="@+id/linearDireccion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearNacimiento"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtRutEmpresa"
+                        app:boxStrokeWidth="0dp"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescDireccion"
-                android:src="@mipmap/localizacion" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtRutEmpresa"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:maxLength="70"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtDireccion"
-                app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtDireccion"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="0dp"
-                    android:autofillHints="username"
-                    android:background="@android:color/transparent"
-                    android:inputType="text"
-                    android:maxLength="100"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDesNombreEmpresa"
+                        android:src="@mipmap/nombre" />
 
-        <LinearLayout
-            android:id="@+id/linearFono"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearDireccion"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtNombreEmpresa"
+                        app:boxStrokeWidth="0dp"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescFono"
-                android:src="@mipmap/fono" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtNombreEmpresa"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:inputType="text"
+                            android:maxLength="70"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtFono"
-                app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtFono"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="0dp"
-                    android:autofillHints="username"
-                    android:background="@android:color/transparent"
-                    android:inputType="numberDecimal"
-                    android:maxLength="13"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDesCorreoEmpresa"
+                        android:src="@mipmap/correo" />
 
-        <LinearLayout
-            android:id="@+id/linearCorreo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearFono"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtCorreoEmpresa"
+                        app:boxStrokeWidth="0dp"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescCorreo"
-                android:src="@mipmap/email" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCorreoEmpresa"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:inputType="text"
+                            android:maxLength="50"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtCorreo"
-                app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtCorreo"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="0dp"
-                    android:autofillHints="username"
-                    android:background="@android:color/transparent"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="70"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDesNumeroContactoEmpresa"
+                        android:src="@mipmap/fono" />
 
-        <LinearLayout
-            android:id="@+id/linearCargo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearCorreo"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtContactoEmpresa"
+                        app:boxStrokeWidth="0dp"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescPass"
-                android:src="@mipmap/cargo" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dtpContactoEmpresa"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
 
-            <Spinner
-                android:id="@+id/SpinnerCargo"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="@string/txtGenero"
-                android:spinnerMode="dropdown"
-                android:textSize="20sp" />
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:focusable="true"
+                            android:inputType="date"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearGenero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearCargo"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescPass"
-                android:src="@mipmap/genero" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtGenero"
-                app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
-
-                <Spinner
-                    android:id="@+id/SpinnerGenero"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="@string/txtGenero"
-                    android:spinnerMode="dropdown"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDescPass"
+                        android:src="@mipmap/pass" />
 
-        <LinearLayout
-            android:id="@+id/linearPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearGenero"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtPassEmpresa"
+                        app:boxStrokeWidth="0dp"
+                        app:endIconMode="password_toggle"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescPass"
-                android:src="@mipmap/pass" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtPassEmpresa"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtPass"
-                app:boxStrokeWidth="0dp"
-                app:endIconMode="password_toggle"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+                </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtUsuario"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="0dp"
-                    android:autofillHints="username"
-                    android:background="@android:color/transparent"
-                    android:inputType="textPassword"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_layout_registro"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/txtDescPass"
+                        android:src="@mipmap/pass" />
 
-        <LinearLayout
-            android:id="@+id/linearRePass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearPass"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txtRePassEmpresa"
+                        app:boxStrokeWidth="0dp"
+                        app:endIconMode="password_toggle"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/txtDescPass"
-                android:src="@mipmap/pass" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtRePassEmpresa"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:autofillHints="username"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:textSize="20sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/txtRePass"
-                app:boxStrokeWidth="0dp"
-                app:endIconMode="password_toggle"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+                </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtRePass"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="0dp"
-                    android:autofillHints="username"
-                    android:background="@android:color/transparent"
-                    android:inputType="textPassword"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:textSize="20sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
 
-        </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/LinearRegistrarEmpresa"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_layout_registro"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edtEstado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Guardar"
+                            android:textSize="20sp" />
 
-        <LinearLayout
-            android:id="@+id/linearBtnGuardar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearRePass"
-            android:layout_margin="5dp"
-            android:gravity="center">
-
-        <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearRePass"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/edittext_layout_registro"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Guardar"
-                android:textSize="20sp" />
-
-            <ImageButton
-                android:id="@+id/btnRegistrar"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/btnRegresar"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/registrar"
-                android:text="@string/imgBtnRegistrar"
-                android:textSize="20sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-
-</RelativeLayout></ScrollView>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="@string/btnRegresar"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/registrar"
+                            android:text="@string/imgBtnRegistrar"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:background="#E0F7FA"
         android:elevation="2dp"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -96,8 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:text="Texto"
-                    android:textAlignment="inherit" />
+                    android:justificationMode="inter_word"
+                    android:text="Texto" />
 
                 <ImageView
                     android:layout_width="50dp"
@@ -129,8 +129,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Texto"
-                    android:textAlignment="inherit" />
+                    android:justificationMode="inter_word"
+                    android:text="Texto" />
             </LinearLayout>
 
             <LinearLayout
@@ -148,8 +148,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:text="Texto"
-                    android:textAlignment="inherit" />
+                    android:justificationMode="inter_word"
+                    android:text="Texto" />
 
                 <ImageView
                     android:layout_width="50dp"
@@ -173,14 +173,15 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="10dp"
+                    android:justificationMode="inter_word"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/deporte1" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Texto"
-                    android:textAlignment="inherit" />
+                    android:justificationMode="inter_word"
+                    android:text="Texto" />
             </LinearLayout>
 
         </LinearLayout>
@@ -255,7 +256,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/txtTituloRecuperar"
                 android:textColor="@android:color/white"
-                android:textSize="25sp"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="txtDescImgUser">IMG usuario</string>
+
+    <string name="txtPerRutUsuario">Rut Usuario:</string>
+    <string name="txtPerNombreUsuario">Nombre Usuario:</string>
+    <string name="txtPerNacimientoUsuario">Nacimiento Usuario:</string>
+    <string name="txtPerDireccionUsuario">Direccion Usuario:</string>
+    <string name="txtPerFonoUsuario">Fono Usuario:</string>
+    <string name="txtPerCorreoUsuario">Correo Usuario:</string>
+    <string name="txtPerGeneroUsuario">Genero Usuario:</string>
+    <string name="txtPerPassUsuario">Ingrese una contraseña</string>
+    <string name="txtPerRePassUsuario">Re-ingrese su contraseña</string>
+
+    <string name="txtDescDireccionUsuario">Descripcion direccion usuario</string>
+    <string name="txtDescGeneroUsuario">Descripcion genero usuario</string>
+    <string name="txtDescFonoUsuario">Descripcion fono usuario</string>
+    <string name="txtDescNacimientoUsuario">Descripcion correo usuario</string>
+
+
+</resources>

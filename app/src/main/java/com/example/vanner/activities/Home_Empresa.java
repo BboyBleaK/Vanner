@@ -1,10 +1,19 @@
 package com.example.vanner.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.graphics.drawable.GradientDrawable;
 
@@ -20,6 +29,7 @@ import com.example.vanner.MainActivity;
 import com.example.vanner.R;
 import com.example.vanner.adapters.JobAdapter;
 import com.example.vanner.models.Job;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +44,11 @@ public class Home_Empresa extends AppCompatActivity {
 
     private ImageButton btnHome, btnChat, btnNotificacion, btnPerfil, btnCancelar, btnPasar, btnMeGusta;
     private TextView txtNombreTrabajador, txtFonoTrabajador, txtCorreoTrabajador, txtCargoTrabajador, txtGeneroTrabajador;
+    private EditText edtRazonSocial, edtDireccion, edtNombrePropietario, dtpConstitucion;
+    private Spinner spnSectorCargo;
+    private ImageView ayudaRazonSocial, ayudaDireccion, ayudaSectorActividad, ayudaNombrePropietario, ayudaFechaConstitucion;
+    private LinearLayout LinearFinalizarRegistro;
+    private RelativeLayout main, RelativeRegistroAdicional;
     private View viewHome, viewChat, viewNotificacion, viewPerfil;
     private Button btnCrearEmpleo, btnCerrarSesion, btnDesactivarCuenta;
     private RecyclerView recyclerView;
@@ -63,6 +78,8 @@ public class Home_Empresa extends AppCompatActivity {
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         btnDesactivarCuenta = findViewById(R.id.btnDesactivarCuenta);
 
+        spnSectorCargo = findViewById(R.id.spnSectorCargo);
+
         txtNombreTrabajador = findViewById(R.id.txtNombreTrabajador);
         txtFonoTrabajador = findViewById(R.id.txtFonoTrabajador);
         txtCorreoTrabajador = findViewById(R.id.txtCorreoTrabajador);
@@ -74,15 +91,53 @@ public class Home_Empresa extends AppCompatActivity {
         viewNotificacion = findViewById(R.id.viewNotificacion);
         viewPerfil = findViewById(R.id.viewPerfil);
 
+        ayudaRazonSocial = findViewById(R.id.ayudaRazonSocial);
+        ayudaDireccion = findViewById(R.id.ayudaDireccion);
+        ayudaSectorActividad = findViewById(R.id.ayudaSectorActividad);
+        ayudaNombrePropietario = findViewById(R.id.ayudaNombrePropietario);
+        ayudaFechaConstitucion = findViewById(R.id.ayudaFechaConstitucion);
+
+        main = findViewById(R.id.main);
+        RelativeRegistroAdicional = findViewById(R.id.RelativeRegistroAdicional);
+
+        LinearFinalizarRegistro = findViewById(R.id.LinearFinalizarRegistro);
+
         recyclerView = findViewById(R.id.recyclerViewJobs);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        ayudaRazonSocial.setOnClickListener(v -> verAyuda("Ingresa el nombre o razón social de tu empresa."));
+        ayudaDireccion.setOnClickListener(v -> verAyuda("Ingresa la dirección de tu empresa."));
+        ayudaSectorActividad.setOnClickListener(v -> verAyuda("Ingresa el sector de actividad de tu empresa."));
+        ayudaNombrePropietario.setOnClickListener(v -> verAyuda("Ingresa el nombre del propietario de tu empresa."));
+        ayudaFechaConstitucion.setOnClickListener(v -> verAyuda("Ingresa la fecha de constitución de tu empresa."));
 
         String userRole = "Empresa";
 
-
         jobList = new ArrayList<>();
 
+        @SuppressLint("CutPasteId") RelativeLayout[] allRelativeLayouts = {findViewById(R.id.viewHome), findViewById(R.id.viewChat),
+                findViewById(R.id.viewNotificacion), findViewById(R.id.viewPerfil)};
+
+        for (RelativeLayout layout : allRelativeLayouts) {
+            layout.setVisibility(View.GONE);
+        }
+
+        configurarSpinner();
+
+        RelativeRegistroAdicional.setVisibility(View.VISIBLE);
+
+        esconderView();
+
+        SharedPreferences preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
+        boolean isRegistered = preferences.getBoolean("isRegistered", false);
+        if (isRegistered) {
+            RelativeRegistroAdicional.setVisibility(View.GONE);
+            activarNavegacion();
+            selectView(R.id.viewHome);
+        } else {
+            RelativeRegistroAdicional.setVisibility(View.VISIBLE);
+            desactivarNavegacion();
+        }
 
         DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference("jobs");
         jobRef.addValueEventListener(new ValueEventListener() {
@@ -106,7 +161,6 @@ public class Home_Empresa extends AppCompatActivity {
 
             }
         });
-
 
         selectView(R.id.viewHome);
 
@@ -132,6 +186,16 @@ public class Home_Empresa extends AppCompatActivity {
             }
         });
 
+        LinearFinalizarRegistro.setOnClickListener(v -> {
+            if (camposCompletosYValidos()) {
+                registroCompleto();
+                activarNavegacion();
+                RelativeRegistroAdicional.setVisibility(View.GONE);
+                selectView(R.id.viewHome);
+            } else {
+                Snackbar.make(main, "Por favor, complete todos los campos correctamente antes de continuar.", Snackbar.LENGTH_LONG).show();
+            }
+        });
 
         setButtonBorder(btnHome);
         setButtonBorder(btnChat);
@@ -139,8 +203,64 @@ public class Home_Empresa extends AppCompatActivity {
         setButtonBorder(btnPerfil);
     }
 
-    private void selectView(int viewId) {
+    private void configurarSpinner() {
+        String[] cargos = {"Sector actividad", "opcion1", "opcion2", "opcion3"};
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cargos);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        Spinner spnSectorCargo = findViewById(R.id.spnSectorCargo);
+        spnSectorCargo.setAdapter(adapter);
+
+        spnSectorCargo.setSelection(0);
+
+        spnSectorCargo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+                if (position != 0) {
+
+                    String selectedCargo = parentView.getItemAtPosition(position).toString();
+
+                    SharedPreferences preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("selectedCargo", selectedCargo);
+                    editor.apply();
+                } else {
+
+                    Snackbar.make(parentView, "Por favor, selecciona un cargo válido.", Snackbar.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+    }
+
+    private void reiniciarRegistro() {
+        SharedPreferences preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isRegistered", false);
+        editor.apply();
+    }
+
+    private void esconderView() {
+        viewHome.setVisibility(View.GONE);
+        viewChat.setVisibility(View.GONE);
+        viewNotificacion.setVisibility(View.GONE);
+        viewPerfil.setVisibility(View.GONE);
+    }
+
+    private void registroCompleto() {
+        SharedPreferences preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isRegistered", true);
+        editor.apply();
+    }
+
+    private void selectView(int viewId) {
+        esconderView();
         viewHome.setVisibility(View.GONE);
         viewChat.setVisibility(View.GONE);
         viewNotificacion.setVisibility(View.GONE);
@@ -171,6 +291,38 @@ public class Home_Empresa extends AppCompatActivity {
         setButtonBorder(btnPerfil);
     }
 
+    private void desactivarNavegacion() {
+        btnHome.setEnabled(false);
+        btnChat.setEnabled(false);
+        btnNotificacion.setEnabled(false);
+        btnPerfil.setEnabled(false);
+        btnCrearEmpleo.setEnabled(false);
+        btnCerrarSesion.setEnabled(false);
+        btnDesactivarCuenta.setEnabled(false);
+    }
+
+    private void activarNavegacion() {
+        btnHome.setEnabled(true);
+        btnChat.setEnabled(true);
+        btnNotificacion.setEnabled(true);
+        btnPerfil.setEnabled(true);
+        btnCrearEmpleo.setEnabled(true);
+        btnCerrarSesion.setEnabled(true);
+        btnDesactivarCuenta.setEnabled(true);
+    }
+
+    private boolean camposCompletosYValidos() {
+        boolean camposCompletos = !edtRazonSocial.getText().toString().isEmpty() &&
+                !edtDireccion.getText().toString().isEmpty() &&
+                !txtCorreoTrabajador.getText().toString().isEmpty() &&
+                !edtNombrePropietario.getText().toString().isEmpty() &&
+                !edtDireccion.getText().toString().isEmpty();
+
+        boolean correoValido = android.util.Patterns.EMAIL_ADDRESS.matcher(txtCorreoTrabajador.getText().toString()).matches();
+
+        return camposCompletos && correoValido;
+    }
+
     private void setButtonBorder(ImageButton button) {
         GradientDrawable border = new GradientDrawable();
         if (button.isSelected()) {
@@ -184,5 +336,9 @@ public class Home_Empresa extends AppCompatActivity {
         }
         border.setCornerRadius(8f);
         button.setBackground(border);
+    }
+
+    private void verAyuda(String message) {
+        Snackbar.make(main, message, Snackbar.LENGTH_LONG).show();
     }
 }

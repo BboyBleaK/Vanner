@@ -4,23 +4,34 @@
 
     <string name="txtInfo">Informacion personal</string>"
 
-
-
-    <string name="txtTitulo">Registro</string>
+    <string name="txtTituloUsuario">Registro Usuario</string>
     <string name="txtRut">Rut</string>
-    <string name="txtNombre">Nombre</string>
-    <string name="txtMaterno">Apellido materno</string>
-    <string name="txtPaterno">Apellido paterno</string>
+    <string name="txtNombre">Nombre Completo</string>
     <string name="txtNacimiento">Fecha de nacimiento</string>
+    <string name="txtEdad">Edad</string>
     <string name="txtDireccion">Direccion</string>
     <string name="txtFono">Numero de contacto</string>
     <string name="txtCorreo">Email</string>
-    <string name="txtCargo">Cargo</string>
-    <string name="txtGenero">Genero</string>
-    <string name="txtTecnico">Tecnico</string>
-    <string name="txtEmpresa">Empresa</string>
     <string name="txtPass">Contraseña</string>
     <string name="txtRePass">Re-ingrese contraseña</string>
+
+    <string name="txtTituloEmpresa">Registro Empresa</string>
+    <string name="txtIdentificadorFiscal">Identificador fiscal</string>
+    <string name="txtRutEmpresa">Rut Empresa</string>
+    <string name="txtNombreEmpresa">Nombre Empresa</string>
+    <string name="txtCorreoEmpresa">Correo Empresa</string>
+    <string name="txtContactoEmpresa">Numero de contacto</string>
+    <string name="txtPassEmpresa">Contraseña</string>
+    <string name="txtRePassEmpresa">Re-ingrese contraseña</string>
+
+    <string name="txtDescImgEmpresa">Imagen empresa</string>
+    <string name="txtDescNif">img Nif Empresa empresa</string>
+    <string name="txtDesRutEmpresa">img Rut empresa</string>
+    <string name="txtDesNombreEmpresa">img Nombre empresa</string>
+    <string name="txtDesCorreoEmpresa">img Correo empresa</string>
+    <string name="txtDesNumeroContactoEmpresa">img Contacto empresa</string>
+    <string name="txtDesPass">img Pass empresa</string>
+    <string name="txtDesRePass">img Re-Pass empresa</string>
 
     <string name="txtDescRut">Icono rut</string>
     <string name="txtDescNombre">Icono Nombre</string>
@@ -32,7 +43,8 @@
     <string name="txtDescCorreo">Icono Correo</string>
     <string name="txtDescCargo">Icono Cargo</string>
     <string name="txtDescPass">Icono Pass</string>
-
+    <string name="txtTituloIrAEmpresa">Ir a Registro empresa</string>
+    <string name="txtTituloIrAUsuario">Ir a Registro Usuario</string>
     <string name="imgBtnRegistrar">Registrarse</string>
 
 </resources>

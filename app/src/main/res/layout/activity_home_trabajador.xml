@@ -5,15 +5,249 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context=".activities.Home_Trabajador">
 
     <RelativeLayout
-        android:id="@+id/relativeImgTrabajador"
+        android:id="@+id/RelativeRegistroAdicional"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/gradient_registro_perfil_empresa"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtInformacionAdicional"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_layout_registro"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtDescDireccion"
+                    android:src="@mipmap/localizacion" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/txtPerDireccionUsuario"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtDireccionUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_margin="0dp"
+                        android:autofillHints="username"
+                        android:background="@android:color/transparent"
+                        android:focusable="true"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="20dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/ayudaDireccionUsuario"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/txtDescDireccionUsuario"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ayuda" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_layout_registro"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="45dp"
+                    android:contentDescription="@string/txtDescGeneroUsuario"
+                    android:src="@mipmap/genero" />
+
+                <Spinner
+                    android:id="@+id/spnGeneroUsuario"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:hint="@string/txtPerGeneroUsuario"
+                    android:spinnerMode="dropdown"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/ayudaGeneroUsuario"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/txtDescGeneroUsuario"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ayuda" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_layout_registro"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtDescFonoUsuario"
+                    android:src="@mipmap/fono2" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/txtPerFonoUsuario"
+                    app:boxStrokeWidth="0dp"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtFonoUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_margin="0dp"
+                        android:autofillHints="username"
+                        android:background="@android:color/transparent"
+                        android:inputType="numberDecimal"
+                        android:maxLength="13"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="20dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/ayudaFonoUsuario"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/txtPerNacimientoUsuario"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ayuda" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearNacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_layout_registro"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtDescNacimientoUsuario"
+                    android:src="@mipmap/calendario" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/txtPerNacimientoUsuario"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dtpNacimientoUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:autofillHints="username"
+                        android:background="@android:color/transparent"
+                        android:focusable="false"
+                        android:inputType="date"
+                        android:maxLines="1"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/ayudaNacimientoUsuario"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/txtDescNacimientoUsuario"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ayuda" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearFinalizarRegistro"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/redondeoimg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@mipmap/siguiente" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Finalizar Registro"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/LinearBase"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -115,13 +349,169 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imgTrabajador"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/jobRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter"
-            android:contentDescription="@string/txtDescImgTrabajador"/>
+            android:layout_marginTop="32dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewChat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/LinearBase"
+        android:layout_alignParentTop="true"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/imgUsuario"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/cancelar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/LinearBase"
+            android:orientation="vertical"
+            tools:ignore="NotSibling">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chat"
+                android:textAlignment="center"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewNotificacion"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/LinearBase"
+        android:layout_alignParentTop="true"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/LinearBase"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="NotSibling">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ventana Notificaciones" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/LinearBase"
+        android:layout_alignParentTop="true"
+        android:visibility="visible">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/LinearImgPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="170dp"
+                        android:layout_centerHorizontal="true"
+                        android:contentDescription="@string/descImgPerfil"
+                        android:src="@drawable/usuario" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearCuerpoInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtPerNombreUsuario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txtPerNombreUsuario" />
+
+                    <TextView
+                        android:id="@+id/txtPerRutUsuario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txtPerRutUsuario" />
+
+                    <TextView
+                        android:id="@+id/txtPerCorreoUsuario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txtPerCorreoUsuario" />
+
+                    <TextView
+                        android:id="@+id/txtPerContactoUsuario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txtPerFonoUsuario" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearBotones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <Button
+                        android:id="@+id/btnCerrarSesion"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#8BC34A"
+                        android:text="@string/btnCerrarSesion" />
+
+                    <Button
+                        android:id="@+id/btnDesactivarCuenta"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#8BC34A"
+                        android:text="@string/btnDesactivarCuenta" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </RelativeLayout>
 
     <LinearLayout
@@ -141,7 +531,7 @@
             android:id="@+id/btnHome"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/contorno_btn_barranavegacion"
             android:contentDescription="@string/txtDescHome"
             android:scaleType="fitCenter"
             android:src="@mipmap/home" />
@@ -155,7 +545,7 @@
             android:id="@+id/btnChat"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/contorno_btn_barranavegacion"
             android:contentDescription="@string/txtDescChat"
             android:scaleType="fitCenter"
             android:src="@mipmap/chat" />
@@ -166,10 +556,10 @@
             android:layout_weight="1" />
 
         <ImageButton
-            android:id="@+id/btnNotificaciones"
+            android:id="@+id/btnNotificacion"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/contorno_btn_barranavegacion"
             android:contentDescription="@string/txtDescNotificaciones"
             android:scaleType="fitCenter"
             android:src="@mipmap/notificacion" />
@@ -183,7 +573,7 @@
             android:id="@+id/btnPerfil"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/contorno_btn_barranavegacion"
             android:contentDescription="@string/txtDescPerfil"
             android:scaleType="fitCenter"
             android:src="@mipmap/perfil" />

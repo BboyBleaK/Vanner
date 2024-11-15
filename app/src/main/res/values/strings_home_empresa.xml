@@ -6,6 +6,25 @@
     <string name="txtCorreoTrabajador">correo:</string>
     <string name="txtCargoTrabajador">Cargo</string>
     <string name="txtGeneroTrabajador">Genero</string>
+    <string name="txtInformacionAdicional">Información adicional</string>
+
+    <string name="txtRazonSocial">Razon Social</string>
+    <string name="txtDireccionEmpresa">Direccion Empresa</string>
+    <string name="txtSectorActividad">Sector Actividad</string>
+    <string name="txtNombrePropietario">Nombre Propietario</string>
+    <string name="txtFechaConstitucion">Fecha Constitución</string>
+
+    <string name="txtDescRazonSocial">Descripción Razon Social</string>
+    <string name="txtDescDireccionEmpresa">Descripción Direccion empresa</string>
+    <string name="txtDescSectorActividad">Descripción Sector Actividad</string>
+    <string name="txtDescNombrePropietario">Descripción Nombre Propietario</string>
+    <string name="txtDescFechaConstitucion">Descripción Fecha Constitucion</string>
+
+    <string name="txtDescAyudaRazonSocial">Descripción Ayuda Razon Social</string>
+    <string name="txtDescAyudaDireccion">Descripción Dirección Empresa</string>
+    <string name="txtDescAyudaSectorActividad">Descripción Ayuda Sector Actividad</string>
+    <string name="txtDescAyudaNombrePropietario">Descripción Nombre Propietario</string>
+    <string name="txtDescAyudaFechaConstitucion">Descripción Fecha Constitucion</string>
 
     <string name="txtDescImgTrabajador">Imagen Trabajador</string>
 
