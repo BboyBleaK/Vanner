@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -21,7 +22,7 @@ public class CrearEmpleoActivity extends AppCompatActivity {
     private EditText titleInput, descriptionInput, salaryInput, vacanciesInput, expirationDateInput;
     private RadioGroup modeGroup;
     private Button BtnPublicarEmpleo;
-
+    private ImageButton btnRegresar;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
@@ -38,10 +39,18 @@ public class CrearEmpleoActivity extends AppCompatActivity {
         expirationDateInput = findViewById(R.id.expirationDateInput);
         modeGroup = findViewById(R.id.modeGroup);
         BtnPublicarEmpleo = findViewById(R.id.BtnPublicarEmpleo);
+        btnRegresar = findViewById(R.id.btnRegresar);
 
         // Inicialización de la base de datos y FirebaseAuth
         mDatabase = FirebaseDatabase.getInstance().getReference("empleos");
         mAuth = FirebaseAuth.getInstance();
+
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         // Configuración del botón para publicar la oferta de empleo
         BtnPublicarEmpleo.setOnClickListener(new View.OnClickListener() {

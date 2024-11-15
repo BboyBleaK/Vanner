@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vanner.R;
@@ -32,27 +33,24 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
         this.userRole = userRole;
     }
 
+    @NonNull
     @Override
-    public EmpleoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public EmpleoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.item_empleo, parent, false);
         return new EmpleoViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(EmpleoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EmpleoViewHolder holder, int position) {
         Empleo empleo = empleoList.get(position);
 
-        // Mostrar los datos del empleo
         holder.tvTitle.setText(empleo.getTitle());
         holder.tvDescription.setText(empleo.getDescription());
-        holder.tvSalary.setText("Salario: " + empleo.getSalary());
+        holder.tvSalary.setText("Salario: $" + empleo.getSalary());
         holder.tvVacantes.setText("Vacantes: " + empleo.getVacancies());
         holder.tvTipoEmpleo.setText("Tipo de empleo: " + empleo.getEmploymentMode());
-
-        // Mostrar la fecha de vencimiento
         holder.tvFechaVencimiento.setText("Fecha de vencimiento: " + empleo.getExpirationDate());
 
-        // Configurar los botones según el rol del usuario
         configureButtonsBasedOnRole(holder, empleo.getEmpleoId());
     }
 
@@ -61,7 +59,6 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
         return empleoList.size();
     }
 
-    // Método auxiliar para configurar los botones según el rol del usuario
     private void configureButtonsBasedOnRole(EmpleoViewHolder holder, String empleoId) {
         if ("empresa".equals(userRole)) {
             holder.btnEdit.setVisibility(View.VISIBLE);
@@ -75,7 +72,6 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
             });
 
             holder.btnDelete.setOnClickListener(v -> deleteEmpleo(empleoId));
-
         } else if ("trabajador".equals(userRole)) {
             holder.btnPostulate.setVisibility(View.VISIBLE);
             holder.btnEdit.setVisibility(View.GONE);
@@ -85,29 +81,24 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
         }
     }
 
-    // Método para eliminar un empleo
     private void deleteEmpleo(String empleoId) {
         DatabaseReference empleoRef = FirebaseDatabase.getInstance().getReference("empleos").child(empleoId);
-        empleoRef.removeValue()
-                .addOnSuccessListener(aVoid -> {
-                    empleoList.removeIf(empleo -> empleo.getEmpleoId().equals(empleoId));
-                    notifyDataSetChanged();
-                    Toast.makeText(context, "Empleo eliminado", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> Toast.makeText(context, "Error al eliminar el empleo", Toast.LENGTH_SHORT).show());
+        empleoRef.removeValue().addOnSuccessListener(aVoid -> {
+            empleoList.removeIf(empleo -> empleo.getEmpleoId().equals(empleoId));
+            notifyDataSetChanged();
+            Toast.makeText(context, "Empleo eliminado", Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener(e -> Toast.makeText(context, "Error al eliminar el empleo", Toast.LENGTH_SHORT).show());
     }
 
-    // Método para postularse a un empleo
     private void postularse(String empleoId) {
         DatabaseReference postulacionesRef = FirebaseDatabase.getInstance().getReference("postulaciones");
         String postulanteId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         postulacionesRef.child(empleoId).child(postulanteId).setValue(true)
-                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Postulado al empleo: " + empleoId, Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Postulado al empleo", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(context, "Error al postularse", Toast.LENGTH_SHORT).show());
     }
 
-    // ViewHolder para el RecyclerView
-    public class EmpleoViewHolder extends RecyclerView.ViewHolder {
+    public static class EmpleoViewHolder extends RecyclerView.ViewHolder {
         public TextView tvTitle, tvDescription, tvSalary, tvVacantes, tvTipoEmpleo, tvFechaVencimiento;
         public Button btnEdit, btnDelete, btnPostulate;
 
@@ -118,7 +109,7 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
             tvSalary = itemView.findViewById(R.id.tvSalary);
             tvVacantes = itemView.findViewById(R.id.tvVacantes);
             tvTipoEmpleo = itemView.findViewById(R.id.tvTipoEmpleo);
-            tvFechaVencimiento = itemView.findViewById(R.id.tvFechaVencimiento); // Agregar el TextView de fecha de vencimiento
+            tvFechaVencimiento = itemView.findViewById(R.id.tvFechaVencimiento);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnPostulate = itemView.findViewById(R.id.btnPostulate);

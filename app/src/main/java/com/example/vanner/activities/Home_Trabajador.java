@@ -12,11 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vanner.MainActivity;
 import com.example.vanner.R;
+import com.example.vanner.adapters.EmpleoAdapter;
+import com.example.vanner.models.Empleo;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,8 +29,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Home_Trabajador extends AppCompatActivity {
@@ -35,10 +43,16 @@ public class Home_Trabajador extends AppCompatActivity {
     private LinearLayout btnFinalizarRegistro;
     private RelativeLayout RelativeRegistroAdicional;
     private Button btnCerrarSesion;
+    private RecyclerView jobRecyclerView;
+    private EmpleoAdapter empleoAdapter;
+    private List<Empleo> empleoList;
 
     // Variables de Firebase
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+
+    // Rol del usuario
+    private final String userRole = "usuario";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +67,13 @@ public class Home_Trabajador extends AppCompatActivity {
         btnFinalizarRegistro = findViewById(R.id.LinearFinalizarRegistro);
         RelativeRegistroAdicional = findViewById(R.id.RelativeRegistroAdicional);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        jobRecyclerView = findViewById(R.id.jobRecyclerView);
+
+        // Configurar RecyclerView
+        empleoList = new ArrayList<>();
+        empleoAdapter = new EmpleoAdapter(this, empleoList, userRole);
+        jobRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        jobRecyclerView.setAdapter(empleoAdapter);
 
         // Inicializar Firebase Auth y Database
         mAuth = FirebaseAuth.getInstance();
@@ -68,34 +89,26 @@ public class Home_Trabajador extends AppCompatActivity {
         spnGeneroUsuario.setAdapter(adaptadorGenero);
 
         // Configurar el DatePicker para la fecha de nacimiento
-        dtpNacimientoUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mostrarDatePicker();
-            }
-        });
+        dtpNacimientoUsuario.setOnClickListener(v -> mostrarDatePicker());
 
         // Configurar el evento click para finalizar registro
-        btnFinalizarRegistro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (validarCampos()) {
-                    actualizarDatosFirebase();
-                }
+        btnFinalizarRegistro.setOnClickListener(view -> {
+            if (validarCampos()) {
+                actualizarDatosFirebase();
             }
         });
 
         // Configurar el evento click para el botón de Cerrar Sesión
-        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAuth.signOut();
-                Intent intent = new Intent(Home_Trabajador.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-            }
+        btnCerrarSesion.setOnClickListener(view -> {
+            mAuth.signOut();
+            Intent intent = new Intent(Home_Trabajador.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
         });
+
+        // Cargar empleos desde Firebase
+        cargarEmpleosDesdeFirebase();
     }
 
     private void verificarDatosCompletos() {
@@ -104,12 +117,9 @@ public class Home_Trabajador extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        // Verificar si los datos adicionales existen en Firebase
                         if (snapshot.exists()) {
-                            // Ocultar el formulario de registro adicional
                             RelativeRegistroAdicional.setVisibility(View.GONE);
                         } else {
-                            // Mostrar el formulario si los datos no existen
                             RelativeRegistroAdicional.setVisibility(View.VISIBLE);
                         }
                     }
@@ -127,12 +137,9 @@ public class Home_Trabajador extends AppCompatActivity {
         int mes = calendario.get(Calendar.MONTH);
         int dia = calendario.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int año, int mes, int dia) {
-                String fechaSeleccionada = dia + "/" + (mes + 1) + "/" + año;
-                dtpNacimientoUsuario.setText(fechaSeleccionada);
-            }
+        DatePickerDialog datePicker = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+            String fechaSeleccionada = dayOfMonth + "/" + (month + 1) + "/" + year;
+            dtpNacimientoUsuario.setText(fechaSeleccionada);
         }, año, mes, dia);
         datePicker.show();
     }
@@ -188,5 +195,28 @@ public class Home_Trabajador extends AppCompatActivity {
                         Toast.makeText(Home_Trabajador.this, "Error al actualizar los datos", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void cargarEmpleosDesdeFirebase() {
+        DatabaseReference empleoRef = FirebaseDatabase.getInstance().getReference("empleos");
+        empleoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                empleoList.clear();
+                for (DataSnapshot jobSnapshot : snapshot.getChildren()) {
+                    Empleo empleo = jobSnapshot.getValue(Empleo.class);
+                    if (empleo != null) {
+                        empleo.setEmpleoId(jobSnapshot.getKey());
+                        empleoList.add(empleo);
+                    }
+                }
+                empleoAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Home_Trabajador.this, "Error al cargar empleos", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

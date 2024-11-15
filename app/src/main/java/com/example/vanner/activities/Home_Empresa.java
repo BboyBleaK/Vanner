@@ -2,12 +2,14 @@ package com.example.vanner.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -51,6 +53,8 @@ public class Home_Empresa extends AppCompatActivity {
     private RecyclerView jobsRecyclerView;
     private EmpleoAdapter empleoAdapter;
     private List<Empleo> empleoList;
+    private ImageButton btnHome, btnChat, btnNotificacion, btnPerfil;
+    private View viewHome, viewChat, viewNotificacion, viewPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,22 @@ public class Home_Empresa extends AppCompatActivity {
         edtPropietario = findViewById(R.id.edtPropietarioEditText);
         edtDireccionEmpresa = findViewById(R.id.edtDireccionEmpresa);
         edtRazonSocial = findViewById(R.id.edtRazonSocial);
+
+        btnHome = findViewById(R.id.btnHome);
+        btnChat = findViewById(R.id.btnChat);
+        btnNotificacion = findViewById(R.id.btnNotificacion);
+        btnPerfil = findViewById(R.id.btnPerfil);
+
+        viewHome = findViewById(R.id.viewHome);
+        viewChat = findViewById(R.id.viewChat);
+        viewNotificacion = findViewById(R.id.viewNotificacion);
+        viewPerfil = findViewById(R.id.viewPerfil);
+
+        btnHome.setOnClickListener(v -> selectView(R.id.viewHome));
+        btnChat.setOnClickListener(v -> selectView(R.id.viewChat));
+        btnNotificacion.setOnClickListener(v -> selectView(R.id.viewNotificacion));
+        btnPerfil.setOnClickListener(v -> selectView(R.id.viewPerfil));
+
 
 
         dtpFechaConstitucion = findViewById(R.id.dtpConstitucion);
@@ -269,5 +289,78 @@ public class Home_Empresa extends AppCompatActivity {
                         Toast.makeText(Home_Empresa.this, "Error al cargar los empleos", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void esconderView() {
+        viewHome.setVisibility(View.GONE);
+        viewChat.setVisibility(View.GONE);
+        viewNotificacion.setVisibility(View.GONE);
+        viewPerfil.setVisibility(View.GONE);
+    }
+
+    private void selectView(int viewId) {
+        viewHome.setVisibility(View.GONE);
+        viewChat.setVisibility(View.GONE);
+        viewNotificacion.setVisibility(View.GONE);
+        viewPerfil.setVisibility(View.GONE);
+
+        btnHome.setSelected(false);
+        btnChat.setSelected(false);
+        btnNotificacion.setSelected(false);
+        btnPerfil.setSelected(false);
+
+        if (viewId == R.id.viewHome) {
+            viewHome.setVisibility(View.VISIBLE);
+            btnHome.setSelected(true);
+        } else if (viewId == R.id.viewChat) {
+            viewChat.setVisibility(View.VISIBLE);
+            btnChat.setSelected(true);
+        } else if (viewId == R.id.viewNotificacion) {
+            viewNotificacion.setVisibility(View.VISIBLE);
+            btnNotificacion.setSelected(true);
+        } else if (viewId == R.id.viewPerfil) {
+            viewPerfil.setVisibility(View.VISIBLE);
+            btnPerfil.setSelected(true);
+        }
+
+        setButtonBorder(btnHome);
+        setButtonBorder(btnChat);
+        setButtonBorder(btnNotificacion);
+        setButtonBorder(btnPerfil);
+    }
+
+    private void desactivarNavegacion() {
+        btnHome.setEnabled(false);
+        btnChat.setEnabled(false);
+        btnNotificacion.setEnabled(false);
+        btnPerfil.setEnabled(false);
+        btnCrearEmpleo.setEnabled(false);
+        btnCerrarSesion.setEnabled(false);
+
+    }
+
+    private void activarNavegacion() {
+        btnHome.setEnabled(true);
+        btnChat.setEnabled(true);
+        btnNotificacion.setEnabled(true);
+        btnPerfil.setEnabled(true);
+        btnCrearEmpleo.setEnabled(true);
+        btnCerrarSesion.setEnabled(true);
+
+    }
+
+    private void setButtonBorder(ImageButton button) {
+        GradientDrawable border = new GradientDrawable();
+        if (button.isSelected()) {
+
+            border.setColor(getResources().getColor(android.R.color.transparent));
+            border.setStroke(4, getResources().getColor(R.color.border_color));
+        } else {
+
+            border.setColor(getResources().getColor(android.R.color.transparent));
+            border.setStroke(4, getResources().getColor(R.color.noBorder_color));
+        }
+        border.setCornerRadius(8f);
+        button.setBackground(border);
     }
 }

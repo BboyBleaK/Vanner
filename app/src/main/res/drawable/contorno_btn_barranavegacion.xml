@@ -5,6 +5,7 @@
             <solid android:color="@android:color/transparent" />
             <stroke android:width="2dp" android:color="@color/border_color" />
         </shape>
+
     </item>
     <item>
         <shape android:shape="rectangle">
@@ -12,4 +13,5 @@
             <stroke android:width="2dp" android:color="@android:color/transparent" />
         </shape>
     </item>
+
 </selector>

@@ -3,116 +3,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     android:padding="16dp"
-    tools:context=".activities.CrearEmpleoActivity"
-    android:background="#F5F5F5">
+    tools:context=".activities.CrearEmpleoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@drawable/rounded_background">
+        android:padding="16dp">
 
-        <!-- Título principal -->
+        <ImageButton
+            android:id="@+id/btnRegresar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/flechaatras" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Creación de empleo"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#4CAF50"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            android:text="Creación de empleo"
+            android:textColor="#4CAF50"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/titleInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Título del empleo"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#4CAF50"
+            android:hint="Título del empleo"
             android:padding="12dp"
             android:textColor="#333333"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/descriptionInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:gravity="top"
             android:hint="Descripción del empleo"
             android:minLines="3"
-            android:gravity="top"
-            android:backgroundTint="#4CAF50"
             android:padding="12dp"
             android:textColor="#333333"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/salaryInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Sueldo ($)"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#4CAF50"
+            android:hint="Sueldo ($)"
+            android:inputType="number"
             android:padding="12dp"
             android:textColor="#333333"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/vacanciesInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Vacantes"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#4CAF50"
+            android:hint="Vacantes"
             android:padding="12dp"
             android:textColor="#333333"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/expirationDateInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fecha de Vencimiento (dd/mm/yyyy)"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#4CAF50"
+            android:hint="Fecha de Vencimiento (dd/mm/yyyy)"
             android:padding="12dp"
             android:textColor="#333333"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Modalidad de empleo"
             android:textColor="#4CAF50"
-            android:textSize="16sp"
-            android:layout_marginBottom="5dp" />
+            android:textSize="16sp" />
 
         <RadioGroup
             android:id="@+id/modeGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioFullTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="Full-time"
-                android:textColor="#333333"
-                android:layout_marginEnd="8dp" />
+                android:textColor="#333333" />
 
             <RadioButton
                 android:id="@+id/radioPartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="Part-time"
-                android:textColor="#333333"
-                android:layout_marginEnd="8dp" />
+                android:textColor="#333333" />
 
             <RadioButton
                 android:id="@+id/radioHoras"
@@ -126,21 +133,21 @@
             android:id="@+id/BtnPublicarEmpleo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#4CAF50"
+            android:padding="12dp"
             android:text="Publicar Empleo"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:padding="12dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp" />
+            android:textSize="16sp" />
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 </ScrollView>

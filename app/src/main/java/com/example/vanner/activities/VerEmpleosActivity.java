@@ -2,6 +2,9 @@ package com.example.vanner.activities;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +29,7 @@ public class VerEmpleosActivity extends AppCompatActivity {
     private List<Empleo> empleoList;
     private DatabaseReference databaseReference;
     private String empresaId;  // El ID de la empresa que creó los empleos
+    private ImageButton btnRegresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,15 @@ public class VerEmpleosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ver_empleos);
 
         recyclerView = findViewById(R.id.recyclerViewEmpleos);
+        btnRegresar = findViewById(R.id.btnRegresar);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         // Obtener el ID de la empresa desde el usuario autenticado
         empresaId = FirebaseAuth.getInstance().getCurrentUser().getUid();  // Obtenemos el ID de la empresa autenticada

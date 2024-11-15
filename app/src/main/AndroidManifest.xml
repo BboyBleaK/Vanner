@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Vanner"
         tools:targetApi="31">
         <activity
+            android:name=".activities.VerPostulacionesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.VerEmpleosActivity"
             android:exported="false" />
         <activity
