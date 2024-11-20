@@ -21,12 +21,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,17 +44,21 @@ public class RegistroActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private ImageView imgUsuario;
-    private ImageButton btnCambioIMG;
+    private ImageButton btnCambioIMG, btnCambioimgEmpresa;
     private static final int PICK_IMAGE_REQUEST = 1;
+    private Uri imageUri; // URI de la imagen seleccionada
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
+        FirebaseApp storageApp = FirebaseApp.getInstance("proyectoStorage");
+        storageReference = FirebaseStorage.getInstance(storageApp).getReference("perfil_usuarios");
+
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
 
         edtCorreo = findViewById(R.id.edtCorreo);
         edtPass = findViewById(R.id.edtUsuario);
@@ -60,6 +68,7 @@ public class RegistroActivity extends AppCompatActivity {
         edtEdad = findViewById(R.id.edtEdad);
         RelativeUsuario = findViewById(R.id.RelativeUsuario);
         LinearRegistrarUsuario = findViewById(R.id.LinearRegistrarUsuario);
+        btnCambioimgEmpresa = findViewById(R.id.btnCambioimgEmpresa);
 
         // Inicialización de vistas para empresa
         edtIdentificadorFiscal = findViewById(R.id.edtIdentificadorFiscal);
@@ -98,6 +107,7 @@ public class RegistroActivity extends AppCompatActivity {
 
         // Cambio de imagen de usuario
         btnCambioIMG.setOnClickListener(view -> abrirGaleria());
+        btnCambioimgEmpresa.setOnClickListener(view -> abrirGaleria());
 
         // Manejo de registro de usuario
         LinearRegistrarUsuario.setOnClickListener(v -> {
@@ -127,7 +137,7 @@ public class RegistroActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            Uri imageUri = data.getData();
+            imageUri = data.getData();
             if (imageUri != null) {
                 imgUsuario.setImageURI(imageUri);
             }
@@ -174,87 +184,65 @@ public class RegistroActivity extends AppCompatActivity {
                                     Toast.makeText(RegistroActivity.this, "Error al enviar correo de verificación", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            if ("usuario".equals(tipoUsuario)) {
-                                guardarDatosEnRealtimeDatabaseUsuario(user.getUid());
+                            if (imageUri != null) {
+                                subirImagenAStorage(user.getUid(), tipoUsuario);
                             } else {
-                                guardarDatosEnRealtimeDatabaseEmpresa(user.getUid());
+                                guardarDatosEnRealtimeDatabase(user.getUid(), tipoUsuario, null);
                             }
                         }
-                        Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
                     } else {
                         Toast.makeText(RegistroActivity.this, "Error en el registro: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    private void guardarDatosEnRealtimeDatabaseUsuario(String userId) {
-        Map<String, Object> datosUsuario = new HashMap<>();
-        datosUsuario.put("nombre", edtNombre.getText().toString().trim());
-        datosUsuario.put("rut", edtRut.getText().toString().trim());
-        datosUsuario.put("correo", edtCorreo.getText().toString().trim());
-        datosUsuario.put("edad", edtEdad.getText().toString().trim());
-        datosUsuario.put("cargo", "usuario"); // Guardar el tipo de usuario
-
-        mDatabase.child("usuarios").child(userId).setValue(datosUsuario).addOnCompleteListener(task -> {
-            if (!task.isSuccessful()) {
-                Toast.makeText(RegistroActivity.this, "Error al guardar los datos del usuario: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void subirImagenAStorage(String userId, String tipoUsuario) {
+        StorageReference fileReference = storageReference.child(userId + ".jpg");
+        fileReference.putFile(imageUri).addOnSuccessListener(taskSnapshot -> fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
+            String imageUrl = uri.toString();
+            guardarDatosEnRealtimeDatabase(userId, tipoUsuario, imageUrl);
+        })).addOnFailureListener(e -> Toast.makeText(this, "Error al subir la imagen: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
-    private void guardarDatosEnRealtimeDatabaseEmpresa(String userId) {
-        Map<String, Object> datosEmpresa = new HashMap<>();
-        datosEmpresa.put("identificador_fiscal", edtIdentificadorFiscal.getText().toString().trim());
-        datosEmpresa.put("nombre", edtNombreEmpresa.getText().toString().trim());
-        datosEmpresa.put("rut", edtRutEmpresa.getText().toString().trim());
-        datosEmpresa.put("correo", edtCorreoEmpresa.getText().toString().trim());
-        datosEmpresa.put("contacto", dtpContactoEmpresa.getText().toString().trim());
-        datosEmpresa.put("cargo", "empresa"); // Guardar el tipo de empresa
+    private void guardarDatosEnRealtimeDatabase(String userId, String tipoUsuario, String imageUrl) {
+        Map<String, Object> datos = new HashMap<>();
+        if ("usuario".equals(tipoUsuario)) {
+            datos.put("nombre", edtNombre.getText().toString().trim());
+            datos.put("rut", edtRut.getText().toString().trim());
+            datos.put("correo", edtCorreo.getText().toString().trim());
+            datos.put("edad", edtEdad.getText().toString().trim());
+            datos.put("cargo", "usuario");
+        } else {
+            datos.put("identificador_fiscal", edtIdentificadorFiscal.getText().toString().trim());
+            datos.put("nombre", edtNombreEmpresa.getText().toString().trim());
+            datos.put("rut", edtRutEmpresa.getText().toString().trim());
+            datos.put("correo", edtCorreoEmpresa.getText().toString().trim());
+            datos.put("contacto", dtpContactoEmpresa.getText().toString().trim());
+            datos.put("cargo", "empresa");
+        }
 
-        mDatabase.child("empresas").child(userId).setValue(datosEmpresa).addOnCompleteListener(task -> {
-            if (!task.isSuccessful()) {
-                Toast.makeText(RegistroActivity.this, "Error al guardar los datos de la empresa: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+        if (imageUrl != null) {
+            datos.put("imagen", imageUrl);
+        }
+
+        mDatabase.child(tipoUsuario.equals("usuario") ? "usuarios" : "empresas").child(userId).setValue(datos).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(RegistroActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             } else {
-                Toast.makeText(RegistroActivity.this, "Datos de la empresa guardados exitosamente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistroActivity.this, "Error al guardar datos: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private boolean verificarCamposUsuario() {
-        String[] campos = {edtCorreo.getText().toString().trim(), edtNombre.getText().toString().trim(),
-                edtRut.getText().toString().trim(), edtEdad.getText().toString().trim(),
-                edtPass.getText().toString().trim(), edtRePass.getText().toString().trim()};
-        String[] mensajes = {"Por favor, ingresa un correo", "Por favor, ingresa tu nombre",
-                "Por favor, ingresa tu RUT", "Por favor, ingresa tu edad",
-                "Por favor, ingresa una contraseña", "Por favor, confirma tu contraseña"};
-
-        for (int i = 0; i < campos.length; i++) {
-            if (TextUtils.isEmpty(campos[i])) {
-                Toast.makeText(this, mensajes[i], Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
-        return true;
+        return !TextUtils.isEmpty(edtCorreo.getText()) && !TextUtils.isEmpty(edtPass.getText()) && !TextUtils.isEmpty(edtRePass.getText());
     }
 
     private boolean verificarCamposEmpresa() {
-        String[] campos = {edtIdentificadorFiscal.getText().toString().trim(), edtRutEmpresa.getText().toString().trim(),
-                edtNombreEmpresa.getText().toString().trim(), edtCorreoEmpresa.getText().toString().trim(),
-                dtpContactoEmpresa.getText().toString().trim(), edtPassEmpresa.getText().toString().trim(),
-                edtRePassEmpresa.getText().toString().trim()};
-        String[] mensajes = {"Por favor, ingresa el identificador fiscal", "Por favor, ingresa el RUT de la empresa",
-                "Por favor, ingresa el nombre de la empresa", "Por favor, ingresa el correo de la empresa",
-                "Por favor, ingresa el contacto de la empresa", "Por favor, ingresa una contraseña",
-                "Por favor, confirma la contraseña"};
-
-        for (int i = 0; i < campos.length; i++) {
-            if (TextUtils.isEmpty(campos[i])) {
-                Toast.makeText(this, mensajes[i], Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
-        return true;
+        return !TextUtils.isEmpty(edtIdentificadorFiscal.getText()) && !TextUtils.isEmpty(edtCorreoEmpresa.getText())
+                && !TextUtils.isEmpty(edtPassEmpresa.getText()) && !TextUtils.isEmpty(edtRePassEmpresa.getText());
     }
 }

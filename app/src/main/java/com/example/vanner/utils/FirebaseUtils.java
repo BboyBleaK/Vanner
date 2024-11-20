@@ -1,5 +1,6 @@
 package com.example.vanner.utils;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -29,7 +30,8 @@ public class FirebaseUtils {
     }
 
     public static StorageReference getProfileImagesStorageReference() {
-        return FirebaseStorage.getInstance().getReference(PROFILE_IMAGES_NODE);
+        FirebaseApp storageApp = FirebaseApp.getInstance("proyectoStorage");
+        return FirebaseStorage.getInstance(storageApp).getReference("profile_images");
     }
 
     public static StorageReference getProfileImageReference(String userId) {
