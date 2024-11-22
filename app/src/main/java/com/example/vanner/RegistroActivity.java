@@ -14,23 +14,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,10 +38,11 @@ public class RegistroActivity extends AppCompatActivity {
     private LinearLayout linearRegresarAusuario, LinearIrAEmpresa, LinearRegistrarEmpresa, LinearRegistrarUsuario;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private ImageView imgUsuario;
+    private String tipoImagen;
+    private ImageView imgUsuario, imgEmpresa;
     private ImageButton btnCambioIMG, btnCambioimgEmpresa;
     private static final int PICK_IMAGE_REQUEST = 1;
-    private Uri imageUri; // URI de la imagen seleccionada
+    private Uri imageUriUsuario, imageUriEmpresa;
     private StorageReference storageReference;
 
     @Override
@@ -70,7 +66,6 @@ public class RegistroActivity extends AppCompatActivity {
         LinearRegistrarUsuario = findViewById(R.id.LinearRegistrarUsuario);
         btnCambioimgEmpresa = findViewById(R.id.btnCambioimgEmpresa);
 
-        // Inicialización de vistas para empresa
         edtIdentificadorFiscal = findViewById(R.id.edtIdentificadorFiscal);
         edtRutEmpresa = findViewById(R.id.edtRutEmpresa);
         edtNombreEmpresa = findViewById(R.id.edtNombreEmpresa);
@@ -81,15 +76,13 @@ public class RegistroActivity extends AppCompatActivity {
         RelativeEmpresa = findViewById(R.id.RelativeEmpresa);
         LinearRegistrarEmpresa = findViewById(R.id.LinearRegistrarEmpresa);
 
-        // Botones de navegación entre usuario y empresa
         linearRegresarAusuario = findViewById(R.id.linearRegresarAusuario);
         LinearIrAEmpresa = findViewById(R.id.LinearIrAEmpresa);
 
-        // Botón para cambiar imagen
         btnCambioIMG = findViewById(R.id.btnCambioimg);
         imgUsuario = findViewById(R.id.imgUsuario);
+        imgEmpresa = findViewById(R.id.imgEmpresa);
 
-        // Alternar entre vistas de registro para usuario y empresa
         LinearIrAEmpresa.setOnClickListener(v -> {
             RelativeUsuario.setVisibility(View.GONE);
             RelativeEmpresa.setVisibility(View.VISIBLE);
@@ -100,26 +93,22 @@ public class RegistroActivity extends AppCompatActivity {
             RelativeUsuario.setVisibility(View.VISIBLE);
         });
 
-        // Solicitar permiso de almacenamiento si es necesario
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, PICK_IMAGE_REQUEST);
         }
 
-        // Cambio de imagen de usuario
-        btnCambioIMG.setOnClickListener(view -> abrirGaleria());
-        btnCambioimgEmpresa.setOnClickListener(view -> abrirGaleria());
+        btnCambioIMG.setOnClickListener(view -> abrirGaleria("usuario"));
+        btnCambioimgEmpresa.setOnClickListener(view -> abrirGaleria("empresa"));
 
-        // Manejo de registro de usuario
+
         LinearRegistrarUsuario.setOnClickListener(v -> {
             if (verificarCamposUsuario()) registrarUsuario("usuario");
         });
 
-        // Manejo de registro de empresa
         LinearRegistrarEmpresa.setOnClickListener(v -> {
             if (verificarCamposEmpresa()) registrarUsuario("empresa");
         });
 
-        // Botón para regresar al MainActivity
         ImageButton btnVolver = findViewById(R.id.btnVolver);
         btnVolver.setOnClickListener(v -> {
             Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
@@ -128,7 +117,8 @@ public class RegistroActivity extends AppCompatActivity {
         });
     }
 
-    private void abrirGaleria() {
+    private void abrirGaleria(String tipoImagen) {
+        this.tipoImagen = tipoImagen;
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
@@ -137,9 +127,14 @@ public class RegistroActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            imageUri = data.getData();
-            if (imageUri != null) {
-                imgUsuario.setImageURI(imageUri);
+            Uri imageUri = data.getData();
+
+            if ("usuario".equals(tipoImagen)) {
+                imageUriUsuario = imageUri;
+                imgUsuario.setImageURI(imageUriUsuario);
+            } else if ("empresa".equals(tipoImagen)) {
+                imageUriEmpresa = imageUri;
+                imgEmpresa.setImageURI(imageUriEmpresa);
             }
         }
     }
@@ -184,10 +179,10 @@ public class RegistroActivity extends AppCompatActivity {
                                     Toast.makeText(RegistroActivity.this, "Error al enviar correo de verificación", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            if (imageUri != null) {
-                                subirImagenAStorage(user.getUid(), tipoUsuario);
-                            } else {
-                                guardarDatosEnRealtimeDatabase(user.getUid(), tipoUsuario, null);
+                            if ("usuario".equals(tipoUsuario) && imageUriUsuario != null) {
+                                subirImagenAStorage(user.getUid(), "usuario", imageUriUsuario);
+                            } else if ("empresa".equals(tipoUsuario) && imageUriEmpresa != null) {
+                                subirImagenAStorage(user.getUid(), "empresa", imageUriEmpresa);
                             }
                         }
                     } else {
@@ -196,14 +191,14 @@ public class RegistroActivity extends AppCompatActivity {
                 });
     }
 
-    private void subirImagenAStorage(String userId, String tipoUsuario) {
-        StorageReference fileReference = storageReference.child(userId + ".jpg");
+    private void subirImagenAStorage(String userId, String tipoUsuario, Uri imageUri) {
+        StorageReference fileReference = storageReference.child(tipoUsuario + "/" + userId + ".jpg");
         fileReference.putFile(imageUri).addOnSuccessListener(taskSnapshot -> fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
             String imageUrl = uri.toString();
             guardarDatosEnRealtimeDatabase(userId, tipoUsuario, imageUrl);
         })).addOnFailureListener(e -> Toast.makeText(this, "Error al subir la imagen: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
-
+    
     private void guardarDatosEnRealtimeDatabase(String userId, String tipoUsuario, String imageUrl) {
         Map<String, Object> datos = new HashMap<>();
         if ("usuario".equals(tipoUsuario)) {
@@ -238,11 +233,34 @@ public class RegistroActivity extends AppCompatActivity {
     }
 
     private boolean verificarCamposUsuario() {
-        return !TextUtils.isEmpty(edtCorreo.getText()) && !TextUtils.isEmpty(edtPass.getText()) && !TextUtils.isEmpty(edtRePass.getText());
+        if (TextUtils.isEmpty(edtCorreo.getText()) || TextUtils.isEmpty(edtPass.getText())
+                || TextUtils.isEmpty(edtRePass.getText()) || TextUtils.isEmpty(edtNombre.getText())
+                || TextUtils.isEmpty(edtRut.getText()) || TextUtils.isEmpty(edtEdad.getText())) {
+            Toast.makeText(this, "Por favor, completa todos los campos requeridos", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (imageUriUsuario == null) {
+            Toast.makeText(this, "Por favor, selecciona una imagen de perfil", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
     private boolean verificarCamposEmpresa() {
-        return !TextUtils.isEmpty(edtIdentificadorFiscal.getText()) && !TextUtils.isEmpty(edtCorreoEmpresa.getText())
-                && !TextUtils.isEmpty(edtPassEmpresa.getText()) && !TextUtils.isEmpty(edtRePassEmpresa.getText());
+        if (TextUtils.isEmpty(edtIdentificadorFiscal.getText()) || TextUtils.isEmpty(edtCorreoEmpresa.getText())
+                || TextUtils.isEmpty(edtPassEmpresa.getText()) || TextUtils.isEmpty(edtRePassEmpresa.getText())
+                || TextUtils.isEmpty(edtNombreEmpresa.getText()) || TextUtils.isEmpty(edtRutEmpresa.getText())) {
+            Toast.makeText(this, "Por favor, completa todos los campos requeridos", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (imageUriEmpresa == null) {
+            Toast.makeText(this, "Por favor, selecciona una imagen de perfil", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }

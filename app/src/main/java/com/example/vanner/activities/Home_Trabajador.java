@@ -10,9 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.vanner.MainActivity;
 import com.example.vanner.R;
 import com.example.vanner.adapters.EmpleoAdapter;
@@ -41,8 +44,10 @@ import java.util.Map;
 public class Home_Trabajador extends AppCompatActivity {
 
     private TextInputEditText edtDireccionUsuario, edtFonoUsuario, dtpNacimientoUsuario;
+    private TextView txtPerNombreUsuario, txtPerRutUsuario, txtPerCorreoUsuario, txtPerContactoUsuario;
     private Spinner spnGeneroUsuario;
     private LinearLayout btnFinalizarRegistro;
+    private ImageView imgPerTrabajador;
     private RelativeLayout RelativeRegistroAdicional;
     private Button btnCerrarSesion;
     private RecyclerView jobRecyclerView;
@@ -88,6 +93,10 @@ public class Home_Trabajador extends AppCompatActivity {
         btnNotificacion.setOnClickListener(v -> selectView(R.id.viewNotificacion));
         btnPerfil.setOnClickListener(v -> selectView(R.id.viewPerfil));
 
+        txtPerNombreUsuario = findViewById(R.id.txtPerNombreUsuario);
+        txtPerRutUsuario = findViewById(R.id.txtPerRutUsuario);
+        txtPerCorreoUsuario = findViewById(R.id.txtPerCorreoUsuario);
+        txtPerContactoUsuario = findViewById(R.id.txtPerContactoUsuario);
 
         empleoList = new ArrayList<>();
         empleoAdapter = new EmpleoAdapter(this, empleoList, userRole);
@@ -100,7 +109,7 @@ public class Home_Trabajador extends AppCompatActivity {
 
 
         verificarDatosCompletos();
-
+        cargarDatosTrabajador();
 
         ArrayAdapter<CharSequence> adaptadorGenero = ArrayAdapter.createFromResource(
                 this, R.array.genero_opciones, android.R.layout.simple_spinner_item);
@@ -126,8 +135,47 @@ public class Home_Trabajador extends AppCompatActivity {
             finish();
         });
 
-
         cargarEmpleosDesdeFirebase();
+    }
+
+    private void cargarDatosTrabajador() {
+        String userId = mAuth.getCurrentUser().getUid();
+        mDatabase.child("usuarios").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String nombreTrabajador = snapshot.child("nombre").getValue(String.class);
+                    String rutTrabajador = snapshot.child("rut").getValue(String.class);
+                    String correoTrabajador = snapshot.child("correo").getValue(String.class);
+                    String contactoTrabajador = snapshot.child("informacionAdicional").child("telefono").getValue(String.class);
+                    String imagenUrl = snapshot.child("imagen").getValue(String.class);
+
+                    String nombre = "Nombre: " + nombreTrabajador;
+                    String rut = "Rut: " + rutTrabajador;
+                    String correo = "Correo: " + correoTrabajador;
+                    String contacto = "Contacto: " + contactoTrabajador;
+
+                    txtPerNombreUsuario.setText(nombre);
+                    txtPerRutUsuario.setText(rut);
+                    txtPerCorreoUsuario.setText(correo);
+                    txtPerContactoUsuario.setText(contacto);
+
+                    if (imagenUrl != null && !imagenUrl.isEmpty()) {
+                        Glide.with(Home_Trabajador.this)
+                                .load(imagenUrl)
+                                .placeholder(R.drawable.imgicono)
+                                .into((ImageView) findViewById(R.id.imgPerTrabajador));
+                    }
+                } else {
+                    Toast.makeText(Home_Trabajador.this, "No se encontraron los datos de la empresa", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Home_Trabajador.this, "Error al cargar los datos", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void verificarDatosCompletos() {
@@ -234,7 +282,6 @@ public class Home_Trabajador extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Home_Trabajador.this, "Error al cargar empleos", Toast.LENGTH_SHORT).show();
             }
         });
     }

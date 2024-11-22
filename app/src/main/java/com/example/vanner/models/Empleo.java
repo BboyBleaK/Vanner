@@ -9,12 +9,13 @@ public class Empleo {
     private String employmentMode;
     private String empresaId;
     private String empleoId;
+    private String UrlImagen;
 
 
     public Empleo() {}
 
 
-    public Empleo(String title, String description, int salary, int vacancies, String expirationDate, String employmentMode, String empresaId) {
+    public Empleo(String title, String description, int salary, int vacancies, String expirationDate, String employmentMode, String empresaId, String UrlImagen) {
         this.title = title;
         this.description = description;
         this.salary = salary;
@@ -22,8 +23,8 @@ public class Empleo {
         this.expirationDate = expirationDate;
         this.employmentMode = employmentMode;
         this.empresaId = empresaId;
+        this.UrlImagen = UrlImagen;
     }
-
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
@@ -41,4 +42,6 @@ public class Empleo {
     public void setEmpresaId(String empresaId) { this.empresaId = empresaId; }
     public String getEmpleoId() { return empleoId; }
     public void setEmpleoId(String empleoId) { this.empleoId = empleoId; }
+    public String getUrlImagen() { return UrlImagen; }
+    public void setUrlImagen(String urlImagen) { UrlImagen = urlImagen; }
 }

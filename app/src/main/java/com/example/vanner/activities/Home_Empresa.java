@@ -5,20 +5,25 @@ import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.GestureDetector;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.vanner.MainActivity;
 import com.example.vanner.R;
 import com.example.vanner.adapters.EmpleoAdapter;
@@ -40,15 +45,18 @@ import java.util.Map;
 public class Home_Empresa extends AppCompatActivity {
 
     private TextInputEditText edtDireccionEmpresa, edtPropietario, dtpFechaConstitucion, edtRazonSocial;
+    private TextView txtPerNombreEmpresa, txtPerRutEmpresa, txtPerCorreoEmpresa, txtPerContactoEmpresa;
+    private TextView txtNombreTrabajador, txtFonoTrabajador, txtCorreoTrabajador, txtCargoTrabajador, txtGeneroTrabajador;
     private Spinner spnSectorActividad;
     private LinearLayout btnFinalizarRegistro;
     private RelativeLayout RelativeRegistroAdicional;
-    private Button btnCerrarSesion, btnCrearEmpleo, btnVerEmpleos;
-
+    private Button btnCerrarSesion, btnCrearEmpleo, btnVerEmpleos, btnDesactivarCuenta;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
+    private GestureDetector detectarGesto;
+    private ImageView imgTrabajador;
 
     private RecyclerView jobsRecyclerView;
     private EmpleoAdapter empleoAdapter;
@@ -81,7 +89,16 @@ public class Home_Empresa extends AppCompatActivity {
         btnNotificacion.setOnClickListener(v -> selectView(R.id.viewNotificacion));
         btnPerfil.setOnClickListener(v -> selectView(R.id.viewPerfil));
 
+        txtPerNombreEmpresa = findViewById(R.id.txtPerNombreEmpresa);
+        txtPerRutEmpresa = findViewById(R.id.txtPerRutEmpresa);
+        txtPerCorreoEmpresa = findViewById(R.id.txtPerCorreoEmpresa);
+        txtPerContactoEmpresa = findViewById(R.id.txtPerContactoEmpresa);
 
+        txtNombreTrabajador = findViewById(R.id.txtNombreTrabajador);
+        txtFonoTrabajador = findViewById(R.id.txtFonoTrabajador);
+        txtCorreoTrabajador = findViewById(R.id.txtCorreoTrabajador);
+        txtCargoTrabajador = findViewById(R.id.txtCargoTrabajador);
+        txtGeneroTrabajador = findViewById(R.id.txtGeneroTrabajador);
 
         dtpFechaConstitucion = findViewById(R.id.dtpConstitucion);
         spnSectorActividad = findViewById(R.id.spnSectorActividad);
@@ -89,24 +106,21 @@ public class Home_Empresa extends AppCompatActivity {
         RelativeRegistroAdicional = findViewById(R.id.RelativeRegistroAdicional);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         btnCrearEmpleo = findViewById(R.id.btnCrearEmpleo);
+        btnDesactivarCuenta = findViewById(R.id.btnDesactivarCuenta);
         btnVerEmpleos = findViewById(R.id.btnVerEmpleos);
-
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
 
         jobsRecyclerView = findViewById(R.id.jobsRecyclerView);
         empleoList = new ArrayList<>();
         empleoAdapter = new EmpleoAdapter(this, empleoList, "Empresa");
 
-
         jobsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         jobsRecyclerView.setAdapter(empleoAdapter);
 
-
         verificarDatosCompletos();
-
+        cargarDatosEmpresa();
 
         ArrayAdapter<CharSequence> adaptadorSector = ArrayAdapter.createFromResource(
                 this, R.array.sector_actividad, android.R.layout.simple_spinner_item);
@@ -143,6 +157,15 @@ public class Home_Empresa extends AppCompatActivity {
             }
         });
 
+        btnDesactivarCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent intent = new Intent(Home_Empresa.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         btnCrearEmpleo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,11 +185,49 @@ public class Home_Empresa extends AppCompatActivity {
         });
 
 
-
-
         cargarEmpleos();
     }
 
+
+    private void cargarDatosEmpresa() {
+        String userId = mAuth.getCurrentUser().getUid();
+        mDatabase.child("empresas").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String nombreEmpresa = snapshot.child("informacionAdicional").child("nombre_empresa").getValue(String.class);
+                    String rutEmpresa = snapshot.child("rut").getValue(String.class);
+                    String correoEmpresa = snapshot.child("correo").getValue(String.class);
+                    String contactoEmpresa = snapshot.child("contacto").getValue(String.class);
+                    String imagenUrl = snapshot.child("imagen").getValue(String.class);
+
+                    String nombre = "Nombre: " + nombreEmpresa;
+                    String rut = "Rut: " + rutEmpresa;
+                    String correo = "Correo: " + correoEmpresa;
+                    String contacto = "Contacto: " + contactoEmpresa;
+
+                    txtPerNombreEmpresa.setText(nombre);
+                    txtPerRutEmpresa.setText(rut);
+                    txtPerCorreoEmpresa.setText(correo);
+                    txtPerContactoEmpresa.setText(contacto);
+
+                    if (imagenUrl != null && !imagenUrl.isEmpty()) {
+                        Glide.with(Home_Empresa.this)
+                                .load(imagenUrl)
+                                .placeholder(R.drawable.imgicono)
+                                .into((ImageView) findViewById(R.id.imgPerEmpresa));
+                    }
+                } else {
+                    Toast.makeText(Home_Empresa.this, "No se encontraron los datos de la empresa", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Home_Empresa.this, "Error al cargar los datos", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     private void verificarDatosCompletos() {
         String userId = mAuth.getCurrentUser().getUid();

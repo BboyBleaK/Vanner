@@ -517,7 +517,7 @@
                         app:cardElevation="4dp">
 
                         <ImageView
-                            android:id="@+id/imgUsuarioEmpresa"
+                            android:id="@+id/imgEmpresa"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_centerInParent="true"

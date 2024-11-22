@@ -32,6 +32,36 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imgCreaEmpleo"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="20dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/registro_empresa" />
+
+                <ImageButton
+                    android:id="@+id/btnCambiarImg"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/editar" />
+            </RelativeLayout>
+        </LinearLayout>
+
         <EditText
             android:id="@+id/titleInput"
             android:layout_width="match_parent"
@@ -76,12 +106,15 @@
             android:backgroundTint="#4CAF50"
             android:hint="Vacantes"
             android:padding="12dp"
+            android:maxLines="1"
             android:textColor="#333333"
             android:textSize="16sp" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/expirationDateInput"
             android:layout_width="match_parent"
+            android:focusable="false"
+            android:inputType="date"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:backgroundTint="#4CAF50"

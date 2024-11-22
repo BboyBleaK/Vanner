@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.vanner.R;
 import com.example.vanner.activities.EditarEmpleoActivity;
 import com.example.vanner.models.Empleo;
@@ -19,7 +21,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoViewHolder> {
 
@@ -52,8 +56,13 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
         holder.tvTipoEmpleo.setText("Tipo de empleo: " + empleo.getEmploymentMode());
         holder.tvFechaVencimiento.setText("Fecha de vencimiento: " + empleo.getExpirationDate());
 
-        // Configurar visibilidad de botones según el rol
-        configureButtonsBasedOnRole(holder, empleo.getEmpleoId());
+        Glide.with(context)
+                .load(empleo.getUrlImagen())
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.cancelar)
+                .into(holder.imgEmpleo);
+
+        configureButtonsBasedOnRole(holder, empleo);
     }
 
     @Override
@@ -61,7 +70,27 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
         return empleoList.size();
     }
 
-    private void configureButtonsBasedOnRole(EmpleoViewHolder holder, String empleoId) {
+    public static class EmpleoViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvTitle, tvDescription, tvSalary, tvVacantes, tvTipoEmpleo, tvFechaVencimiento;
+        public ImageView imgEmpleo; // Nuevo ImageView
+        public Button btnEdit, btnDelete, btnPostulate;
+
+        public EmpleoViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvSalary = itemView.findViewById(R.id.tvSalary);
+            tvVacantes = itemView.findViewById(R.id.tvVacantes);
+            tvTipoEmpleo = itemView.findViewById(R.id.tvTipoEmpleo);
+            tvFechaVencimiento = itemView.findViewById(R.id.tvFechaVencimiento);
+            imgEmpleo = itemView.findViewById(R.id.imgEmpleo); // Vincular ImageView
+            btnEdit = itemView.findViewById(R.id.btnEdit);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
+            btnPostulate = itemView.findViewById(R.id.btnPostulate);
+        }
+    }
+
+    private void configureButtonsBasedOnRole(EmpleoViewHolder holder, Empleo empleo) {
         if ("empresa".equals(userRole)) {
             holder.btnEdit.setVisibility(View.VISIBLE);
             holder.btnDelete.setVisibility(View.VISIBLE);
@@ -69,17 +98,17 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
 
             holder.btnEdit.setOnClickListener(v -> {
                 Intent intent = new Intent(context, EditarEmpleoActivity.class);
-                intent.putExtra("empleoId", empleoId);
+                intent.putExtra("empleoId", empleo.getEmpleoId());
                 context.startActivity(intent);
             });
 
-            holder.btnDelete.setOnClickListener(v -> deleteEmpleo(empleoId));
+            holder.btnDelete.setOnClickListener(v -> deleteEmpleo(empleo.getEmpleoId()));
         } else if ("usuario".equals(userRole)) {
             holder.btnPostulate.setVisibility(View.VISIBLE);
             holder.btnEdit.setVisibility(View.GONE);
             holder.btnDelete.setVisibility(View.GONE);
 
-            holder.btnPostulate.setOnClickListener(v -> postularse(empleoId));
+            holder.btnPostulate.setOnClickListener(v -> postularse(empleo.getEmpleoId(), empleo.getEmpresaId()));
         }
     }
 
@@ -92,29 +121,21 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
         }).addOnFailureListener(e -> Toast.makeText(context, "Error al eliminar el empleo", Toast.LENGTH_SHORT).show());
     }
 
-    private void postularse(String empleoId) {
+    private void postularse(String empleoId, String empresaId) {
         DatabaseReference postulacionesRef = FirebaseDatabase.getInstance().getReference("postulaciones");
         String postulanteId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        postulacionesRef.child(empleoId).child(postulanteId).setValue(true)
+
+        Map<String, Object> postData = new HashMap<>();
+        postData.put("postulanteId", postulanteId);
+        postData.put("empleoId", empleoId);
+        postData.put("empresaId", empresaId);
+        postData.put("fecha", System.currentTimeMillis());
+
+        String postId = postulacionesRef.push().getKey();
+
+        postulacionesRef.child(postId).setValue(postData)
                 .addOnSuccessListener(aVoid -> Toast.makeText(context, "Postulado correctamente al empleo", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(context, "Error al postularse", Toast.LENGTH_SHORT).show());
     }
 
-    public static class EmpleoViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvTitle, tvDescription, tvSalary, tvVacantes, tvTipoEmpleo, tvFechaVencimiento;
-        public Button btnEdit, btnDelete, btnPostulate;
-
-        public EmpleoViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvDescription = itemView.findViewById(R.id.tvDescription);
-            tvSalary = itemView.findViewById(R.id.tvSalary);
-            tvVacantes = itemView.findViewById(R.id.tvVacantes);
-            tvTipoEmpleo = itemView.findViewById(R.id.tvTipoEmpleo);
-            tvFechaVencimiento = itemView.findViewById(R.id.tvFechaVencimiento);
-            btnEdit = itemView.findViewById(R.id.btnEdit);
-            btnDelete = itemView.findViewById(R.id.btnDelete);
-            btnPostulate = itemView.findViewById(R.id.btnPostulate);
-        }
-    }
 }

@@ -303,7 +303,7 @@
         android:layout_above="@+id/LinearBase"
         android:layout_alignParentTop="true"
         android:background="@drawable/gradient_chat_trabajador"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -946,7 +946,7 @@
         android:layout_above="@+id/LinearBase"
         android:layout_alignParentTop="true"
         android:background="@drawable/fondo_perfil_trabajador"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -964,10 +964,12 @@
                     android:layout_margin="5dp">
 
                     <ImageView
+                        android:id="@+id/imgPerEmpresa"
                         android:layout_width="150dp"
                         android:layout_height="170dp"
                         android:layout_centerHorizontal="true"
                         android:contentDescription="@string/descImgPerfil"
+                        android:scaleType="fitCenter"
                         android:src="@drawable/usuario" />
                 </RelativeLayout>
 
@@ -975,6 +977,8 @@
                     android:id="@+id/LinearCuerpoInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/fondo_perfil_trabajador_profundidad"
                     android:orientation="vertical"
                     android:padding="20dp">

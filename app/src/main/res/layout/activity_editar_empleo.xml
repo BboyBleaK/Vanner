@@ -5,55 +5,284 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Título -->
-    <EditText
-        android:id="@+id/etTitle"
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgEditarEmpleo"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_margin="20dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/registro_empresa" />
+
+            <ImageButton
+                android:id="@+id/btnCambiarImg"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:layout_alignParentBottom="true"
+                android:src="@mipmap/editar" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Título del empleo"
-        android:inputType="text" />
+        android:layout_margin="5dp"
+        android:background="@drawable/edittext_layout_registro"
+        android:gravity="center_vertical">
 
-    <!-- Descripción -->
-    <EditText
-        android:id="@+id/etDescription"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:contentDescription="DescEditarTitulo"
+            android:src="@mipmap/rut" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Titulo Empleo">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="0dp"
+                android:autofillHints="username"
+                android:background="@android:color/transparent"
+                android:inputType="text"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:paddingLeft="0dp"
+                android:paddingTop="20dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descripción"
-        android:inputType="text" />
+        android:layout_margin="5dp"
+        android:background="@drawable/edittext_layout_registro"
+        android:gravity="center_vertical">
 
-    <!-- Salario -->
-    <EditText
-        android:id="@+id/etSalary"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:contentDescription="DescEditarDescripcion"
+            android:src="@mipmap/rut" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Descripcion">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="0dp"
+                android:autofillHints="username"
+                android:background="@android:color/transparent"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingLeft="0dp"
+                android:paddingTop="20dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Salario"
-        android:inputType="number" />
+        android:layout_margin="5dp"
+        android:background="@drawable/edittext_layout_registro"
+        android:gravity="center_vertical">
 
-    <!-- Vacantes -->
-    <EditText
-        android:id="@+id/etVacancies"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:contentDescription="DescEditarSalario"
+            android:src="@mipmap/rut" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Salario ($ Pesos)">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSalary"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="0dp"
+                android:autofillHints="username"
+                android:background="@android:color/transparent"
+                android:inputType="numberDecimal"
+                android:maxLength="9"
+                android:maxLines="1"
+                android:paddingLeft="0dp"
+                android:paddingTop="20dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Vacantes"
-        android:inputType="number" />
+        android:layout_margin="5dp"
+        android:background="@drawable/edittext_layout_registro"
+        android:gravity="center_vertical">
 
-    <!-- Fecha de vencimiento -->
-    <EditText
-        android:id="@+id/etExpirationDate"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:contentDescription="DescEditarVacantes"
+            android:src="@mipmap/rut" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Vacantes">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etVacancies"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="0dp"
+                android:autofillHints="username"
+                android:background="@android:color/transparent"
+                android:inputType="numberDecimal"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:paddingLeft="0dp"
+                android:paddingTop="20dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Fecha de vencimiento"
-        android:inputType="date" />
+        android:layout_margin="5dp"
+        android:background="@drawable/edittext_layout_registro"
+        android:gravity="center_vertical">
 
-    <!-- Tipo de empleo -->
-    <EditText
-        android:id="@+id/etEmploymentMode"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:contentDescription="DescEditarVacantes"
+            android:src="@mipmap/rut" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Fecha de vencimiento">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etExpirationDate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:autofillHints="username"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:inputType="date"
+                android:maxLines="1"
+                android:paddingLeft="0dp"
+                android:paddingTop="20dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tipo de empleo (Ej. Tiempo completo)"
-        android:inputType="text" />
+        android:layout_margin="5dp"
+        android:background="@drawable/edittext_layout_registro"
+        android:gravity="center_vertical">
 
-    <!-- Botón para guardar cambios -->
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:contentDescription="DescEditarVacantes"
+            android:src="@mipmap/rut" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modalidad de empleo"
+                android:textSize="20dp" />
+
+            <RadioGroup
+                android:id="@+id/etEmploymentMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <RadioButton
+                    android:id="@+id/radioFullTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Full-time"
+                    android:textColor="#333333" />
+
+                <RadioButton
+                    android:id="@+id/radioPartTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Part-time"
+                    android:textColor="#333333" />
+
+                <RadioButton
+                    android:id="@+id/radioHoras"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Por Horas"
+                    android:textColor="#333333" />
+            </RadioGroup>
+
+        </LinearLayout>
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnSaveChanges"
         android:layout_width="match_parent"

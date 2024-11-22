@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Vanner</string>
+    <string name="app_name">Váner</string>
     <string name="TituloVanner">Vanner</string>
     <string name="SubTituloInicio">Inicio de Sesión</string>
     <string name="hintEmail">Ingresa tu Email</string>

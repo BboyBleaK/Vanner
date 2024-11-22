@@ -253,7 +253,7 @@
         android:layout_above="@+id/LinearBase"
         android:layout_alignParentTop="true"
         android:background="@drawable/gradient_chat_trabajador"
-        android:visibility="visible">
+        android:visibility="gone">
 
 
         <LinearLayout
@@ -855,7 +855,7 @@
         android:layout_above="@+id/LinearBase"
         android:layout_alignParentTop="true"
         android:background="@drawable/fondo_perfil_trabajador"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -873,6 +873,7 @@
                     android:layout_margin="5dp">
 
                     <ImageView
+                        android:id="@+id/imgPerTrabajador"
                         android:layout_width="150dp"
                         android:layout_height="170dp"
                         android:layout_centerHorizontal="true"
