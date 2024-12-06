@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/rounded_background">
+
+        <ImageButton
+            android:id="@+id/btnRegresar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/flechaatras" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Actualizar Datos del Usuario"
+            android:textColor="#4CAF50"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Campos de entrada -->
+        <EditText
+            android:id="@+id/edtForNombreUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del Usuario"
+            android:inputType="text"
+            android:textColor="#333333" />
+
+        <EditText
+            android:id="@+id/edtForRutUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="RUT del Usuario"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/edtForCorreoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo del Usuario"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/edtForTelefonoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contacto del Usuario"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/edtForEdadUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Edad del Usuario"
+            android:inputType="number" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dtmForNacimientoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de Nacimiento"
+            android:focusable="false" />
+
+        <!-- Botón de actualización -->
+        <Button
+            android:id="@+id/btnActualizarDatos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar Datos"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50" />
+
+    </LinearLayout>
+</ScrollView>

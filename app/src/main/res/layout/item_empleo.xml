@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="#FFFFFF"
+    android:background="@drawable/fondo_adapter_experiencia"
     android:clipToPadding="false"
     android:elevation="4dp"
     android:orientation="vertical"
@@ -27,106 +27,108 @@
                 android:src="@mipmap/ic_launcher" />
 
         </RelativeLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="Título del empleo"
-            android:textColor="#333333"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Descripción del empleo"
-            android:textColor="#666666"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tvSalary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="Salario: $0"
-            android:textColor="#444444"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tvVacantes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="Vacantes: 0"
-            android:textColor="#444444"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tvTipoEmpleo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="Tipo de empleo: Tiempo completo"
-            android:textColor="#444444"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tvFechaVencimiento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:text="Fecha de vencimiento: DD/MM/AAAA"
-            android:textColor="#444444"
-            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnEdit"
+            <TextView
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:background="#3F51B5"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:text="Editar"
-                android:textColor="#FFFFFF"
-                android:visibility="gone" />
+                android:layout_marginBottom="4dp"
+                android:text="Título del empleo"
+                android:textColor="#333333"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btnDelete"
+            <TextView
+                android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:background="#F44336"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:text="Eliminar"
-                android:textColor="#FFFFFF"
-                android:visibility="gone" />
+                android:layout_marginBottom="8dp"
+                android:text="Descripción del empleo"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/btnPostulate"
+            <TextView
+                android:id="@+id/tvSalary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#4CAF50"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:text="Postularse"
-                android:textColor="#FFFFFF"
-                android:visibility="gone" />
-        </LinearLayout>
+                android:layout_marginBottom="4dp"
+                android:text="Salario: $0"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvVacantes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Vacantes: 0"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvTipoEmpleo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Tipo de empleo: Tiempo completo"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvFechaVencimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Fecha de vencimiento: DD/MM/AAAA"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="#3F51B5"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="Editar"
+                    android:textColor="#FFFFFF"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="#F44336"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="Eliminar"
+                    android:textColor="#FFFFFF"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnPostulate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#4CAF50"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="Postularse"
+                    android:textColor="#FFFFFF"
+                    android:visibility="gone" />
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 

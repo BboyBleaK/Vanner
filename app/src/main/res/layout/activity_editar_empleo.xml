@@ -3,290 +3,182 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
-
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/imgEditarEmpleo"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_margin="20dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/registro_empresa" />
-
-            <ImageButton
-                android:id="@+id/btnCambiarImg"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:layout_alignParentBottom="true"
-                android:src="@mipmap/editar" />
-        </RelativeLayout>
-    </LinearLayout>
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/edittext_layout_registro"
-        android:gravity="center_vertical">
+        android:background="@drawable/rounded_background"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/btnRegresar"
             android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:contentDescription="DescEditarTitulo"
-            android:src="@mipmap/rut" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@android:color/transparent"
-            android:hint="Titulo Empleo">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etTitle"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="0dp"
-                android:autofillHints="username"
-                android:background="@android:color/transparent"
-                android:inputType="text"
-                android:maxLength="30"
-                android:maxLines="1"
-                android:paddingLeft="0dp"
-                android:paddingTop="20dp"
-                android:paddingRight="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="20sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/edittext_layout_registro"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:contentDescription="DescEditarDescripcion"
-            android:src="@mipmap/rut" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="Descripcion">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDescription"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="0dp"
-                android:autofillHints="username"
-                android:background="@android:color/transparent"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingLeft="0dp"
-                android:paddingTop="20dp"
-                android:paddingRight="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="20sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/edittext_layout_registro"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:contentDescription="DescEditarSalario"
-            android:src="@mipmap/rut" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="Salario ($ Pesos)">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etSalary"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="0dp"
-                android:autofillHints="username"
-                android:background="@android:color/transparent"
-                android:inputType="numberDecimal"
-                android:maxLength="9"
-                android:maxLines="1"
-                android:paddingLeft="0dp"
-                android:paddingTop="20dp"
-                android:paddingRight="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="20sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/edittext_layout_registro"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:contentDescription="DescEditarVacantes"
-            android:src="@mipmap/rut" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="Vacantes">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etVacancies"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="0dp"
-                android:autofillHints="username"
-                android:background="@android:color/transparent"
-                android:inputType="numberDecimal"
-                android:maxLength="6"
-                android:maxLines="1"
-                android:paddingLeft="0dp"
-                android:paddingTop="20dp"
-                android:paddingRight="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="20sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/edittext_layout_registro"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:contentDescription="DescEditarVacantes"
-            android:src="@mipmap/rut" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="Fecha de vencimiento">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etExpirationDate"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:autofillHints="username"
-                android:background="@android:color/transparent"
-                android:focusable="false"
-                android:inputType="date"
-                android:maxLines="1"
-                android:paddingLeft="0dp"
-                android:paddingTop="20dp"
-                android:paddingRight="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="20sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/edittext_layout_registro"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:contentDescription="DescEditarVacantes"
-            android:src="@mipmap/rut" />
+            android:scaleType="fitCenter"
+            android:src="@mipmap/flechaatras" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="1dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Modalidad de empleo"
-                android:textSize="20dp" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="Modificar de empleo"
+                android:textColor="#4CAF50"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-            <RadioGroup
-                android:id="@+id/etEmploymentMode"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_gravity="center_horizontal">
 
+                <ImageView
+                    android:id="@+id/imgEditarEmpleo"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_margin="20dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/registro_empresa" />
 
-                <RadioButton
-                    android:id="@+id/radioFullTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Full-time"
-                    android:textColor="#333333" />
-
-                <RadioButton
-                    android:id="@+id/radioPartTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Part-time"
-                    android:textColor="#333333" />
-
-                <RadioButton
-                    android:id="@+id/radioHoras"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Por Horas"
-                    android:textColor="#333333" />
-            </RadioGroup>
-
+                <ImageButton
+                    android:id="@+id/btnCambiarImg"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/editar" />
+            </RelativeLayout>
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:hint="Título del empleo"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:gravity="top"
+            android:hint="Descripción del empleo"
+            android:inputType="text"
+            android:minLines="1"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etSalary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:hint="Sueldo ($)"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etVacancies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:hint="Vacantes"
+            android:inputType="number"
+            android:maxLines="1"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etExpirationDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:focusable="false"
+            android:hint="Fecha de Vencimiento (dd/mm/yyyy)"
+            android:inputType="date"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Modalidad de empleo"
+            android:textColor="#4CAF50"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/etEmploymentMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <RadioButton
+                android:id="@+id/radioFullTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Full-time"
+                android:textColor="#333333" />
+
+            <RadioButton
+                android:id="@+id/radioPartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Part-time"
+                android:textColor="#333333" />
+
+            <RadioButton
+                android:id="@+id/radioHoras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Por Horas"
+                android:textColor="#333333" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnSaveChanges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:padding="12dp"
+            android:text="Guardar Cambios"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSaveChanges"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Guardar Cambios" />
 
 </LinearLayout>

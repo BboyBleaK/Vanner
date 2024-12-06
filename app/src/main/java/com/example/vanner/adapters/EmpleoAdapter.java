@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,9 +34,10 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
 
     public EmpleoAdapter(Context context, List<Empleo> empleoList, String userRole) {
         this.context = context;
-        this.empleoList = empleoList;
+        this.empleoList = (empleoList != null) ? empleoList : new ArrayList<>();
         this.userRole = userRole;
     }
+
 
     @NonNull
     @Override
@@ -48,7 +50,6 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
     public void onBindViewHolder(@NonNull EmpleoViewHolder holder, int position) {
         Empleo empleo = empleoList.get(position);
 
-        // Mostrar los datos del empleo
         holder.tvTitle.setText(empleo.getTitle());
         holder.tvDescription.setText(empleo.getDescription());
         holder.tvSalary.setText("Salario: $" + empleo.getSalary());
@@ -67,12 +68,13 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
 
     @Override
     public int getItemCount() {
-        return empleoList.size();
+        return (empleoList != null) ? empleoList.size() : 0;
     }
+
 
     public static class EmpleoViewHolder extends RecyclerView.ViewHolder {
         public TextView tvTitle, tvDescription, tvSalary, tvVacantes, tvTipoEmpleo, tvFechaVencimiento;
-        public ImageView imgEmpleo; // Nuevo ImageView
+        public ImageView imgEmpleo;
         public Button btnEdit, btnDelete, btnPostulate;
 
         public EmpleoViewHolder(@NonNull View itemView) {
@@ -83,7 +85,7 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
             tvVacantes = itemView.findViewById(R.id.tvVacantes);
             tvTipoEmpleo = itemView.findViewById(R.id.tvTipoEmpleo);
             tvFechaVencimiento = itemView.findViewById(R.id.tvFechaVencimiento);
-            imgEmpleo = itemView.findViewById(R.id.imgEmpleo); // Vincular ImageView
+            imgEmpleo = itemView.findViewById(R.id.imgEmpleo);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnPostulate = itemView.findViewById(R.id.btnPostulate);
@@ -107,7 +109,6 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
             holder.btnPostulate.setVisibility(View.VISIBLE);
             holder.btnEdit.setVisibility(View.GONE);
             holder.btnDelete.setVisibility(View.GONE);
-
             holder.btnPostulate.setOnClickListener(v -> postularse(empleo.getEmpleoId(), empleo.getEmpresaId()));
         }
     }
@@ -133,9 +134,7 @@ public class EmpleoAdapter extends RecyclerView.Adapter<EmpleoAdapter.EmpleoView
 
         String postId = postulacionesRef.push().getKey();
 
-        postulacionesRef.child(postId).setValue(postData)
-                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Postulado correctamente al empleo", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(context, "Error al postularse", Toast.LENGTH_SHORT).show());
+        postulacionesRef.child(postId).setValue(postData).addOnSuccessListener(aVoid -> Toast.makeText(context, "Postulado correctamente al empleo", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(context, "Error al postularse", Toast.LENGTH_SHORT).show());
     }
 
 }

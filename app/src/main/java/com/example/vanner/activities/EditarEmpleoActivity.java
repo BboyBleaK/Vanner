@@ -68,6 +68,7 @@ public class EditarEmpleoActivity extends AppCompatActivity {
 
         btnSaveChanges.setOnClickListener(v -> saveChanges());
     }
+
     private void abrirGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
@@ -78,7 +79,7 @@ public class EditarEmpleoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             urlImagen = data.getData();
-            imgEditarEmpleo.setImageURI(urlImagen); // Actualiza la imagen en el ImageView
+            imgEditarEmpleo.setImageURI(urlImagen);
         }
     }
 
@@ -124,7 +125,7 @@ public class EditarEmpleoActivity extends AppCompatActivity {
                     String urlImagenString = empleo.getUrlImagen();
                     if (urlImagenString != null && !urlImagenString.isEmpty()) {
                         urlImagen = Uri.parse(urlImagenString);
-                        Glide.with(this).load(urlImagen).into(imgEditarEmpleo); // Carga la imagen en el ImageView
+                        Glide.with(this).load(urlImagen).into(imgEditarEmpleo);
                     }
                 }
             } else {

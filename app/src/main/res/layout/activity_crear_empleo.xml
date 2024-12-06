@@ -35,8 +35,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -69,6 +69,8 @@
             android:layout_marginBottom="10dp"
             android:backgroundTint="#4CAF50"
             android:hint="Título del empleo"
+            android:inputType="text"
+            android:maxLines="1"
             android:padding="12dp"
             android:textColor="#333333"
             android:textSize="16sp" />
@@ -81,7 +83,8 @@
             android:backgroundTint="#4CAF50"
             android:gravity="top"
             android:hint="Descripción del empleo"
-            android:minLines="3"
+            android:inputType="text"
+            android:minLines="1"
             android:padding="12dp"
             android:textColor="#333333"
             android:textSize="16sp" />
@@ -105,20 +108,21 @@
             android:layout_marginBottom="10dp"
             android:backgroundTint="#4CAF50"
             android:hint="Vacantes"
-            android:padding="12dp"
+            android:inputType="number"
             android:maxLines="1"
+            android:padding="12dp"
             android:textColor="#333333"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/expirationDateInput"
             android:layout_width="match_parent"
-            android:focusable="false"
-            android:inputType="date"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:backgroundTint="#4CAF50"
+            android:focusable="false"
             android:hint="Fecha de Vencimiento (dd/mm/yyyy)"
+            android:inputType="date"
             android:padding="12dp"
             android:textColor="#333333"
             android:textSize="16sp" />

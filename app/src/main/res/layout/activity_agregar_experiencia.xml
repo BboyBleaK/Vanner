@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:fillViewport="true"
+    android:padding="6dp"
+    tools:context=".activities.Agregar_experiencia">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_background"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/btnRegresar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/flechaatras" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:text="Formulario de experiencia"
+            android:textColor="#4CAF50"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtForIdActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:hint="Id"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/edtForNombreEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:hint="Nombre de empresa"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edtForCargo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:hint="Cargo desempeñado"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Duración del empleo"
+            android:textColor="#4CAF50"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dtmForInicioEmpleo"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#4CAF50"
+                android:focusable="false"
+                android:hint="Inicio"
+                android:inputType="date"
+                android:padding="12dp"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dtmForTerminoEmpleo"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#4CAF50"
+                android:focusable="false"
+                android:hint="Termino"
+                android:inputType="date"
+                android:padding="12dp"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Motivo de salida"
+            android:textColor="#4CAF50"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/grpForMotivoSalida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rdbForRenuncia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Renuncia voluntaria"
+                android:textColor="#333333" />
+
+            <RadioButton
+                android:id="@+id/rdbForTerminoContrato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Termino de contrato"
+                android:textColor="#333333" />
+
+            <RadioButton
+                android:id="@+id/rdbForOtros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Otros"
+                android:textColor="#333333" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/edtForOtros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4CAF50"
+            android:hint="Especificar motivo"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Referencia laboral (Opcional)"
+            android:textColor="#4CAF50"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edtForNombreContacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:hint="Nombre del contacto"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edtForCargoContacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:hint="Cargo"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edtForContacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:hint="Telefono/Correo"
+            android:maxLines="1"
+            android:padding="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+
+        <Button
+            android:id="@+id/btnCompletarFormulario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:padding="12dp"
+            android:text="Completar formulario"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:visibility="visible"/>
+
+        <Button
+            android:id="@+id/btnActualizarFormulario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4CAF50"
+            android:padding="12dp"
+            android:text="Actualizar formulario"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</LinearLayout>

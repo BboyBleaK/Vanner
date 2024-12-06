@@ -60,7 +60,7 @@ public class ApplicationActivity extends AppCompatActivity {
                 for (DataSnapshot applicationSnapshot : snapshot.getChildren()) {
                     Application application = applicationSnapshot.getValue(Application.class);
                     if (application != null && application.getWorkerEmail().equals(userEmail)) {
-                        applicationList.add(application); // Agregar postulaciones del trabajador actual
+                        applicationList.add(application);
                     }
                 }
                 applicationAdapter.notifyDataSetChanged();

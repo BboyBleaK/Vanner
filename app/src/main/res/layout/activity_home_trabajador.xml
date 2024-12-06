@@ -9,6 +9,36 @@
     android:orientation="vertical"
     tools:context=".activities.Home_Trabajador">
 
+
+    <RelativeLayout
+        android:id="@+id/gifContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/gifView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Cargando_animación"
+            android:src="@drawable/animacion" />
+
+        <TextView
+            android:id="@+id/loadingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Cargando..."
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
     <RelativeLayout
         android:id="@+id/RelativeRegistroAdicional"
         android:layout_width="match_parent"
@@ -283,15 +313,6 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <ImageButton
-                android:id="@+id/btnPasar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/txtDescPasar"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/pasar" />
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -304,7 +325,7 @@
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/txtDescMeGusta"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/megusta" />
+                android:src="@mipmap/megustahome" />
 
             <View
                 android:layout_width="0dp"
@@ -325,7 +346,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/viewChat"
+        android:id="@+id/viewEmpleos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/LinearBase"
@@ -333,23 +354,12 @@
         android:background="@drawable/gradient_chat_trabajador"
         android:visibility="gone">
 
-        <ImageView
-            android:id="@+id/imgUsuario"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="10dp"
-            android:elevation="2dp"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/usuario_chat" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="1dp"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            tools:ignore="NotSibling">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="200dp"
@@ -357,274 +367,32 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/gradient_chat_trabajador_profundidad"
-                android:text="Chat"
-
+                android:text="Empleos"
                 android:textAlignment="center"
                 android:textSize="40sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="620dp"
+                android:layout_height="580dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/gradient_chat_trabajador_profundidad"
                 android:orientation="vertical"
                 android:padding="2dp">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvEmpleos"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:background="@drawable/contorno_inicio"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/empresa_chat1" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Empresa"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Mensaje"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/contorno_inicio"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/empresa_chat1" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Empresa"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Mensaje"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/contorno_inicio"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/empresa_chat1" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Empresa"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Mensaje"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/contorno_inicio"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/empresa_chat1" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Empresa"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Mensaje"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/contorno_inicio"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/empresa_chat1" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Empresa"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Mensaje"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/contorno_inicio"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/empresa_chat1" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Empresa"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Mensaje"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginStart="10dp"
-                            android:background="@drawable/contorno_inicio"
-                            android:scaleType="fitCenter"
-                            android:src="@mipmap/usuario_chat" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Usuario"
-                                android:textSize="20sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Mensaje"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -640,210 +408,44 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/LinearBase"
-            android:gravity="center"
+            android:elevation="1dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             tools:ignore="NotSibling">
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/color_titulo_home_trabajador"
+                android:text="Notificaciones"
+                android:textAlignment="center"
+                android:textSize="40sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:elevation="1dp"
-                android:gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/gradient_notificacion_trabajador_profundidad"
                 android:orientation="vertical"
-                tools:ignore="NotSibling">
+                android:padding="2dp">
 
-                <TextView
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="50dp"
-                    android:background="@drawable/color_titulo_home_trabajador"
-                    android:text="Notificaciones"
-                    android:textAlignment="center"
-                    android:textSize="40sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvNotificacionesPropuestas"
                     android:layout_width="match_parent"
-                    android:layout_height="620dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/gradient_notificacion_trabajador_profundidad"
-                    android:orientation="vertical"
-                    android:padding="2dp">
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                </androidx.recyclerview.widget.RecyclerView>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Empresa"
-                                android:textSize="20sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mensaje"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Empresa"
-                                android:textSize="20sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mensaje"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Empresa"
-                                android:textSize="20sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mensaje"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Empresa"
-                                android:textSize="20sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mensaje"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Empresa"
-                                android:textSize="20sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mensaje"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/contorno_inicio"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Empresa"
-                                android:textSize="20sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mensaje"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -855,40 +457,110 @@
         android:layout_above="@+id/LinearBase"
         android:layout_alignParentTop="true"
         android:background="@drawable/fondo_perfil_trabajador"
-        android:visibility="visible">
+        android:visibility="gone">
 
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/LinearImgPerfil"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgPerTrabajador"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/descImgPerfil"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/usuario"
+                    app:shapeAppearanceOverlay="@style/radius" />
 
                 <RelativeLayout
-                    android:id="@+id/LinearImgPerfil"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/imgPerTrabajador"
-                        android:layout_width="150dp"
-                        android:layout_height="170dp"
-                        android:layout_centerHorizontal="true"
-                        android:background="@drawable/contorno_img_perfil_trabajador"
-                        android:contentDescription="@string/descImgPerfil"
-                        android:src="@drawable/usuario" />
+                    <ImageButton
+                        android:id="@+id/btnCerrarSesion"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@android:color/transparent"
+                        android:padding="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/cerrar_sesion_perfil" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true">
+
+                    <ImageButton
+                        android:id="@+id/btnDesactivarCuenta"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@android:color/transparent"
+                        android:padding="5dp"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/desactivar_cuenta"
+                        android:text="@string/btnDesactivarCuenta"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/fondo_perfil_trabajador_profundidad"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:elevation="5dp">
+
+                    <LinearLayout
+                        android:id="@+id/btnModificarInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@android:color/transparent"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/modificar_info_perfil" />
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Modificar informacion"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:id="@+id/LinearCuerpoInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/fondo_perfil_trabajador_profundidad"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/txtPerNombreUsuario"
@@ -896,7 +568,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/txtPerNombreUsuario"
                         android:textColor="#FFFFFF"
-                        android:textSize="17sp" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/txtPerRutUsuario"
@@ -904,7 +576,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/txtPerRutUsuario"
                         android:textColor="#FFFFFF"
-                        android:textSize="17sp" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/txtPerCorreoUsuario"
@@ -912,7 +584,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/txtPerCorreoUsuario"
                         android:textColor="#FFFFFF"
-                        android:textSize="17sp" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/txtPerContactoUsuario"
@@ -920,16 +592,39 @@
                         android:layout_height="wrap_content"
                         android:text="@string/txtPerFonoUsuario"
                         android:textColor="#FFFFFF"
-                        android:textSize="17sp" />
+                        android:textSize="15sp" />
 
+                    <TextView
+                        android:id="@+id/txtPerEdad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edad"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtPerNacimiento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nacimiento:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:elevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center">
+                    android:layout_alignParentEnd="true"
+                    android:elevation="3dp">
 
                     <Button
                         android:id="@+id/btnAgregarExperienciaUser"
@@ -937,50 +632,31 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="#8BC34A"
                         android:text="Agregar experiencia" />
+                </RelativeLayout>
 
-                </LinearLayout>
-
-                <androidx.core.widget.NestedScrollView
+                <RelativeLayout
+                    android:id="@+id/RelativeListadoExperiencia"
                     android:layout_width="match_parent"
-                    android:layout_height="450dp"
-                    android:layout_margin="10dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:elevation="1dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcvExperienciaTrabajador"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="350dp"
+                        android:layout_marginTop="32dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
 
                     </androidx.recyclerview.widget.RecyclerView>
 
-                </androidx.core.widget.NestedScrollView>
+                </RelativeLayout>
+            </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnCerrarSesion"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="#8BC34A"
-                        android:text="@string/btnCerrarSesion" />
-
-                    <Button
-                        android:id="@+id/btnDesactivarCuenta"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="#8BC34A"
-                        android:text="@string/btnDesactivarCuenta" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
 
 
     </RelativeLayout>
@@ -1013,13 +689,13 @@
             android:layout_weight="1" />
 
         <ImageButton
-            android:id="@+id/btnChat"
+            android:id="@+id/btnListarTrabajo"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:background="@drawable/contorno_btn_barranavegacion"
-            android:contentDescription="@string/txtDescChat"
+            android:contentDescription="@string/txtDescListarTrabajo"
             android:scaleType="fitCenter"
-            android:src="@mipmap/chat" />
+            android:src="@mipmap/listar_trabajos" />
 
         <View
             android:layout_width="0dp"

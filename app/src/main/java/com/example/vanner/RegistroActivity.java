@@ -175,6 +175,9 @@ public class RegistroActivity extends AppCompatActivity {
                             user.sendEmailVerification().addOnCompleteListener(task1 -> {
                                 if (task1.isSuccessful()) {
                                     Toast.makeText(RegistroActivity.this, "Correo de verificación enviado", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
                                 } else {
                                     Toast.makeText(RegistroActivity.this, "Error al enviar correo de verificación", Toast.LENGTH_SHORT).show();
                                 }
@@ -198,7 +201,7 @@ public class RegistroActivity extends AppCompatActivity {
             guardarDatosEnRealtimeDatabase(userId, tipoUsuario, imageUrl);
         })).addOnFailureListener(e -> Toast.makeText(this, "Error al subir la imagen: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
-    
+
     private void guardarDatosEnRealtimeDatabase(String userId, String tipoUsuario, String imageUrl) {
         Map<String, Object> datos = new HashMap<>();
         if ("usuario".equals(tipoUsuario)) {

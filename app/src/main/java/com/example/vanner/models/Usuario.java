@@ -7,32 +7,30 @@ public class Usuario {
     private String materno;
     private String rut;
     private String direccion;
-    private String telefono;
+    private String contacto;
     private String fechaNacimiento;
     private String correo;
     private String cargo;
     private String genero;
+    private String urlImagen;
 
-    // Constructor vacío requerido por Firebase
     public Usuario() {
     }
 
-    // Constructor con parámetros
-    public Usuario(String userId, String nombre, String paterno, String materno, String rut, String direccion, String telefono, String fechaNacimiento, String correo, String cargo, String genero) {
+    public Usuario(String userId, String nombre, String paterno, String materno, String rut, String direccion, String contacto, String fechaNacimiento, String correo, String cargo, String genero, String urlImagen) {
         this.userId = userId;
         this.nombre = nombre;
         this.paterno = paterno;
         this.materno = materno;
         this.rut = rut;
         this.direccion = direccion;
-        this.telefono = telefono;
+        this.contacto = contacto;
         this.fechaNacimiento = fechaNacimiento;
         this.correo = correo;
         this.cargo = cargo;
         this.genero = genero;
+        this.urlImagen = urlImagen;
     }
-
-    // Getters y Setters
 
     public String getUserId() {
         return userId;
@@ -82,12 +80,12 @@ public class Usuario {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getContacto() {
+        return contacto;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
     }
 
     public String getFechaNacimiento() {
@@ -120,5 +118,13 @@ public class Usuario {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
     }
 }

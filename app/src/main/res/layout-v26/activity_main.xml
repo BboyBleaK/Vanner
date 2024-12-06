@@ -314,7 +314,7 @@
             android:layout_height="300dp"
             android:contentDescription="@string/DescripcionImgLogo"
             android:scaleType="fitCenter"
-            android:src="@mipmap/vannerlogo" />
+            android:src="@mipmap/logovanerinicio" />
 
         <EditText
             android:id="@+id/ETUsuario"
@@ -410,92 +410,6 @@
                 app:layout_constraintTop_toBottomOf="@id/buttonInicioSesion" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="O"
-            android:textColor="#ffffff" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/btnFacebook"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/redondeo_btnredes"
-                    android:backgroundTint="@android:color/transparent"
-                    android:contentDescription="@string/DescripcionFacebook"
-                    android:scaleType="fitCenter"
-                    android:src="@mipmap/facebook" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Facebook"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/btnCorreo"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/redondeo_btnredes"
-                    android:backgroundTint="@android:color/transparent"
-                    android:contentDescription="@string/DescripcionCorreo"
-                    android:scaleType="fitCenter"
-                    android:src="@mipmap/email" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gmail"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/btnGithub"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/redondeo_btnredes"
-                    android:backgroundTint="@android:color/transparent"
-                    android:contentDescription="@string/DescripcionSocial"
-                    android:scaleType="fitCenter"
-                    android:src="@mipmap/github" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="GitHub"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
-
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

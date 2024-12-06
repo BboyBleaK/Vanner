@@ -9,6 +9,6 @@
         android:type="linear" />
 
     <stroke
-        android:width="10dp"
+        android:width="2dp"
         android:color="#3DA2D3" />
 </shape>
